@@ -23,3 +23,21 @@ Les utilisateurs ont la possibilité de modifier les détails des livres qu'ils 
 
 - Page détail de l'ouvrage
 Les utilisateurs connectés et les admin peuvent consulter les détails de chaque ouvrage et y exprimer leur avis en ajoutant des appréciations aux ouvrages. Une échelle de notation de 0 à 5 est utilisée. Les détails d'un ouvrage comprennent le titre, l'auteur, la catégorie, le nombre d'appréciations, la moyenne obtenue, etc. De même, les détails d'un utilisateur incluent le nombre d'ouvrages proposés.
+
+Règle éco-conception:
+
+Conception > 
+12 Favoriser un design simple, épuré, adapté au web
+20 Afficher des pages d'erreur statiques
+
+Réalisation >
+30 Fournir une alternative textuelle aux contenus multimédias
+32 Favoriser les polices standards
+35 Limiter le nombre de CSS
+40 Ecrire des sélecteurs CSS efficaces
+60 Valider les pages auprès du W3C
+
+Utilisation >
+110 Adapter les textes au web
+
+
