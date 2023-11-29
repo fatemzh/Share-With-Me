@@ -28,16 +28,25 @@ Règle éco-conception:
 
 Conception > 
 12 Favoriser un design simple, épuré, adapté au web
+<<<<<<< Updated upstream
 20 Afficher des pages d'erreur statiques
+=======
+>>>>>>> Stashed changes
 
 Réalisation >
 30 Fournir une alternative textuelle aux contenus multimédias
 32 Favoriser les polices standards
+<<<<<<< Updated upstream
 35 Limiter le nombre de CSS
 40 Ecrire des sélecteurs CSS efficaces
 60 Valider les pages auprès du W3C
 
 Utilisation >
 110 Adapter les textes au web
+=======
+35 Limiter le nombre de CSS 
+60 Valider les pages auprès du W3C
+
+>>>>>>> Stashed changes
 
 
