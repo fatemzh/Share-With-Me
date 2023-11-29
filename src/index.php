@@ -7,7 +7,9 @@
 </head>
 <body>
     <nav id="navbar">
-        <img src="./" alt="">
+        <img src="./images/logo.PNG" alt="">
+        <h1>Share</h1>
+        
     </nav>
 </body>
 </html>
