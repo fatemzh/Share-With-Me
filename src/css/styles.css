@@ -1,3 +1,386 @@
-body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+.frame-3 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 4px;
+  position: absolute;
+  top: 164px;
+  left: 340px;
 }
+
+.link {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 10px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.CATALOG {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--grey-600);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.CATALOG-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--black);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.details-de-l-ouvrage .div {
+  background-color: #ffffff;
+  overflow: hidden;
+  width: 1920px;
+  height: 1739px;
+  position: relative;
+}
+
+.details-de-l-ouvrage .rectangle {
+  position: absolute;
+  width: 1920px;
+  height: 408px;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-blue);
+  transform: rotate(180deg);
+}
+
+.details-de-l-ouvrage .p {
+  position: absolute;
+  top: 305px;
+  left: 372px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: var(--grey-400);
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .frame {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 40px;
+  position: absolute;
+  top: 220px;
+  left: 840px;
+}
+
+.details-de-l-ouvrage .line {
+  position: absolute;
+  width: 1240px;
+  height: 1px;
+  top: 273px;
+  left: 372px;
+  object-fit: cover;
+}
+
+.details-de-l-ouvrage .cover {
+  position: absolute;
+  width: 550px;
+  height: 660px;
+  top: 401px;
+  left: 340px;
+}
+
+.details-de-l-ouvrage .title-author {
+  position: absolute;
+  width: 619px;
+  height: 175px;
+  top: 403px;
+  left: 965px;
+}
+
+.title-author .author {
+  position: absolute;
+  width: 248px;
+  top: 107px;
+  left: 0;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 25px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.title-author .book-title {
+  position: absolute;
+  width: 615px;
+  top: 0;
+  left: 0;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 35px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.title{
+display: flex;
+}
+
+.title h1 {
+  position: absolute;
+  top: 229px;
+  left: 340px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.title .vector {
+  position: absolute;
+  width: 62px;
+  height: 60px;
+  top: 243px;
+  left: 1002px;
+}
+
+.details-de-l-ouvrage .infos {
+  position: absolute;
+  width: 571px;
+  height: 441px;
+  top: 594px;
+  left: 964px;
+}
+
+.details-de-l-ouvrage .summary {
+  position: absolute;
+  width: 568px;
+  top: 67px;
+  left: 1px;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .review {
+  display: inline-flex;
+  flex-direction: column;
+  height: 67px;
+  align-items: flex-start;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  left: 1px;
+}
+
+.details-de-l-ouvrage .avis {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .stars {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.details-de-l-ouvrage .star {
+  position: relative;
+  width: 20px;
+  height: 19px;
+}
+
+.details-de-l-ouvrage .catgories-details {
+  position: absolute;
+  width: 185px;
+  height: 179px;
+  top: 260px;
+  left: 0;
+}
+
+.details-de-l-ouvrage .catgories-details p{
+  top: 0;
+  left: 1px;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .infos-2 {
+  position: absolute;
+  width: 139px;
+  height: 179px;
+  top: 262px;
+  left: 220px;
+}
+
+.details-de-l-ouvrage .infos-2 p{
+  top: 38px;
+  left: 1px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .text-wrapper-10 {
+  position: absolute;
+  top: 76px;
+  left: 0;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .text-wrapper-11 {
+  position: absolute;
+  top: 114px;
+  left: 0;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .text-wrapper-12 {
+  position: absolute;
+  top: 152px;
+  left: 1px;
+  font-family: "Open Sans-Bold", Helvetica;
+  font-weight: 700;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+
+.details-de-l-ouvrage .text-wrapper-13 {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .evaluation p{
+  position: absolute;
+  top: 1140px;
+  left: 340px;
+  font-family: "Open Sans-SemiBold", Helvetica;
+  font-weight: 600;
+  color: #000000;
+  font-size: 22px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .evaluation .stars-2 {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: absolute;
+  top: 1152px;
+  left: 591px;
+}
+
+.details-de-l-ouvrage .links {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.details-de-l-ouvrage .frame-2 {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  position: absolute;
+  top: 36px;
+  left: 1315px;
+}
+
+.details-de-l-ouvrage .pseudo-mon-profil {
+  position: relative;
+  width: fit-content;
+  margin-top: -1px;
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.details-de-l-ouvrage .span {
+  font-family: "Open Sans-Regular", Helvetica;
+  font-weight: 400;
+  color: #000000;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.details-de-l-ouvrage .text-wrapper-21 {
+  text-decoration: underline;
+}
+
+.details-de-l-ouvrage .div-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8px 24px;
+  position: relative;
+  flex: 0 0 auto;
+  background-color: var(--dark-beige);
+  border-radius: 40px;
+}
+
+
