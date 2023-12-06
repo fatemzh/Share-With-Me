@@ -26,7 +26,7 @@ include('Database.php');
         <?php
         include('parts/nav.inc.php');
         ?>
-        <header id="hero catalog-hero">
+        <header id="catalog-hero">
             <h1>Trouve ton bonheur</h1>
             <form id="search" action="#" method="post">
                 <div>
