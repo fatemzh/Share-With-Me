@@ -9,9 +9,9 @@
                 <li><a href="addBook.php">Ajouter</a></li>
             </ul>
         </nav>
-        <hr/>
+        <hr>
         <div id="footer-end">
-            <p>© 2023 Share With Me. All rights reserved</p>
+            <p>&copy; 2023 Share With Me. All rights reserved</p>
             <a href="#top">Back to top</a>
         </div>
     </div>
