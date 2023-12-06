@@ -12,13 +12,14 @@
   <body>
         <header>
             <?php include("./parts/nav.inc.php") ?>
-            <div class="frame-3">
+        </header>
+        <main>
+        <div id="breadcrumb">
                 <div class="link"><div class="CATALOG"><a href="./catalog.php">CATALOGUE</a> /</div></div>
                 <div class="link"><div class="CATALOG"><a href="">ROMANCE</a> /</div></div>
                 <div class="link"><p class="CATALOG-2">Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p></div>
             </div>
-        </header>
-        <div class="title">
+            <div class="title">
             <h1>Détails de l’ouvrage</h1>
             <span class="material-symbols-outlined">edit</span>
         </div>
@@ -72,6 +73,7 @@
                 </div>
             </div>
         </div>
+        </main>
         <footer class="footer">
             <? include("./src/parts/footer.inc.php"); ?>
         </footer>

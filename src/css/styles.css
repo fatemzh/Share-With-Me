@@ -8,6 +8,11 @@ html {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+main{
+  width: 1240px;
+  margin: 0 auto;
+}
+
 h1 {
   font-size: 72px;
 }
@@ -135,14 +140,14 @@ width: 480px;
 padding: 10px 12px;
 }
 
-
-.frame-3 {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 4px;
-  position: absolute;
-  top: 164px;
-  left: 340px;
+/******************* HEADER BOOK DETAILS *******************/
+#breadcrumb {
+  margin: 0 auto;
+  padding: 36px 0;
+  max-width: 1241px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .link {
