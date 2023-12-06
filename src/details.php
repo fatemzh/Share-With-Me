@@ -1,30 +1,78 @@
-<?php
+<?php 
 ?>
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Détail du livre</title>
-</head>
-<body>
-    <h5>CATALOGUE / ROMANCE / Titre du livre</h5>
-    <h1>Détails de l'ouvrage</h1>
-    <a href=""><img src="
-    " alt="icon modification"></a>
-    <img src="" alt="couveture du livre">
-    <h2>Titre du livre</h2>
-    <h3>Ajouté par</h3>
-    <h4>Auteur</h4>
-    <p>Moyenne des avis:</p>
-    <img src="" alt="étoile jaune">
-    <p>Résumé du livre</p>
-    <p>Auteur</p>
-    <p>Éditeur</p>
-    <p>Année d'édition</p>
-    <p>Nombre de pages</p>
-    <p>Catégories</p>
-    <p>Evaluez cet ouvrage</p>
-
-</body>
+    <title>Détails de l'ouvrage</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+        <header>
+            <?php include("./parts/nav.inc.php") ?>
+            <div class="frame-3">
+                <div class="link"><div class="CATALOG"><a href="./catalog.php">CATALOGUE</a> /</div></div>
+                <div class="link"><div class="CATALOG"><a href="">ROMANCE</a> /</div></div>
+                <div class="link"><p class="CATALOG-2">Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p></div>
+            </div>
+        </header>
+        <div class="title">
+            <h1>Détails de l’ouvrage</h1>
+            <img class="vector" src="./img/edit.png" />
+        </div>
+        <div class="details-de-l-ouvrage">
+            <div class="cover">
+                <img src="" alt="couverture du livre">
+            </div>
+            <div class="title-author">
+                <p class="book-title">Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p>
+                <p class="author">Ajouté par XXXXXXXXX</p>
+            </div>
+            <div class="infos">
+                <div class="review">
+                        <p class="avis">Moyenne des avis : 4</p>
+                        <div class="stars">
+                            <img class="star" src="img/star-12.svg" />
+                            <img class="star" src="img/star-12.svg" />
+                            <img class="star" src="img/star-12.svg" />
+                            <img class="star" src="img/star-12.svg" />
+                            <img class="star" src="img/star-11.svg" />
+                        </div>
+                </div>
+                <p class="summary">
+                    Lorem ipsum dolor sit amet consectetur. Sed ornare praesent enim elementum tincidunt viverra ipsum. Amet
+                    orci volutpat in morbi senectus enim est consectetur sodales. Lacus amet orci elementum sed morbi elit
+                    viverra risus. Et urna semper blandit et venenatis nulla adipiscing amet.
+                </p>
+                <div class="catgories-details">
+                        <p>Auteur</p>
+                        <p>Editeur</p>
+                        <p>Année d’édition</p>
+                        <p>Nombre de pages</p>
+                        <p>Catégorie</p>
+                </div>
+                <div class="infos-2">
+                        <p>XXXXXXXXXXX</p>
+                        <p>XXXXXXXXX</p>
+                        <p>2023</p>
+                        <p>245</p>
+                        <p>Fiction</p>
+                </div>
+            </div>
+            <div class="evaluation">
+                <p>Evaluez cet ouvrage</p>
+                <div class="stars-2">
+                    <img class="étoile" src="" >
+                    <img class="étoile" src="" >
+                    <img class="étoile" src="" >
+                    <img class="étoile" src="" >
+                    <img class="étoile" src="" >
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <? include("./src/parts/footer.inc.php"); ?>
+        </footer>
+    </body>
 </html>
