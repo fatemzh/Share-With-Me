@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Détails de l'ouvrage</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
         <header>
@@ -19,9 +20,9 @@
         </header>
         <div class="title">
             <h1>Détails de l’ouvrage</h1>
-            <img class="vector" src="./img/edit.png" />
+            <span class="material-symbols-outlined">edit</span>
         </div>
-        <div class="details-de-l-ouvrage">
+        <div class="book-details">
             <div class="cover">
                 <img src="" alt="couverture du livre">
             </div>
