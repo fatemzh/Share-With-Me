@@ -12,6 +12,7 @@ main,
 #footer-container {
   width: 1240px;
   margin: 0 auto;
+  padding-bottom: 160px;
 }
 
 h1 {
@@ -236,6 +237,8 @@ width: 480px;
   gap: 32px 24px;
 }
 
+/******************* BOOKCARD  *******************/
+
 .book-card {
   width: 292px;
 }
@@ -340,113 +343,43 @@ width: 480px;
   padding-bottom: 61px;
 }
 
-#infos-1 .catgories-details {
-  width: 185px;
-  height: 179px;
-  top: 260px;
-  left: 0;
-}
-
 #infos-1{
   display: flex;
   flex-direction: row;
 }
 
-#infos-1 #catgories-details{
+#infos-1 #catgories-details, #infos-2{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding-right: 45px;
+}
+
+#infos-1 #catgories-details p, #infos-2 p{
+  padding-bottom: 11px;
+  font-size: 16px;
 }
 
 #catgories-details p{
   font-weight: 700;
-  font-size: 16px;
 }
 
-#infos-1 .infos-2{
+#evaluation{
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  
 }
 
-#infos-1 .infos-2{
-  width: 139px;
-  height: 179px;
-  top: 262px;
-  left: 220px;
-}
-
-#infos-1 .infos-2 p{
-  font-size: 16px;
-}
-
-#book-details .evaluation p{
-  top: 1140px;
-  left: 340px;
+#evaluation p{
   font-weight: 600;
-  color: #000000;
   font-size: 22px;
-  letter-spacing: 0;
-  line-height: normal;
+  padding-right: 40px;
 }
 
-#book-details .evaluation .stars-2 {
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 8px;
-  position: absolute;
-  top: 1152px;
-  left: 591px;
+#evaluation #stars-2{
+  align-self: center;
 }
 
-#book-details .links {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 40px;
-  flex: 0 0 auto;
-}
-
-#book-details .frame-2 {
-  display: inline-flex;
-  align-items: center;
-  gap: 24px;
-  top: 36px;
-  left: 1315px;
-}
-
-#book-details .pseudo-mon-profil {
-  width: fit-content;
-  margin-top: -1px;
-  font-weight: 400;
-  color: #000000;
-  font-size: 16px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-}
-
-#book-details .span {
-  font-weight: 400;
-  color: #000000;
-  font-size: 16px;
-  letter-spacing: 0;
-}
-
-#book-details .text-wrapper-21 {
-  text-decoration: underline;
-}
-
-#book-details .div-wrapper {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 8px 24px;
-  flex: 0 0 auto;
-  background-color: var(--dark-beige);
-  border-radius: 40px;
+.star{
+  padding-right: 8px;
 }
 
 /******************* HOME CAROUSEL *******************/
