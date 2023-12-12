@@ -1,19 +1,38 @@
-CREATE TABLE t_auteur(
-   id_auteur INT AUTO_INCREMENT,
-   autNomAuteur VARCHAR(50),
-   autPrenomAuteur VARCHAR(50),
-   PRIMARY KEY(id_auteur)
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Hôte : db:3306
+-- Généré le : mar. 12 déc. 2023 à 11:15
+-- Version du serveur : 8.0.30
+-- Version de PHP : 8.0.27
+
+--
+-- Base de données : `db_library`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `t_author`
+--
+
+CREATE TABLE t_author(
+   `idAuthor` INT AUTO_INCREMENT,
+   `autLastName` VARCHAR(50),
+   `autFirstName` VARCHAR(50),
+   PRIMARY KEY(`idAuthor`)
 );
 
-CREATE TABLE t_categorie(
-   id_categorie INT,
-   catNomCategorie VARCHAR(50),
-   PRIMARY KEY(id_categorie)
+CREATE TABLE t_category(
+   `idCategory` INT AUTO_INCREMENT,
+   `catName` VARCHAR(50),
+   PRIMARY KEY(`idCategory`)
 );
 
-CREATE TABLE t_utilisateur(
-   id_utilisateur INT,
-   utiPseudo VARCHAR(50),
+CREATE TABLE t_user(
+   `idUser` INT AUTO_INCREMENT,
+   `utiNickname` VARCHAR(50),
    utiDateEntree INT,
    utiNombreOuvrages INT,
    utiNombreAppreciations INT,

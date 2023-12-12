@@ -8,6 +8,7 @@
     <title>Détails de l'ouvrage</title>
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
   </head>
   <body>
         <header>
@@ -19,28 +20,24 @@
                 <div><a href="">ROMANCE</a> /</div>
                 <p>Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p>
             </div>
-            <div class="title">
+            <div id="title">
                 <h1>Détails de l’ouvrage</h1>
                 <span class="material-symbols-outlined">edit</span>
             </div>
             <div id="book-details">
-                <div class="cover">
+                <div id="cover">
                     <img src="" alt="couverture du livre">
                 </div>
-                <div class="infos">
-                    <div class="title-author">
-                        <p class="book-title">Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p>
+                <div id="infos">
+                    <div id="title-author">
+                        <p id="book-title">Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p>
                         <p class="author">Ajouté par</p>
                         <p class="author">XXXXXXXXX</p>
                     </div>
-                    <div class="review">
+                    <div id="review">
                             <p>Moyenne des avis : 4</p>
                             <div class="stars">
-                                <img class="star" src="img/star-12.svg" alt="étoile">
-                                <img class="star" src="img/star-12.svg" alt="étoile">
-                                <img class="star" src="img/star-12.svg" alt="étoile">
-                                <img class="star" src="img/star-12.svg" alt="étoile">
-                                <img class="star" src="img/star-11.svg" alt="étoile">
+                            <span class="material-symbols-outlined etoile">star</span>
                             </div>
                     </div>
                     <p id="summary">
@@ -69,11 +66,7 @@
             <div id="evaluation">
                 <p>Evaluez cet ouvrage</p>
                 <div id="stars-2">
-                    <img class="star" src="" alt="étoile">
-                    <img class="star" src="" alt="étoile">
-                    <img class="star" src="" alt="étoile">
-                    <img class="star" src="" alt="étoile">
-                    <img class="star" src="" alt="étoile">
+                <span class="material-symbols-outlined etoile">star</span>
                 </div>
             </div>
         </main>
