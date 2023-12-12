@@ -449,3 +449,138 @@ width: 480px;
   border-radius: 40px;
 }
 
+/******************* HOME CAROUSEL *******************/
+
+#home-catalog-hero {
+  background-color: #F2E9E4;
+  padding: 50px;
+  margin-bottom: 120px;
+}
+
+#home-container-header{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 1240px;
+  margin: 0 auto;
+}
+
+#home-cover-img{
+  height: 600px;
+  width: 437px;
+}
+
+#home-left-part{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 480px;
+}
+
+#home-right-part{
+  width: 500px;
+}
+
+#home-left-part h1{
+  font-size: 72px;
+  margin: 30px 0;
+}
+
+#home-stars-review{
+  margin: 30px 0;
+}
+
+#home-see-more{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1A0C00;
+  width: 100px;
+  height: 40px;
+  margin: 30px 0;
+  border-radius: 7px;
+}
+
+#home-see-more a{
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/******************* HOME INTRODUCTION *******************/
+
+#home-title{
+  font-size: 50px;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+#home-introduction{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#home-introduction-img{
+  width: 400px;
+  height: 292px;
+}
+
+#home-introduction p{
+  width: 600px;
+  padding: 20px;
+}
+
+/******************* HOME NOUVEAUTES *******************/
+#home-latestReleases{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: 70px 0px ;
+
+}
+
+#home-latest-bookcard{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 50px;
+  margin: 30px 0px;
+}
+
+#home-nouveautes-title, #home-categories-title {
+  font-size: 30px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+/******************* HOME CATEGORIES *******************/
+
+#home-categories-name{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.home-card-cat{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0px;
+  width: 272px;
+  height: 272px;
+  background-color: #F2E9E4;
+}
+
+a.home-catalog-card{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 30px;
+  background-color: white;
+  border-radius: 10px;
+}
