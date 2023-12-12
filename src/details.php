@@ -56,7 +56,7 @@
                                 <p>Nombre de pages</p>
                                 <p>Catégorie</p>
                         </div>
-                        <div class="infos-2">
+                        <div id="infos-2">
                                 <p>XXXXXXXXXXX</p>
                                 <p>XXXXXXXXX</p>
                                 <p>2023</p>
@@ -66,9 +66,9 @@
                     </div>
                 </div>
             </div>
-            <div class="evaluation">
+            <div id="evaluation">
                 <p>Evaluez cet ouvrage</p>
-                <div class="stars-2">
+                <div id="stars-2">
                     <img class="star" src="" alt="étoile">
                     <img class="star" src="" alt="étoile">
                     <img class="star" src="" alt="étoile">
