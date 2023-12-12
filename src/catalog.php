@@ -53,16 +53,11 @@ include('Database.php');
             <section id="catalog">
                 <h2>Toutes les catégories</h2>
                 <div id="list-container">
-                    <?php for ($i = 0; $i < 11; $i++): ?>
-                    <div class="book-card">
-                        <img src="./img/covers/twilight.jpg" alt="image de couverture du livre">
-                        <div class="book-infos">
-                            <p class="author">Stephenie Meyer</p>
-                            <h3>Twilight</h3>
-                            <p>Posté par : Pseudo</p>
-                        </div>
-                    </div>
-                    <?php endfor; ?>
+                    <?php
+                        for ($i = 0; $i < 11; $i++) {
+                            include('parts/bookCard.inc.php');
+                        }
+                    ?>
                 </div>
             </section>
         </main>
