@@ -41,9 +41,9 @@ CREATE TABLE t_category(
 CREATE TABLE t_user(
    `idUser` INT AUTO_INCREMENT,
    `useNickname` VARCHAR(50),
-   `useDateEntree` INT,
-   `useombreOuvrages` INT,
-   `useNombreAppreciations` INT,
+   `useRegisterDate` INT,
+   `useNumberBooks` INT,
+   `useNumberReviews` INT,
    PRIMARY KEY(`idUser`)
 );
 
@@ -53,13 +53,13 @@ CREATE TABLE t_user(
 
 CREATE TABLE t_book(
    `idBook` INT AUTO_INCREMENT,
-   `booTittle` VARCHAR(50),
-   `booNombrePages` INT,
-   `booExtrait` VARCHAR(50),
+   `booTitle` VARCHAR(50),
+   `booNumberPages` INT,
+   `booExcerpt` VARCHAR(50),
    `booResume` VARCHAR(50),
-   `booAnneeEdition` INT,
-   `booCheminImage` VARCHAR(200),
-   `booNomEditeur` VARCHAR(50),
+   `booEditionYear` INT,
+   `booImageURL` VARCHAR(200),
+   `booEditorName` VARCHAR(50),
    `fkUser` INT NOT NULL,
    `fkAuthor` INT NOT NULL,
    `fkCategory` INT NOT NULL,
