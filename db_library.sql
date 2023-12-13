@@ -24,44 +24,60 @@ CREATE TABLE t_author(
    PRIMARY KEY(`idAuthor`)
 );
 
+--
+-- Structure de la table `t_category`
+--
+
 CREATE TABLE t_category(
    `idCategory` INT AUTO_INCREMENT,
    `catName` VARCHAR(50),
    PRIMARY KEY(`idCategory`)
 );
 
+--
+-- Structure de la table `t_user`
+--
+
 CREATE TABLE t_user(
    `idUser` INT AUTO_INCREMENT,
-   `utiNickname` VARCHAR(50),
-   utiDateEntree INT,
-   utiNombreOuvrages INT,
-   utiNombreAppreciations INT,
-   PRIMARY KEY(id_utilisateur)
+   `useNickname` VARCHAR(50),
+   `useDateEntree` INT,
+   `useombreOuvrages` INT,
+   `useNombreAppreciations` INT,
+   PRIMARY KEY(`idUser`)
 );
 
-CREATE TABLE t_ouvrage(
-   id_ouvrage INT,
-   ouvTitre VARCHAR(50),
-   ouvNombrePages INT,
-   ouvExtrait VARCHAR(50),
-   ouvResume VARCHAR(50),
-   ouvAnneeEdition INT,
-   ouvCheminImage VARCHAR(200),
-   ouvNomEditeur VARCHAR(50),
-   fkUtilisateur INT NOT NULL,
-   fkAuteur INT NOT NULL,
-   fkCategorie INT NOT NULL,
-   PRIMARY KEY(id_ouvrage),
-   FOREIGN KEY(fkUtilisateur) REFERENCES t_utilisateur(id_utilisateur),
-   FOREIGN KEY(fkAuteur) REFERENCES t_auteur(id_auteur),
-   FOREIGN KEY(fkCategorie) REFERENCES t_categorie(id_categorie)
+--
+-- Structure de la table `t_book`
+--
+
+CREATE TABLE t_book(
+   `idBook` INT AUTO_INCREMENT,
+   `booTittle` VARCHAR(50),
+   `booNombrePages` INT,
+   `booExtrait` VARCHAR(50),
+   `booResume` VARCHAR(50),
+   `booAnneeEdition` INT,
+   `booCheminImage` VARCHAR(200),
+   `booNomEditeur` VARCHAR(50),
+   `fkUser` INT NOT NULL,
+   `fkAuthor` INT NOT NULL,
+   `fkCategory` INT NOT NULL,
+   PRIMARY KEY(`idBook`),
+   FOREIGN KEY(`fkUser`) REFERENCES t_user(`idUser`),
+   FOREIGN KEY(`fkAuthor`) REFERENCES t_author(`idAuthor`),
+   FOREIGN KEY(`fkCategory`) REFERENCES t_category(`idCategory`)
 );
 
-CREATE TABLE t_evaluer(
-   fkOuvrage INT,
-   fkUtilisateur INT,
+--
+-- Structure de la table `t_evaluate`
+--
+
+CREATE TABLE t_evaluate(
+   `fkBook` INT,
+   `fkUser` INT,
    note TINYINT,
-   PRIMARY KEY(fkOuvrage, fkUtilisateur),
-   FOREIGN KEY(fkOuvrage) REFERENCES t_ouvrage(id_ouvrage),
-   FOREIGN KEY(fkUtilisateur) REFERENCES t_utilisateur(id_utilisateur)
+   PRIMARY KEY(`fkBook`, `fkUser`),
+   FOREIGN KEY(`fkBook`) REFERENCES t_book(`idBook`),
+   FOREIGN KEY(`fkUser`) REFERENCES t_user(`idUser`)
 );
