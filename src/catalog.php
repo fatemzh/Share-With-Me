@@ -10,7 +10,19 @@
 
 include('Database.php');
 
+// Création d'une instance de la classe Database
+$db = new Database();
+
+// Récupère la liste de tous les livres
+$books = $db->getAllBooks();
+
+
+echo "<pre>";
+var_dump($books);
+echo "</pre>";
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -60,7 +72,7 @@ include('Database.php');
                 <h2>Toutes les catégories</h2>
                 <div id="list-container">
                     <?php
-                        for ($i = 0; $i < 11; $i++) {
+                        foreach ($books as $bookKey => $book) {
                             include('parts/bookCard.inc.php');
                         }
                     ?>
