@@ -176,7 +176,7 @@
         return $evaluation;
     }
 
-        /**
+    /**
      * Retourne un autheur de la BD
      */
     public function getOneAuthor($id) {

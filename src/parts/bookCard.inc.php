@@ -1,6 +1,5 @@
 <div class="book-card">
-    <?= '<img src="./img/covers/"' .  $book["booImageURL"] . ' alt="image de couverture du livre">' ; ?>
-    <!-- <img src="./img/covers/" .  $book["booImageURL"] . ' alt="image de couverture du livre"> -->
+    <img src="./img/covers/<?= $book["booImageURL"]; ?>" alt="image de couverture du livre">
     <div class="book-infos">
         <p class="author">
             <?php
