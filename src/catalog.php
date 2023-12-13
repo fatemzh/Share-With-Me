@@ -19,27 +19,33 @@ include('Database.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link href="./css/styles.css" rel="stylesheet">
-        <title>Bibliothèque | Catalogue</title>
+        <title>Share With Me | Catalogue</title>
     </head>
 
     <body>
         <?php include('parts/nav.inc.php'); ?>
         <header id="catalog-hero">
-            <h1>Trouve ton bonheur</h1>
-            <form id="search" action="#" method="post">
-                <div>
-                    <label for="search"></label>
-                    <input type="search" name="search" id="search" placeholder="Titre, Auteur, Mot-clé, ...">
-                </div>
-                <button type="submit" class="btn"><span class="material-symbols-outlined white-icon">search</span></button>
-            </form>
+            <nav id="catalog-nav">
+                <a href="catalog.php" class="grey">Catalogue /</a>
+                <a href="#"> Action</a>
+            </nav>
+            <section id="catalog-hero-main">
+                <h1>Trouve ton bonheur</h1>
+                <form id="search" action="#" method="post">
+                    <div>
+                        <label for="search"></label>
+                        <input type="search" name="search" id="search" placeholder="Titre, Auteur, Mot-clé, ...">
+                    </div>
+                    <button type="submit" class="btn"><span class="material-symbols-outlined white-icon">search</span></button>
+                </form>
+            </section>
         </header>
         
         <main id="catalog-container">
             <nav id="filter">
                 <h2>Catégories</h2>
                 <ul>
-                    <li><a href="#"></a></li>
+                    <li><a href="#">Action</a></li>
                     <li><a href="#">Aventure</a></li>
                     <li><a href="#">Fantasy</a></li>
                     <li><a href="#">Historique</a></li>
