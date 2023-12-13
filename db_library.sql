@@ -76,7 +76,7 @@ CREATE TABLE t_book(
 CREATE TABLE t_evaluate(
    `fkBook` INT,
    `fkUser` INT,
-   note TINYINT,
+   `evaluation` TINYINT,
    PRIMARY KEY(`fkBook`, `fkUser`),
    FOREIGN KEY(`fkBook`) REFERENCES t_book(`idBook`),
    FOREIGN KEY(`fkUser`) REFERENCES t_user(`idUser`)
