@@ -165,7 +165,6 @@
     public function getEvaluation($idBook){
         // Requête SQL pour récupérer les 5 derniers livres ajoutés
         $query = "SELECT AVG(evaluation) FROM t_evaluation WHERE fkBook = '$idBook'";
-
         //Appelle la méthode privée pour executer la requête
         $binds = array("idBook" => $idBook);
         $req = $this->queryPrepareExecute($query, $binds);
@@ -176,6 +175,23 @@
         //Retorune un tableau associatif
         return $evaluation;
     }
+
+        /**
+     * Retourne un autheur de la BD
+     */
+    public function getOneAuthor($id) {
+        // Récupère les informations pour un autheur
+        $query = 'SELECT * FROM t_author WHERE idAuthor = :id';
+        $binds = array(':id' => $id);
+        $queryResult = $this->queryPrepareExecute($query, $binds);
+
+        // Appelle la méthode pour avoir le résultat sous forme de tableau associatif
+        $author = $this->formatData($queryResult);
+
+        // Retourne l'enseignant
+        return $author[0];
+    }
+
  }
 
 ?>
