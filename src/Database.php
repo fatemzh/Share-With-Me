@@ -84,6 +84,39 @@
     }
 
     /**
+     * Récupère tous les utilisaeurs de la table t_user.
+     * @return array Le tableau associatif contenant les données des utilisaeurs.
+     */
+    public function getAllUsers(){
+
+        //Exécute la requête pour récupérer tous les utilisaeurs
+        $query = 'SELECT * FROM t_user';
+        //Appeler la méthode privéer pour avoir le résultat sous forme de tableau
+        $req = $this->querySimpleExecute($query);
+        //Retourne un tableau associatif
+        return $this->formatData($req);
+
+    }
+
+    /**
+     * Récupère les informations d'un utilisateur spécifique.
+     * @param int $idTeacher L'identifiant de l'utilisateur.
+     * @return array Le tableau associatif contenant les informations de l'utilisateur.
+     */
+    public function getOneUser($idUser){
+        
+        //Requête SQL pour récupérer un enseignant avec sa section
+        $query = "SELECT * FROM t_user  WHERE idUser = :idUser;";
+        //Appèle la méthode privée pour executer la requête
+        $binds = array("idUser" => $idUser);
+        $req = $this->queryPrepareExecute($query, $binds);
+        //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
+        $users = $this->formatData($req);
+        //Retorune un tableau associatif
+        return $users[0];
+    }
+
+    /**
      * Récupère tous les ouvrages de la table t_book.
      * @return array Le tableau associatif contenant les données des ouvrages.
      */
