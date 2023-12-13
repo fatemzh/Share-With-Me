@@ -56,7 +56,7 @@ CREATE TABLE t_book(
    `booTitle` VARCHAR(50),
    `booNumberPages` INT,
    `booExcerpt` VARCHAR(50),
-   `booResume` VARCHAR(50),
+   `booResume` VARCHAR(500),
    `booEditionYear` INT,
    `booImageURL` VARCHAR(200),
    `booEditorName` VARCHAR(50),
