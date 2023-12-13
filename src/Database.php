@@ -105,10 +105,43 @@
      */
     public function getOneUser($idUser){
         
-        //Requête SQL pour récupérer un enseignant avec sa section
+        //Requête SQL pour récupérer un utilisateur
         $query = "SELECT * FROM t_user  WHERE idUser = :idUser;";
         //Appèle la méthode privée pour executer la requête
         $binds = array("idUser" => $idUser);
+        $req = $this->queryPrepareExecute($query, $binds);
+        //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
+        $users = $this->formatData($req);
+        //Retorune un tableau associatif
+        return $users[0];
+    }
+
+    /**
+     * Récupère tous les auteurs de la table t_user.
+     * @return array Le tableau associatif contenant les données des auteurs.
+     */
+    public function getAllAuthors(){
+
+        //Exécute la requête pour récupérer tous les auteurs
+        $query = 'SELECT * FROM t_author';
+        //Appeler la méthode privéer pour avoir le résultat sous forme de tableau
+        $req = $this->querySimpleExecute($query);
+        //Retourne un tableau associatif
+        return $this->formatData($req);
+
+    }
+
+    /**
+     * Récupère les informations d'un auteur spécifique.
+     * @param int $idTeacher L'identifiant de l'auteur.
+     * @return array Le tableau associatif contenant les informations de l'auteur.
+     */
+    public function getOneAuthor($idAuthor){
+        
+        //Requête SQL pour récupérer un auteur
+        $query = "SELECT * FROM t_author  WHERE idAuthor = :idAuthor;";
+        //Appèle la méthode privée pour executer la requête
+        $binds = array("idAuthor" => $idAuthor);
         $req = $this->queryPrepareExecute($query, $binds);
         //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
         $users = $this->formatData($req);
@@ -138,7 +171,7 @@
      */
     public function getOneBook($idBook){
         
-        //Requête SQL pour récupérer un enseignant avec sa section
+        //Requête SQL pour récupérer un ouvrage
         $query = "SELECT * FROM t_book  WHERE idBook = :idBook;";
         //Appèle la méthode privée pour executer la requête
         $binds = array("idBook" => $idBook);

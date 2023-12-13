@@ -21,6 +21,8 @@ $idBook = $_GET["idBook"];
 //Récupération des information du professeur dans la base de données à partir de son identifiant
 $book = $db->getOneBook($idBook);
 $user = $db->getOneUser($book["fkUser"]);
+$author = $db->getOneAuthor($book["fkAuthor"]);
+$category = $db->getOneAuthor($book["fkAuthor"]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -42,7 +44,7 @@ $user = $db->getOneUser($book["fkUser"]);
                 <div><a href=""><?=$book["fkCategory"]?></a> /</div>
                 <p><?=$book["booTitle"]?></p>
             </div>
-            <div id="title">
+            <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
                 <span class="material-symbols-outlined">edit</span>
             </div>
@@ -75,7 +77,7 @@ $user = $db->getOneUser($book["fkUser"]);
                                 <p>Catégorie</p>
                         </div>
                         <div id="infos-2">
-                                <p><?=$book["fkAuthor"]?></p>
+                                <p><?=$author["autFirstName"]. " " . $author["autLastName"]?></p>
                                 <p><?=$book["booEditorName"]?></p>
                                 <p><?=$book["booEditionYear"]?></p>
                                 <p><?=$book["booNumberPages"]?></p>

@@ -299,18 +299,18 @@ width: 480px;
   padding-right: 4px;
 }
 
-#title{
+#title-detail{
   margin: 0 auto;
   display: flex;
   align-items: center;
 }
 
-#title span .material-symbols-outlined {
+#title-detail span .material-symbols-outlined {
   width: 61.96px;
   height: 60px;
 }
 
-#title h1 {
+#title-detail h1 {
   font-weight: 400;
   font-size: 50px;
   padding-right: 80px;
