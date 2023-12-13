@@ -42,31 +42,34 @@
         <div class="carousel">
                 <div class="carousel-inner">
                     <!-- First slide -->
-                    <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-                    <div class="carousel-item">
-                        <div id="home-container-header">
-                            <div id="home-left-part">
-                                <h1>Twilight</h1>
-                                <div id="home-stars-review">
-                                    <h4>Avis</h4>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star_half</span>
+                    <?php foreach($newBooks as $newBook):?>
+                        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+                        <div class="carousel-item">
+                            <div id="home-container-header">
+                                <div id="home-left-part">
+                                    <h1><?php echo $newBook['booTitle']; ?></h1>
+                                    <div id="home-stars-review">
+                                        <h4>Avis</h4>
+                                        <span class="material-symbols-outlined">star</span>
+                                        <span class="material-symbols-outlined">star</span>
+                                        <span class="material-symbols-outlined">star</span>
+                                        <span class="material-symbols-outlined">star</span>
+                                        <span class="material-symbols-outlined">star_half</span>
+                                    </div>
+                                    <p>
+                                        Résumé Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
+                                    </p>
+                                    <div id="home-see-more">
+                                        <a href="./details.php?idBook=<?= $books["idBook"];?>"> Voir plus</a>
+                                    </div>
                                 </div>
-                                <p>
-                                    Résumé Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
-                                </p>
-                                <div id="home-see-more">
-                                    <a href="./details.php?idBook=<?= $books["idBook"];?>"> Voir plus</a>
+                                <div id="home-right-part">
+                                    <img src="./img/covers/twilight.jpg" alt="Image représentant la couverture du livre" id="home-cover-img">  
                                 </div>
-                            </div>
-                            <div id="home-right-part">
-                                <img src="./img/covers/twilight.jpg" alt="Image représentant la couverture du livre" id="home-cover-img">  
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
+                                       
                     <!-- Examples Slides -->
                     <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
                     <div class="carousel-item">
