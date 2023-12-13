@@ -148,7 +148,24 @@
         //Retorune un tableau associatif
         return $books[0];
     }
-    
+
+    public function getNovelties(){
+        // Requête SQL pour récupérer les données des enseignants
+        $query = "SELECT * FROM Employee ORDER BY ID DESC LIMIT 5)
+        ORDER BY ID ASC";
+        $binds = array(':idBook' => $id);
+
+        // Exécuter la requête SQL
+        $result = $this->querySimpleExecute($query, $binds);
+
+        // Formater les données
+        $novelties = $this->formatData($result);
+        
+        // Renvoie le tableau associatif 
+        return $novelties[5];
+    }
+
+
  }
 
 

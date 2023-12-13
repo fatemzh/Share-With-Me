@@ -1,3 +1,24 @@
+<?php
+    //phpinfo();
+    session_start();
+
+    // if (!isset($_SESSION["user"]) ) {
+    //     $isUserConnected = false;
+    // } else {
+    //     $isUserConnected = true;
+    //     $userName = $_SESSION["user"];
+    // }
+
+    // Inclure le fichier Database.php
+    include './Database.php';
+
+    // Créer une instance de la classe Database
+    $db = new Database();
+
+    // Récupérer la liste des enseignants depuis la base de données
+    $books =  $db->getNovelties();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,7 +56,7 @@
                                     Résumé Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
                                 </p>
                                 <div id="home-see-more">
-                                    <a href="./details.php" >Voir plus</a>
+                                    <a href="./details.php?idBook=<?= $book["idBook"];?>"> >Voir plus</a>
                                 </div>
                             </div>
                             <div id="home-right-part">
@@ -97,6 +118,15 @@
             <div id="home-categories">
                 <h3 id="home-categories-title">Categories</h3>
                 <div id="home-categories-name">
+                    <?php
+                    // foreach($categories as $category)
+                    // {
+                    //     echo 
+                    //     "<div class="home-card-cat">
+                    //         <a href="./catalog.php" class="home-catalog-card"> . $cat</a>
+                    //     </div>"
+                    // }
+                    ?>
                     <div class="home-card-cat">
                         <a href="./catalog.php" class="home-catalog-card">Romance</a>
                     </div>
