@@ -9,6 +9,8 @@
     //     $userName = $_SESSION["user"];
     // }
 
+    $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
+
     // Inclure le fichier Database.php
     include './Database.php';
 
@@ -16,7 +18,8 @@
     $db = new Database();
 
     // Récupérer la liste des enseignants depuis la base de données
-    $books =  $db->getNovelties();
+    $books =  $db->getAllBooks();
+    $book = $db->getNewBooks($idBook);
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +59,7 @@
                                     Résumé Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
                                 </p>
                                 <div id="home-see-more">
-                                    <a href="./details.php?idBook=<?= $book["idBook"];?>"> >Voir plus</a>
+                                    <a href="./details.php?idBook=<?= $books["idBook"];?>"> Voir plus</a>
                                 </div>
                             </div>
                             <div id="home-right-part">
@@ -128,28 +131,28 @@
                     // }
                     ?>
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[1];?>" class="home-catalog-card">Romance</a>
                     </div>
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[2];?>" class="home-catalog-card">Science-Fiction</a>
                     </div>                    
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[3];?>" class="home-catalog-card">Thriller</a>
                     </div>
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[4];?>" class="home-catalog-card">Essay</a>
                     </div> 
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[5];?>" class="home-catalog-card">Poetry</a>
                     </div>
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[6];?>" class="home-catalog-card">Classics</a>
                     </div> 
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[7];?>" class="home-catalog-card">Horror</a>
                     </div>
                     <div class="home-card-cat">
-                        <a href="./catalog.php" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idBook=<?= $books[8];?>" class="home-catalog-card">Historical Fiction</a>
                     </div> 
                 </div>
             </div>

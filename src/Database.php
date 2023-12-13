@@ -18,7 +18,7 @@
      */
     public function __construct(){
         //Configuration de la base de donnée
-        $configs = include("config.php");
+        $configs = include("../config/config.php");
 
         //Connexion via PDO et utilise la variable de classe $connector
         try
@@ -88,7 +88,6 @@
      * @return array Le tableau associatif contenant les données des ouvrages.
      */
     public function getAllBooks(){
-
         //Exécute la requête pour récupérer tous les ouvrages
         $query = 'SELECT * FROM t_book';
         //Appeler la méthode privéer pour avoir le résultat sous forme de tableau
@@ -107,33 +106,43 @@
         
         //Requête SQL pour récupérer un enseignant avec sa section
         $query = "SELECT * FROM t_book  WHERE idBook = :idBook;";
-        //Appèle la méthode privée pour executer la requête
+        //Appelle la méthode privée pour executer la requête
         $binds = array("idBook" => $idBook);
         $req = $this->queryPrepareExecute($query, $binds);
-        //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
+        //Appelle la méthode privée pour avoir le résultat sous forme de tableau
         $books = $this->formatData($req);
-        //Retorune un tableau associatif
+        //Retourne un tableau associatif
         return $books[0];
     }
 
-    public function getNovelties(){
-        // Requête SQL pour récupérer les données des enseignants
-        $query = "SELECT * FROM Employee ORDER BY ID DESC LIMIT 5)
-        ORDER BY ID ASC";
-        $binds = array(':idBook' => $id);
-
-        // Exécuter la requête SQL
-        $result = $this->querySimpleExecute($query, $binds);
-
-        // Formater les données
-        $novelties = $this->formatData($result);
+    public function getNewBooks(){
+        // Requête SQL pour récupérer les 5 derniers livres ajoutés
+        $query = "SELECT * FROM t_book ORDER BY idBook DESC LIMIT 5";
         
+        // Exécuter la requête SQL
+        $result = $this->querySimpleExecute($query);
+    
+        // Formater les données
+        $novelties = $this->formatData($result); 
+    
         // Renvoie le tableau associatif 
-        return $novelties[5];
+        return $novelties;
     }
 
+    public function getEvaluation($idBook){
+        // Requête SQL pour récupérer les 5 derniers livres ajoutés
+        $query = "SELECT AVG(evaluation) FROM t_evaluation WHERE fkBook = '$idBook'";
 
+        //Appelle la méthode privée pour executer la requête
+        $binds = array("idBook" => $idBook);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        //Appelle la méthode privée pour avoir le résultat sous forme de tableau
+        $evaluation = $this->$req;
+
+        //Retorune un tableau associatif
+        return $evaluation;
+    }
  }
-
 
 ?>
