@@ -19,7 +19,8 @@
 
     // Récupérer la liste des enseignants depuis la base de données
     $books =  $db->getAllBooks();
-    $book = $db->getNewBooks($idBook);
+    $newBooks = $db->getNewBooks();
+    $evaluation = $db->getEvaluation($idBook);
 ?>
 
 <!DOCTYPE html>
@@ -40,39 +41,33 @@
         <?php include('parts/nav.inc.php'); ?>
         <header id="home-catalog-hero">
         <div class="carousel">
-                <div class="carousel-inner">
-                    <!-- First slide -->
-                    <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
-                    <div class="carousel-item">
-                        <div id="home-container-header">
-                            <div id="home-left-part">
-                                <h1>Twilight</h1>
-                                <div id="home-stars-review">
-                                    <h4>Avis</h4>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star</span>
-                                    <span class="material-symbols-outlined">star_half</span>
-                                </div>
-                                <p>
-                                    Résumé Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
-                                </p>
-                                <div id="home-see-more">
-                                    <a href="./details.php?idBook=<?= $books["idBook"];?>"> Voir plus</a>
-                                </div>
+        <div class="carousel-inner">
+            <?php foreach ($newBooks as $index => $book) { $isActive = $index == 0 ? 'checked="checked"' : ''; // Premier slide actif?>
+                <!-- Slide pour chaque livre -->
+                <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" aria-hidden="true" hidden="" <?= $isActive ?>>
+                <div class="carousel-item">
+                    <div id="home-container-header">
+                        <div id="home-left-part">
+                            <h1><?= htmlspecialchars($book['booTitle']) ?></h1>
+                            <div id="home-stars-review">
+                                <h4>Avis</h4>
+                                <!-- Ici, insérez les étoiles basées sur la note $evaluation -->
                             </div>
-                            <div id="home-right-part">
-                                <img src="./img/covers/twilight.jpg" alt="Image représentant la couverture du livre" id="home-cover-img">  
+                            <p>
+                                <?= htmlspecialchars($book['booSummary']) ?>
+                            </p>
+                            <div id="home-see-more">
+                                <a href="./details.php?idBook=<?= $book["idBook"]; ?>"> Voir plus</a>
                             </div>
                         </div>
+                        <div id="home-right-part">
+                            <img src="./img/covers/<?= htmlspecialchars($book['booImageURL']) ?>" alt="Couverture du livre <?= htmlspecialchars($book['booTitle']) ?>" id="home-cover-img">  
+                        </div>
                     </div>
-                    <!-- Examples Slides -->
-                    <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-                    <div class="carousel-item">
-                        <img src="http://fakeimg.pl/2000x800/DA5930/fff/?text=JavaScript">
-                    </div>
-                    <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
+                </div>
+            <?php } ?>
+            <!-- Nav arrows et bullets ici -->
+            <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
                     <div class="carousel-item">
                         <img src="http://fakeimg.pl/2000x800/F90/fff/?text=Carousel">
                     </div>
@@ -97,6 +92,8 @@
                     </ol>
                 </div>
             </div>
+        </div>
+        </div>
             
         </header>
         <main>
