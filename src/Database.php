@@ -18,7 +18,7 @@
      */
     public function __construct(){
         //Configuration de la base de donnée
-        $configs = include("config.php");
+        $configs = include("../config/config.php");
 
         //Connexion via PDO et utilise la variable de classe $connector
         try
