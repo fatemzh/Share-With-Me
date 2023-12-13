@@ -73,7 +73,7 @@ CREATE TABLE t_book(
 -- Structure de la table `t_evaluate`
 --
 
-CREATE TABLE t_evaluate(
+CREATE TABLE t_evaluation(
    `fkBook` INT,
    `fkUser` INT,
    `evaluation` TINYINT,
