@@ -84,13 +84,13 @@
     }
 
     /**
-     * Récupère tous les enseignants de la table t_teacher.
-     * @return array Le tableau associatif contenant les données des enseignants.
+     * Récupère tous les ouvrages de la table t_book.
+     * @return array Le tableau associatif contenant les données des ouvrages.
      */
-    public function getAllUsers(){
+    public function getAllBooks(){
 
-        //Exécute la requête pour récupérer tous les enseignants
-        $query = 'SELECT * FROM t_user';
+        //Exécute la requête pour récupérer tous les ouvrages
+        $query = 'SELECT * FROM t_book';
         //Appeler la méthode privéer pour avoir le résultat sous forme de tableau
         $req = $this->querySimpleExecute($query);
         //Retourne un tableau associatif
@@ -99,21 +99,21 @@
     }
 
     /**
-     * Récupère les informations d'un enseignant spécifique.
-     * @param int $idTeacher L'identifiant de l'enseignant.
-     * @return array Le tableau associatif contenant les informations de l'enseignant.
+     * Récupère les informations d'un ouvrage spécifique.
+     * @param int $idTeacher L'identifiant de l'ouvrage.
+     * @return array Le tableau associatif contenant les informations de l'ouvrage.
      */
     public function getOneBook($idBook){
         
         //Requête SQL pour récupérer un enseignant avec sa section
         $query = "SELECT * FROM t_book  WHERE idBook = :idBook;";
         //Appèle la méthode privée pour executer la requête
-        $binds = array("idTeacher" => $idBook);
+        $binds = array("idBook" => $idBook);
         $req = $this->queryPrepareExecute($query, $binds);
         //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
-        $teachers = $this->formatData($req);
+        $books = $this->formatData($req);
         //Retorune un tableau associatif
-        return $teachers[0];
+        return $books[0];
     }
 
     public function getNovelties(){

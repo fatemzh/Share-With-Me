@@ -1,4 +1,27 @@
-<?php 
+<?php
+/**
+ * ETML
+ * Auteur: Salma Abdulkadir
+ * Date: 13.12.2023
+ * Description: Page de détails pour chaque livre.
+ */
+
+//Ouverture de la session de l'utilisateur connecté
+session_start();
+
+//Inclusion
+include("./Database.php");
+
+//Instanciation de la base de données
+$db = new Database();
+
+//Récupération de l'identifiant du livre dans l'URL
+$idBook = $_GET["idBook"];
+
+//Récupération des information du professeur dans la base de données à partir de son identifiant
+$book = $db->getOneBook($idBook);
+$evaluation = $db->getEvaluation($idBook);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,7 +41,7 @@
             <div id="breadcrumb">
                 <div><a href="./catalog.php">CATALOGUE</a> /</div>
                 <div><a href="">ROMANCE</a> /</div>
-                <p>Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p>
+                <p><?=$book["booTitle"]?></p>
             </div>
             <div id="title">
                 <h1>Détails de l’ouvrage</h1>
@@ -30,20 +53,19 @@
                 </div>
                 <div id="infos">
                     <div id="title-author">
-                        <p id="book-title">Make it Happen : Surrender Your Fear. Take the Leap. Live on Purpose.</p>
+                        <p id="book-title"><?=$book["booTitle"]?></p>
                         <p class="author">Ajouté par</p>
-                        <p class="author">XXXXXXXXX</p>
+                        <p class="author"><?=$book["fkUser"]?></p>
                     </div>
                     <div id="review">
-                            <p>Moyenne des avis : 4</p>
+                            <!-- TODO: logique pour afficher la moyenne evaluation de l'ouvrage -->
+                            <p>Moyenne des avis : <?=$evaluation["evaluation"]?></p>
                             <div class="stars">
                             <span class="material-symbols-outlined etoile">star</span>
                             </div>
                     </div>
                     <p id="summary">
-                        Lorem ipsum dolor sit amet consectetur. Sed ornare praesent enim elementum tincidunt viverra ipsum. Amet
-                        orci volutpat in morbi senectus enim est consectetur sodales. Lacus amet orci elementum sed morbi elit
-                        viverra risus. Et urna semper blandit et venenatis nulla adipiscing amet.
+                    <?=$book["booSummary"]?>
                     </p>
                     <div id="infos-1">
                         <div id="catgories-details">
@@ -54,11 +76,11 @@
                                 <p>Catégorie</p>
                         </div>
                         <div id="infos-2">
-                                <p>XXXXXXXXXXX</p>
-                                <p>XXXXXXXXX</p>
-                                <p>2023</p>
-                                <p>245</p>
-                                <p>Fiction</p>
+                                <p><?=$book["fkAuthor"]?></p>
+                                <p><?=$book["booEditorName"]?></p>
+                                <p><?=$book["booEditionYear"]?></p>
+                                <p><?=$book["booNumberPages"]?></p>
+                                <p><?=$book["fkCategory"]?></p>
                         </div>
                     </div>
                 </div>
