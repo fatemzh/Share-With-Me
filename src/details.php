@@ -10,7 +10,7 @@
 session_start();
 
 //Inclusion
-include("./Database.php");
+include("Database.php");
 
 //Instanciation de la base de données
 $db = new Database();
@@ -20,8 +20,7 @@ $idBook = $_GET["idBook"];
 
 //Récupération des information du professeur dans la base de données à partir de son identifiant
 $book = $db->getOneBook($idBook);
-$evaluation = $db->getEvaluation($idBook);
-
+$user = $db->getOneUser($book["fkUser"]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -40,7 +39,7 @@ $evaluation = $db->getEvaluation($idBook);
         <main>
             <div id="breadcrumb">
                 <div><a href="./catalog.php">CATALOGUE</a> /</div>
-                <div><a href="">ROMANCE</a> /</div>
+                <div><a href=""><?=$book["fkCategory"]?></a> /</div>
                 <p><?=$book["booTitle"]?></p>
             </div>
             <div id="title">
@@ -55,11 +54,11 @@ $evaluation = $db->getEvaluation($idBook);
                     <div id="title-author">
                         <p id="book-title"><?=$book["booTitle"]?></p>
                         <p class="author">Ajouté par</p>
-                        <p class="author"><?=$book["fkUser"]?></p>
+                        <p class="author"><?=$user["useNickname"]?></p>
                     </div>
                     <div id="review">
                             <!-- TODO: logique pour afficher la moyenne evaluation de l'ouvrage -->
-                            <p>Moyenne des avis : <?=$evaluation["evaluation"]?></p>
+                            <p>Moyenne des avis :</p>
                             <div class="stars">
                             <span class="material-symbols-outlined etoile">star</span>
                             </div>
