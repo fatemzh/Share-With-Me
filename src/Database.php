@@ -214,6 +214,34 @@
         // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
         return $evaluation ? $evaluation[0]['average'] : null;
     }
+
+    public function getPersonalInfos($idUser){
+            // Vérifiez si $idUser est non nul et numérique
+            if ($idUser === null || !is_numeric($idUser)) {
+            // Gérez l'erreur ou retournez une valeur par défaut
+            return null;
+
+            $query = "SELECT 
+            useLogin AS pseudo,
+            useRegisterDate AS inscription
+            COUNT(DISTINCT idBook) AS nombreOuvragesProposes
+            COUNT(fkUser) AS nombreAppreciations
+            FROM t_user
+            INNER JOIN t_book ON idUser = fkUser
+            INNER JOIN t_evaluation ON idUser = fkUser
+            GROUP BY idUser
+            WHERE t_user.idUser = :idUser";
+            
+            // Exécute la requête SQL sans binds car il n'y a pas de paramètre
+            $result = $this->queryPrepareExecute($query, []);
+
+            // Formater les données
+            $userInformation = $this->formatData($result);
+
+            // Renvoie le tableau associatif
+            return $userInformation;
+        }
+    }
  }
 
 ?>
