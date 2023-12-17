@@ -131,23 +131,23 @@
 
     }
 
-    // /**
-    //  * Récupère les informations d'un auteur spécifique.
-    //  * @param int $idTeacher L'identifiant de l'auteur.
-    //  * @return array Le tableau associatif contenant les informations de l'auteur.
-    //  */
-    // public function getOneAuthor($idAuthor){
+     /**
+      * Récupère les informations d'un auteur spécifique.
+      * @param int $idTeacher L'identifiant de l'auteur.
+      * @return array Le tableau associatif contenant les informations de l'auteur.
+      */
+     public function getOneAuthor($idAuthor){
         
-    //     //Requête SQL pour récupérer un auteur
-    //     $query = "SELECT * FROM t_author  WHERE idAuthor = :idAuthor;";
-    //     //Appèle la méthode privée pour executer la requête
-    //     $binds = array("idAuthor" => $idAuthor);
-    //     $req = $this->queryPrepareExecute($query, $binds);
-    //     //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
-    //     $users = $this->formatData($req);
-    //     //Retorune un tableau associatif
-    //     return $users[0];
-    // }
+         //Requête SQL pour récupérer un auteur
+         $query = "SELECT * FROM t_author  WHERE idAuthor = :idAuthor;";
+         //Appèle la méthode privée pour executer la requête
+         $binds = array("idAuthor" => $idAuthor);
+         $req = $this->queryPrepareExecute($query, $binds);
+         //Appèle la méthode privéer pour avoir le résultat sous forme de tableau
+         $authors = $this->formatData($req);
+         //Retorune un tableau associatif
+         return $authors[0];
+     }
 
     /**
      * Récupère tous les ouvrages de la table t_book.
@@ -189,48 +189,31 @@
         $result = $this->querySimpleExecute($query);
     
         // Formater les données
-        $novelties = $this->formatData($result); 
+        $newBooks = $this->formatData($result); 
     
         // Renvoie le tableau associatif 
-        return $novelties;
+        return $newBooks;
     }
 
     public function getEvaluation($idBook){
         // Vérifiez si $idBook est non nul et numérique
-    if ($idBook === null || !is_numeric($idBook)) {
+        if ($idBook === null || !is_numeric($idBook)) {
         // Gérez l'erreur ou retournez une valeur par défaut
         return null;
+        }
+
+        // Requête SQL pour récupérer la moyenne des évaluations pour un livre donné
+        $query = "SELECT AVG(evaluation) as average FROM t_evaluation WHERE fkBook = :idBook";
+
+        // Préparez et exécutez la requête avec le paramètre lié
+        $req = $this->queryPrepareExecute($query, array(':idBook' => $idBook));
+
+        // Récupérez le résultat sous forme de tableau
+        $evaluation = $this->formatData($req);
+
+        // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
+        return $evaluation ? $evaluation[0]['average'] : null;
     }
-
-    // Requête SQL pour récupérer la moyenne des évaluations pour un livre donné
-    $query = "SELECT AVG(evaluation) as average FROM t_evaluation WHERE fkBook = :idBook";
-
-    // Préparez et exécutez la requête avec le paramètre lié
-    $req = $this->queryPrepareExecute($query, array(':idBook' => $idBook));
-
-    // Récupérez le résultat sous forme de tableau
-    $evaluation = $this->formatData($req);
-
-    // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
-    return $evaluation ? $evaluation[0]['average'] : null;
-    }
-
-    /**
-     * Retourne un autheur de la BD
-     */
-    public function getOneAuthor($id) {
-        // Récupère les informations pour un autheur
-        $query = 'SELECT * FROM t_author WHERE idAuthor = :id';
-        $binds = array(':id' => $id);
-        $queryResult = $this->queryPrepareExecute($query, $binds);
-
-        // Appelle la méthode pour avoir le résultat sous forme de tableau associatif
-        $author = $this->formatData($queryResult);
-
-        // Retourne l'enseignant
-        return $author[0];
-    }
-
  }
 
 ?>

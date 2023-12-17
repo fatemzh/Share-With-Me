@@ -486,7 +486,9 @@ width: 480px;
   height: auto;
   max-width: 100%;
 }
-
+.carousel-open:checked + .carousel-item + .carousel-control {
+  display: block;
+}
 .carousel-control {
   background: rgba(0, 0, 0, 0.28);
   border-radius: 50%;
@@ -505,6 +507,7 @@ width: 480px;
   text-align: center;
   width: 40px;
   z-index: 10;
+  display: none;
 }
 
 .carousel-control.prev {

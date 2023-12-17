@@ -84,6 +84,7 @@ INSERT INTO `t_book` (`idBook`, `booTitle`, `booNumberPages`, `booExcerpt`, `boo
 (8, 'The Great Gatsby', 250, 'In my younger and more vulnerable years...', 'A portrait of the Jazz Age...', 1925, 'gatsby.jpg', 'Charles Scribners Sons', 2, 8, 2),
 (9, 'The Hobbit', 320, 'In a hole in the ground there lived a hobbit...', 'A classic fantasy adventure...', 1937, 'hobbit.jpg', 'George Allen & Unwin', 3, 9, 3),
 (10, 'Harry Potter and the Sorcerers Stone', 400, 'Mr. and Mrs. Dursley...', 'The start of a magical journey...', 1997, 'harry_potter.jpg', 'Bloomsbury', 1, 10, 1);
+(11, 'The Witcher', 222, 'urlPDF', 'The start of a magical journey...', 1999, 'harry_potter.jpg', 'Bloomsbury', 1, 10, 2);
 
 -- --------------------------------------------------------
 

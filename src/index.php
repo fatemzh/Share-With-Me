@@ -40,61 +40,53 @@
     <body>
         <?php include('parts/nav.inc.php'); ?>
         <header id="home-catalog-hero">
-        <div class="carousel">
-        <div class="carousel-inner">
-            <?php foreach ($newBooks as $index => $book) { $isActive = $index == 0 ? 'checked="checked"' : ''; // Premier slide actif?>
-                <!-- Slide pour chaque livre -->
-                <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" aria-hidden="true" hidden="" <?= $isActive ?>>
-                <div class="carousel-item">
-                    <div id="home-container-header">
-                        <div id="home-left-part">
-                            <h1><?= htmlspecialchars($book['booTitle']) ?></h1>
-                            <div id="home-stars-review">
-                                <h4>Avis</h4>
-                                <!-- Ici, insérez les étoiles basées sur la note $evaluation -->
+            <div class="carousel">
+                <div class="carousel-inner">
+                    <?php foreach ($newBooks as $index => $book): ?>
+                        <!-- Slide pour chaque livre -->
+                        <input class="carousel-open" type="radio" id="carousel-<?= $index ?>" name="carousel" <?= $index === 0 ? 'checked' : '' ?>  aria-hidden="true" hidden="">
+                        <div class="carousel-item">
+                            <div id="home-container-header">
+                                <div id="home-left-part">
+                                    <h1>
+                                        <?= $book['booTitle'] ?>
+                                    </h1>
+                                    <div id="home-stars-review">
+                                        <h4>Avis</h4>
+                                        <!-- étoiles evaluation -->
+                                    </div>
+                                    <p>
+                                        <?= $book['booSummary'] ?>
+                                    </p>
+                                    <div id="home-see-more">
+                                        <a href="./details.php?idBook=<?= $book["idBook"]; ?>"> Voir plus</a>
+                                    </div>
+                                </div>
+                                <div id="home-right-part">
+                                    <img src="./img/covers/<?=$book['booImageURL'] ?>" alt="Couverture du livre <?= $book['booTitle'] ?>" id="home-cover-img">  
+                                </div>
                             </div>
-                            <p>
-                                <?= htmlspecialchars($book['booSummary']) ?>
-                            </p>
-                            <div id="home-see-more">
-                                <a href="./details.php?idBook=<?= $book["idBook"]; ?>"> Voir plus</a>
-                            </div>
+                            <label class="carousel-control prev" for="carousel-<?= $index - 1 < 0 ? count($newBooks) - 1 : $index - 1 ?>">‹</label>
+                            <label class="carousel-control next" for="carousel-<?= ($index + 1) % count($newBooks) ?>">›</label>
                         </div>
-                        <div id="home-right-part">
-                            <img src="./img/covers/<?= htmlspecialchars($book['booImageURL']) ?>" alt="Couverture du livre <?= htmlspecialchars($book['booTitle']) ?>" id="home-cover-img">  
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
-            <!-- Nav arrows et bullets ici -->
-            <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-                    <div class="carousel-item">
-                        <img src="http://fakeimg.pl/2000x800/F90/fff/?text=Carousel">
-                    </div>
+                    <?php endforeach; ?>
+                    <!-- Nav bullets -->
+            <ol class="carousel-indicators">
+                <?php foreach ($newBooks as $index => $book): ?>
+                    <li>
+                        <label for="carousel-<?= $index ?>" class="carousel-bullet">•</label>
+                    </li>
+                <?php endforeach; ?>
+            </ol>
                     <!-- Nav arrows -->
-                    <label for="carousel-3" class="carousel-control prev control-1">‹</label>
+                    <!-- <label for="carousel-3" class="carousel-control prev control-1">‹</label>
                     <label for="carousel-2" class="carousel-control next control-1">›</label>
                     <label for="carousel-1" class="carousel-control prev control-2">‹</label>
                     <label for="carousel-3" class="carousel-control next control-2">›</label>
                     <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-                    <label for="carousel-1" class="carousel-control next control-3">›</label>
-                    <!-- Nav bullets -->
-                    <ol class="carousel-indicators">
-                        <li>
-                            <label for="carousel-1" class="carousel-bullet">•</label>
-                        </li>
-                        <li>
-                            <label for="carousel-2" class="carousel-bullet">•</label>
-                        </li>
-                        <li>
-                            <label for="carousel-3" class="carousel-bullet">•</label>
-                        </li>
-                    </ol>
+                    <label for="carousel-1" class="carousel-control next control-3">›</label> -->
                 </div>
-            </div>
-        </div>
-        </div>
-            
+            </div>            
         </header>
         <main>
             <h1 id="home-title">Bienvenue sur Share With Me</h1>
