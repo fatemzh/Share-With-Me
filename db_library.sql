@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : mer. 13 déc. 2023 à 07:56
+-- Généré le : lun. 18 déc. 2023 à 18:20
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -131,22 +131,22 @@ CREATE TABLE `t_evaluation` (
 
 CREATE TABLE `t_user` (
   `idUser` int NOT NULL,
-  `useNickname` varchar(50) DEFAULT NULL,
+  `useLogin` varchar(50) DEFAULT NULL,
+  `usePassword` varchar(255) NOT NULL,
+  `useAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `useRegisterDate` date DEFAULT NULL,
   `useNumberBooks` int DEFAULT NULL,
   `useNumberReviews` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-ALTER TABLE t_user
-ADD COLUMN useRegisterDate DATE;
 
 --
 -- Déchargement des données de la table `t_user`
 --
 
-INSERT INTO `t_user` (`idUser`, `useNickname`, `useRegisterDate`, `useNumberBooks`, `useNumberReviews`) VALUES
-(1, 'Alice', '2022-01-15', 4, 4),
-(2, 'Bob', '2021-05-20', 3, 3),
-(3, 'Charlie', '2020-08-10', 3, 3);
+INSERT INTO `t_user` (`idUser`, `useLogin`, `usePassword`, `useAdmin`, `useRegisterDate`, `useNumberBooks`, `useNumberReviews`) VALUES
+(1, 'Alice', 'alice', 1, '2022-01-15', 4, 4),
+(2, 'Bob', 'bob', 0, '2021-05-20', 3, 3),
+(3, 'Charlie', 'charlie', 1, '2020-08-10', 3, 3);
 
 --
 -- Index pour les tables déchargées
@@ -200,7 +200,7 @@ ALTER TABLE `t_author`
 -- AUTO_INCREMENT pour la table `t_book`
 --
 ALTER TABLE `t_book`
-  MODIFY `idBook` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `idBook` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT pour la table `t_category`

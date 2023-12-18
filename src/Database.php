@@ -222,26 +222,40 @@
             return null;
 
             $query = "SELECT 
-            useLogin AS pseudo,
+            useNickname AS pseudo,
             useRegisterDate AS inscription
             COUNT(DISTINCT idBook) AS nombreOuvragesProposes
-            COUNT(fkUser) AS nombreAppreciations
+            COUNT(DISTINCT fkBook) AS nombreAppreciations
             FROM t_user
             INNER JOIN t_book ON idUser = fkUser
             INNER JOIN t_evaluation ON idUser = fkUser
             GROUP BY idUser
-            WHERE t_user.idUser = :idUser";
+            WHERE idUser = :idUser";
             
             // Exécute la requête SQL sans binds car il n'y a pas de paramètre
-            $result = $this->queryPrepareExecute($query, []);
+            $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
 
             // Formater les données
-            $userInformation = $this->formatData($result);
+            $userInformation = $this->formatData($req);
 
             // Renvoie le tableau associatif
             return $userInformation;
         }
     }
+
+     public function login($useLogin, $usePassword) {
+
+         $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
+
+         $req = $this->connector->prepare($query);
+         $req->bindValue('useLogin', $useLogin, PDO::PARAM_STR);
+         $req->execute();
+    
+         $user = $req->fetch(PDO::FETCH_ASSOC);
+    
+             return $user;
+
+     }
  }
 
 ?>

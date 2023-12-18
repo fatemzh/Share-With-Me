@@ -2,12 +2,12 @@
     //phpinfo();
     session_start();
 
-    // if (!isset($_SESSION["user"]) ) {
-    //     $isUserConnected = false;
-    // } else {
-    //     $isUserConnected = true;
-    //     $userName = $_SESSION["user"];
-    // }
+     if (!isset($_SESSION["user"]) ) {
+         $isUserConnected = false;
+     } else {
+         $isUserConnected = true;
+         $userName = $_SESSION["user"];
+     }
 
     $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
 
@@ -17,9 +17,11 @@
     // Créer une instance de la classe Database
     $db = new Database();
 
+    //Récupération de l'identifiant du livre dans l'URL
+    $idUser = $_GET["idUser"];
     // Récupérer la liste des enseignants depuis la base de données
     $books =  $db->getAllBooks();
-    $newBooks = $db->getNewBooks();
+    $infos = $db->getPersonalInfos($idUser);
 ?>
 
 <!DOCTYPE html>
@@ -42,10 +44,13 @@
         <h1>Mes informations personnelles</h1>
         <div id="profile-infos">
             <div class="profile-infos-container">
-                <label>Pseudo</label>
-                <input type="text" name="pseudo" value="<?php echo $_SESSION['pseudo']; ?>">
+                <p>Pseudo : 
+                    <?php
+                        echo $infos["useNickname"];
+                    ?>
+                </p>
             </div>
-            <div class="profile-infos-container">
+            <!-- <div class="profile-infos-container">
                 <label>Date d'entrée dans le site</label>
                 <input type="text" name="pseudo" value="<?php echo $_SESSION['pseudo']; ?>">
             </div>
@@ -56,7 +61,7 @@
             <div class="profile-infos-container">
                 <label>Nombre d'appréciations faites</label>
                 <input type="text" name="pseudo" value="<?php echo $_SESSION['pseudo']; ?>">
-            </div>
+            </div> -->
         </div>
     </main>
     <?php include('parts/footer.inc.php'); ?>
