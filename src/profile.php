@@ -31,7 +31,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="./css/styles.css" rel="stylesheet">
     <title>Mon profil</title>
 </head>
@@ -89,7 +89,8 @@
                             <td>
                                 <?php echo $book['booTitle']; ?>
                             </td>
-                            <td class="profile-containerOptions">               
+                            <td class="profile-containerOptions"> 
+                            <i class="fa-solid fa-magnifying-glass"></i>            
                                 <a href="">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </a>
