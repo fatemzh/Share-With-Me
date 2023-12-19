@@ -10,9 +10,11 @@
     $idUser = $isUserConnected ? $_SESSION["idUser"] : null;
 
     if ($isUserConnected) {
-        $infos = $db->getPersonalInfos($idUser);
-        $pseudo = isset($infos['pseudo']) ? $infos['pseudo'] : 'Inconnu';
-        $inscription = isset($infos['inscription']) ? $infos['inscription'] : 'Inconnue';
+        $idUser = $_SESSION["idUser"]; 
+        $infos = $db->getPersonalInfos($idUser); 
+        $pseudo = $_SESSION["user"]['useLogin'];
+        $inscription = $_SESSION["user"]['useRegisterDate'];
+
     }
 ?>
 
@@ -39,17 +41,13 @@
             <div class="profile-infos-container">
                 <p class="profile-title-categories">Pseudo :</p>
                 <p>
-                    <?php
-                        echo $pseudo;
-                    ?>
+                    <?php echo $pseudo; ?> 
                 </p>
             </div>
             <div class="profile-infos-container">
                 <p class="profile-title-categories">Date d'entrée sur le site :</p>
                 <p>
-                    <?php
-                        echo $inscription;
-                    ?>                
+                    <?php echo $inscription; ?>              
                 </p>
             </div>
             <div class="profile-infos-container">

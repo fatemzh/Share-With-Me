@@ -280,7 +280,7 @@
 
     }
 
-    public function login($useLogin, $usePassword) {
+    public function login($useLogin) {
 
         $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
 
