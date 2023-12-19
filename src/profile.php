@@ -14,7 +14,8 @@
         $infos = $db->getPersonalInfos($idUser); 
         $pseudo = $_SESSION["user"]['useLogin'];
         $inscription = $_SESSION["user"]['useRegisterDate'];
-
+        $nbAppreciations = $db->getUserNumberOfReviews($idUser);
+        $nbBooksPosted = $db->getUserNumberOfPosts($idUser);
     }
 ?>
 
@@ -53,13 +54,13 @@
             <div class="profile-infos-container">
                 <p class="profile-title-categories">Nombre d'ouvrages proposés :</p>
                 <p>
-                    12
+                    <?php echo $nbBooksPosted; ?>
                 </p>
             </div>
             <div class="profile-infos-container">
                 <p class="profile-title-categories">Nombre d'appréciations faites :</p>
                 <p>
-                    22
+                    <?php echo $nbAppreciations; ?>
                 </p>
             </div>
         </div>

@@ -250,11 +250,10 @@
         $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
 
         // Récupérez le résultat sous forme de tableau
-        $nbGrades = $this->formatData($req);
+        $result = $this->formatData($req);
 
-        // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
-        return $nbGrades ? $nbGrades : null;
-
+        // Retournez le nombre de reviews de l'utilisateur ou null s'il n'y a pas de résultat
+        return $result[0]['COUNT(evaGrade)'] ?? 0;
     }
 
     public function getUserNumberOfPosts($idUser)
@@ -265,8 +264,8 @@
         return null;
         
         // Requête SQL pour renvoyer le nombre d'appréciations faites par l'utilisateur
-        $query = "SELECT COUNT(fkBook)
-        FROM t_evaluation
+        $query = "SELECT COUNT(idBook)
+        FROM t_book
         WHERE fkUser=:idUser";
 
         // Préparez et exécutez la requête avec le paramètre lié
@@ -276,7 +275,7 @@
         $nbPosts = $this->formatData($req);
 
         // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
-        return $nbPosts ? $nbPosts : null;
+        return $nbPosts[0]['COUNT(idBook)'] ?? 0;
 
     }
 
