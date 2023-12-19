@@ -54,7 +54,7 @@ textarea::placeholder
 }
 
 button:hover {
-  /* La souris doit devenir une main */
+  cursor: pointer;
 }
 
 /******************* ICONES  *******************/
