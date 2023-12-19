@@ -26,9 +26,9 @@ $db = new Database();
 $books = $db->getAllBooks();
 
 
-echo "<pre>";
+/* echo "<pre>";
 var_dump($books);
-echo "</pre>";
+echo "</pre>"; */
 
 ?>
 

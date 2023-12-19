@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : mar. 19 déc. 2023 à 09:34
+-- Généré le : mar. 19 déc. 2023 à 10:26
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -74,17 +74,17 @@ CREATE TABLE `t_book` (
 --
 
 INSERT INTO `t_book` (`idBook`, `booTitle`, `booNumberPages`, `booExcerpt`, `booSummary`, `booEditionYear`, `booImageURL`, `booEditorName`, `fkUser`, `fkAuthor`, `fkCategory`) VALUES
-(1, 'The Secret Garden', 300, 'An enchanting story...', 'Discover the magic...', 1998, 'secret_garden.jpg', 'Vintage Books', 1, 1, 1),
+(1, 'The Secret Garden', 300, 'An enchanting story...', 'Discover the magic...', 1998, 'theSecretGarden.jpg', 'Vintage Books', 1, 1, 1),
 (2, 'Neuromancer', 350, 'Case was the sharpest...', 'A classic in cyberpunk...', 1984, 'neuromancer.jpg', 'Ace Books', 2, 2, 2),
-(3, 'The Da Vinci Code', 500, 'A gripping modern classic...', 'Crack the code...', 2003, 'da_vinci_code.jpg', 'Doubleday', 3, 3, 3),
-(4, 'Pride and Prejudice', 400, 'It is a truth universally acknowledged...', 'A timeless love story...', 1813, 'pride_prejudice.jpg', 'Thomas Egerton', 1, 4, 1),
+(3, 'The Da Vinci Code', 500, 'A gripping modern classic...', 'Crack the code...', 2003, 'theDaVinciCode.jpg', 'Doubleday', 3, 3, 3),
+(4, 'Pride and Prejudice', 400, 'It is a truth universally acknowledged...', 'A timeless love story...', 1813, 'prideAndPrejudice.jpg', 'Thomas Egerton', 1, 4, 1),
 (5, 'Dune', 600, 'In the far future...', 'A sci-fi masterpiece...', 1965, 'dune.jpg', 'Chilton Books', 2, 5, 2),
-(6, 'To Kill a Mockingbird', 320, 'When he was nearly thirteen...', 'A powerful tale of justice...', 1960, 'mockingbird.jpg', 'J.B. Lippincott & Co.', 3, 6, 3),
-(7, 'One Hundred Years of Solitude', 450, 'Many years later...', 'A magical realist epic...', 1967, 'solitude.jpg', 'Harper & Row', 1, 7, 1),
-(8, 'The Great Gatsby', 250, 'In my younger and more vulnerable years...', 'A portrait of the Jazz Age...', 1925, 'gatsby.jpg', 'Charles Scribners Sons', 2, 8, 2),
-(9, 'The Hobbit', 320, 'In a hole in the ground there lived a hobbit...', 'A classic fantasy adventure...', 1937, 'hobbit.jpg', 'George Allen & Unwin', 3, 9, 3),
-(10, 'Harry Potter and the Sorcerers Stone', 400, 'Mr. and Mrs. Dursley...', 'The start of a magical journey...', 1997, 'harry_potter.jpg', 'Bloomsbury', 1, 10, 1),
-(11, 'The Witcher', 222, 'urlPDF', 'The start of a magical journey...', 1999, 'harry_potter.jpg', 'Bloomsbury', 1, 10, 2);
+(6, 'To Kill a Mockingbird', 320, 'When he was nearly thirteen...', 'A powerful tale of justice...', 1960, 'mockingbird.png', 'J.B. Lippincott & Co.', 3, 6, 3),
+(7, 'One Hundred Years of Solitude', 450, 'Many years later...', 'A magical realist epic...', 1967, 'oneHundredYearsOfSolitude.jpg', 'Harper & Row', 1, 7, 1),
+(8, 'The Great Gatsby', 250, 'In my younger and more vulnerable years...', 'A portrait of the Jazz Age...', 1925, 'theGreatGatsby.jpg', 'Charles Scribners Sons', 2, 8, 2),
+(9, 'The Hobbit', 320, 'In a hole in the ground there lived a hobbit...', 'A classic fantasy adventure...', 1937, 'theHobbit.jpg', 'George Allen & Unwin', 3, 9, 3),
+(10, 'Harry Potter and the Sorcerers Stone', 400, 'Mr. and Mrs. Dursley...', 'The start of a magical journey...', 1997, 'sorcerersStone.jpg', 'Bloomsbury', 1, 10, 1),
+(11, 'The Witcher', 222, 'urlPDF', 'The start of a magical journey...', 1999, 'theWitcher.jpg', 'Bloomsbury', 1, 10, 2);
 
 -- --------------------------------------------------------
 
@@ -120,44 +120,8 @@ INSERT INTO `t_category` (`idCategory`, `catName`) VALUES
 CREATE TABLE `t_evaluation` (
   `fkBook` int NOT NULL,
   `fkUser` int NOT NULL,
-  `evaGrade` tinyint DEFAULT NULL
+  `evaluation` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Déchargement des données de la table `t_evaluation`
---
-
-INSERT INTO `t_evaluation` (`fkBook`, `fkUser`, `evaGrade`) VALUES
-(1, 1, 1),
-(1, 2, 4),
-(1, 3, 2),
-(2, 1, 1),
-(2, 2, 4),
-(2, 3, 2),
-(3, 1, 1),
-(3, 2, 4),
-(3, 3, 2),
-(4, 1, 1),
-(4, 2, 4),
-(4, 3, 2),
-(5, 1, 1),
-(5, 2, 4),
-(5, 3, 2),
-(6, 1, 1),
-(6, 2, 4),
-(6, 3, 2),
-(7, 1, 1),
-(7, 2, 4),
-(7, 3, 2),
-(8, 1, 1),
-(8, 2, 4),
-(8, 3, 2),
-(9, 1, 1),
-(9, 2, 4),
-(9, 3, 2),
-(10, 1, 1),
-(10, 2, 4),
-(10, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -170,9 +134,7 @@ CREATE TABLE `t_user` (
   `useLogin` varchar(50) DEFAULT NULL,
   `usePassword` varchar(255) NOT NULL,
   `useAdmin` tinyint(1) NOT NULL DEFAULT '0',
-  `useRegisterDate` date DEFAULT NULL,
-  `useNumberBooks` int DEFAULT NULL,
-  `useNumberReviews` int DEFAULT NULL
+  `useRegisterDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
