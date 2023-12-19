@@ -16,6 +16,7 @@
         $inscription = $_SESSION["user"]['useRegisterDate'];
         $nbAppreciations = $db->getUserNumberOfReviews($idUser);
         $nbBooksPosted = $db->getUserNumberOfPosts($idUser);
+        $usersBooks = $db->getUserBooks($idUser);
     }
 ?>
 
@@ -80,29 +81,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>
-                            Auteur
-                        </td>
-                        <td>
-                            Titre
-                        </td>
-                        <td class="profile-containerOptions">               
-                            <a href="">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </a>
-                        </td>
-                        <td class="profile-containerOptions">               
-                            <a href="">
-                                <i class="fa-solid fa-marker"></i>
-                            </a>
-                        </td>
-                        <td class="profile-containerOptions">
-                            <a href="">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </a>               
-                        </td>
-                    </tr>
+                    <?php foreach($usersBooks as $book) : ?>
+                        <tr>
+                            <td>
+                                <?php echo $book['autFirstName'] . ' ' . $book['autLastName']; ?>
+                            </td>
+                            <td>
+                                <?php echo $book['booTitle']; ?>
+                            </td>
+                            <td class="profile-containerOptions">               
+                                <a href="">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                </a>
+                            </td>
+                            <td class="profile-containerOptions">               
+                                <a href="">
+                                    <i class="fa-solid fa-marker"></i>
+                                </a>
+                            </td>
+                            <td class="profile-containerOptions">
+                                <a href="">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </a>               
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

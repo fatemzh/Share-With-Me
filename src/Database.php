@@ -164,6 +164,24 @@
     }
 
     /**
+     * Récupère tous les ouvrages de la table t_book.
+     * @return array Le tableau associatif contenant les données des ouvrages.
+     */
+    public function getUserBooks($idUser){
+        //Exécute la requête pour récupérer tous les ouvrages
+        $query = 'SELECT * 
+        FROM t_book 
+        JOIN t_author ON fkAuthor = idAuthor
+        WHERE fkUser=:idUser';
+        //Appeler la méthode privéer pour avoir le résultat sous forme de tableau
+        $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
+        // Récupérez le résultat sous forme de tableau
+        $usersBooks = $this->formatData($req);
+        //Retourne un tableau associatif
+        return $usersBooks;
+    }
+
+    /**
      * Récupère les informations d'un ouvrage spécifique.
      * @param int $idTeacher L'identifiant de l'ouvrage.
      * @return array Le tableau associatif contenant les informations de l'ouvrage.

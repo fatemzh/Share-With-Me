@@ -8,7 +8,7 @@
             ?>    
         </p>
         <h3><a href=""><?= $book["booTitle"]; ?></a></h3>
-        <p>Posté par : <a href="#">
+        <p>Posté par : <a href="./profile.php">
             <?php
             $user = $db->getOneUser($book["fkUser"]);
             echo $user["useLogin"];

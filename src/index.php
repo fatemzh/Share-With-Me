@@ -66,8 +66,6 @@
                                     <img src="./img/covers/<?=$book['booImageURL'] ?>" alt="Couverture du livre <?= $book['booTitle'] ?>" id="home-cover-img">  
                                 </div>
                             </div>
-                            <label class="carousel-control prev" for="carousel-<?= $index - 1 < 0 ? count($newBooks) - 1 : $index - 1 ?>">‹</label>
-                            <label class="carousel-control next" for="carousel-<?= ($index + 1) % count($newBooks) ?>">›</label>
                         </div>
                     <?php endforeach; ?>
                     <!-- Nav bullets -->
@@ -79,12 +77,12 @@
                 <?php endforeach; ?>
             </ol>
                     <!-- Nav arrows -->
-                    <!-- <label for="carousel-3" class="carousel-control prev control-1">‹</label>
+                     <label for="carousel-3" class="carousel-control prev control-1">‹</label>
                     <label for="carousel-2" class="carousel-control next control-1">›</label>
                     <label for="carousel-1" class="carousel-control prev control-2">‹</label>
                     <label for="carousel-3" class="carousel-control next control-2">›</label>
                     <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-                    <label for="carousel-1" class="carousel-control next control-3">›</label> -->
+                    <label for="carousel-1" class="carousel-control next control-3">›</label> 
                 </div>
             </div>            
         </header>
@@ -110,15 +108,6 @@
             <div id="home-categories">
                 <h3 id="home-categories-title">Categories</h3>
                 <div id="home-categories-name">
-                    <?php
-                    // foreach($categories as $category)
-                    // {
-                    //     echo 
-                    //     "<div class="home-card-cat">
-                    //         <a href="./catalog.php" class="home-catalog-card"> . $cat</a>
-                    //     </div>"
-                    // }
-                    ?>
                     <div class="home-card-cat">
                         <a href="./catalog.php?idBook=<?= $books[1];?>" class="home-catalog-card">Romance</a>
                     </div>
