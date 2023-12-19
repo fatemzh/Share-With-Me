@@ -29,13 +29,18 @@ a:hover {
   text-decoration: underline;
 }
 
-input {
+input, 
+#book-form select
+{
   padding: 8px 16px;
   height: 38px;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder
+{
   font-size: 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .btn {
@@ -186,7 +191,8 @@ footer hr {
   gap: 80px;
 }
 
-#catalog-nav {
+#catalog-nav,
+#add-nav {
   margin-bottom: 16px;
   text-transform: uppercase;
 }
@@ -648,6 +654,7 @@ a.home-catalog-card{
   border-radius: 10px;
 }
 
+
 /******************* PROFILE *******************/
 
 #profile-h1-title{
@@ -697,4 +704,83 @@ th,
 td {
     padding: 10px;
     border: #ddd solid 1px;
+}
+
+/******************* ADD BOOK *******************/
+
+#add-nav{
+  margin-top: 56px;
+  margin-bottom: 40px;
+}
+#book-form{
+  margin-top: 80px;
+  
+}
+
+#book-form-container{
+  display: flex;
+  justify-content: space-between;
+}
+.space{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 32px;
+}
+
+
+#book-form label{
+  margin-bottom: 8px;
+}
+#book-form input,
+#book-form textarea,
+#book-form select
+{
+  border: 1px solid #4A4E69;
+  border-radius: 4px;
+  width: 480px;
+  font-size: 16px;
+}
+
+#book-form textarea{
+  padding: 8px 16px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+#book-form input[type='file']{
+  padding: 8px 16px;
+  
+}
+
+#book-form input[type=file]::file-selector-button{
+  background-color: #D9D9D9;
+}
+
+#img-cover{
+  margin-bottom: 40px;
+  height:660px ;
+  width: 538px;
+  background-color: #D9D9D9;
+}
+
+
+#form-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#book-form input[type='submit']{
+  width:fit-content;
+  background-color: #4A4E69;
+  color: white;
+  border: none;
+  font-size: 16px;
+}
+#book-form button {
+  padding: 8px 16px;
+  height: 38px;
+  font-size: 16px;
+  background-color: #C9ADA7;
+  border: none;
+  border-radius: 4px;
+  
 }
