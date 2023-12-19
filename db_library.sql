@@ -179,10 +179,17 @@ CREATE TABLE `t_user` (
 -- Déchargement des données de la table `t_user`
 --
 
+<<<<<<< Updated upstream
 INSERT INTO `t_user` (`idUser`, `useLogin`, `usePassword`, `useAdmin`, `useRegisterDate`, `useNumberBooks`, `useNumberReviews`) VALUES
 (1, 'Alice', 'alice', 1, '2022-01-15', 4, 4),
 (2, 'Bob', 'bob', 0, '2021-05-20', 3, 3),
 (3, 'Charlie', 'charlie', 1, '2020-08-10', 3, 3);
+=======
+INSERT INTO `t_user` (`idUser`, `useLogin`, `usePassword`, `useAdmin`, `useRegisterDate`) VALUES
+(1, 'Alice', 'alice', 1, '2022-01-15'),
+(2, 'Bob', 'bob', 0, '2021-05-20'),
+(3, 'Charlie', 'charlie', 1, '2020-08-10');
+>>>>>>> Stashed changes
 
 --
 -- Index pour les tables déchargées

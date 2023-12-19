@@ -11,7 +11,7 @@
         <p>Posté par : <a href="#">
             <?php
             $user = $db->getOneUser($book["fkUser"]);
-            echo $user["useNickname"];
+            echo $user["useLogin"];
             ?>
         </a></p>
     </div>
