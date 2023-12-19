@@ -1,27 +1,23 @@
 <?php
     //phpinfo();
     session_start();
-
-     if (!isset($_SESSION["user"]) ) {
-         $isUserConnected = false;
-     } else {
-         $isUserConnected = true;
-         $userName = $_SESSION["user"];
-     }
-
-    $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
-
+    
     // Inclure le fichier Database.php
     include './Database.php';
 
     // Créer une instance de la classe Database
     $db = new Database();
 
-    //Récupération de l'identifiant du livre dans l'URL
-    $idUser = $_GET["idUser"];
-    // Récupérer la liste des enseignants depuis la base de données
-    $books =  $db->getAllBooks();
-    $infos = $db->getPersonalInfos($idUser);
+    if (!isset($_SESSION["user"])) {
+        $isUserConnected = false;
+    } else {
+        $isUserConnected = true;
+        $userName = $_SESSION["idUser"];
+        $infos = $db->getPersonalInfos($userName); 
+        $pseudo = isset($infos['pseudo']) ? $infos['pseudo'] : 'Inconnu';
+        $inscription = isset($infos['inscription']) ? $infos['inscription'] : 'Inconnue';
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -35,35 +31,87 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="./css/styles.css" rel="stylesheet">
     <title>Mon profil</title>
 </head>
 <body>
-    <?php include('parts/nav.inc.php'); ?>
+    <?php include('./parts/nav.inc.php'); ?>
     <main>
-        <h1>Mes informations personnelles</h1>
+        <h1 id="profile-h1-title">Mes informations personnelles</h1>
         <div id="profile-infos">
             <div class="profile-infos-container">
-                <p>Pseudo : 
+                <p class="profile-title-categories">Pseudo :</p>
+                <p>
                     <?php
-                        echo $infos["useNickname"];
+                        echo $pseudo;
                     ?>
                 </p>
             </div>
-            <!-- <div class="profile-infos-container">
-                <label>Date d'entrée dans le site</label>
-                <input type="text" name="pseudo" value="<?php echo $_SESSION['pseudo']; ?>">
+            <div class="profile-infos-container">
+                <p class="profile-title-categories">Date d'entrée sur le site :</p>
+                <p>
+                    <?php
+                        echo $inscription;
+                    ?>                
+                </p>
             </div>
             <div class="profile-infos-container">
-                <label>Nombre d'ouvrages proposés</label>
-                <input type="text" name="pseudo" value="<?php echo $_SESSION['pseudo']; ?>">
+                <p class="profile-title-categories">Nombre d'ouvrages proposés :</p>
+                <p>
+                    12
+                </p>
             </div>
             <div class="profile-infos-container">
-                <label>Nombre d'appréciations faites</label>
-                <input type="text" name="pseudo" value="<?php echo $_SESSION['pseudo']; ?>">
-            </div> -->
+                <p class="profile-title-categories">Nombre d'appréciations faites :</p>
+                <p>
+                    22
+                </p>
+            </div>
+        </div>
+        <div id="profile-booksTab">
+            <div id="profile-tab-header">
+                <h2>Mes ouvrages</h2>
+                <button>Ajouter un ouvrage</button>
+            </div>
+            <table id="profile-booksTable">
+                <thead>
+                    <tr>
+                        <th>Auteur</th>
+                        <th>Titre</th>
+                        <th>Détails</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Auteur
+                        </td>
+                        <td>
+                            Titre
+                        </td>
+                        <td class="profile-containerOptions">               
+                            <a href="">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </a>
+                        </td>
+                        <td class="profile-containerOptions">               
+                            <a href="">
+                                <i class="fa-solid fa-marker"></i>
+                            </a>
+                        </td>
+                        <td class="profile-containerOptions">
+                            <a href="">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>               
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </main>
-    <?php include('parts/footer.inc.php'); ?>
+    <?php include('./parts/footer.inc.php'); ?>
 </body>
 </html>

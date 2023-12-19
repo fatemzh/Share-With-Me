@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : lun. 18 déc. 2023 à 18:20
+-- Généré le : mar. 19 déc. 2023 à 09:34
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -120,8 +120,44 @@ INSERT INTO `t_category` (`idCategory`, `catName`) VALUES
 CREATE TABLE `t_evaluation` (
   `fkBook` int NOT NULL,
   `fkUser` int NOT NULL,
-  `evaluation` tinyint DEFAULT NULL
+  `evaGrade` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Déchargement des données de la table `t_evaluation`
+--
+
+INSERT INTO `t_evaluation` (`fkBook`, `fkUser`, `evaGrade`) VALUES
+(1, 1, 1),
+(1, 2, 4),
+(1, 3, 2),
+(2, 1, 1),
+(2, 2, 4),
+(2, 3, 2),
+(3, 1, 1),
+(3, 2, 4),
+(3, 3, 2),
+(4, 1, 1),
+(4, 2, 4),
+(4, 3, 2),
+(5, 1, 1),
+(5, 2, 4),
+(5, 3, 2),
+(6, 1, 1),
+(6, 2, 4),
+(6, 3, 2),
+(7, 1, 1),
+(7, 2, 4),
+(7, 3, 2),
+(8, 1, 1),
+(8, 2, 4),
+(8, 3, 2),
+(9, 1, 1),
+(9, 2, 4),
+(9, 3, 2),
+(10, 1, 1),
+(10, 2, 4),
+(10, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -134,7 +170,9 @@ CREATE TABLE `t_user` (
   `useLogin` varchar(50) DEFAULT NULL,
   `usePassword` varchar(255) NOT NULL,
   `useAdmin` tinyint(1) NOT NULL DEFAULT '0',
-  `useRegisterDate` date DEFAULT NULL
+  `useRegisterDate` date DEFAULT NULL,
+  `useNumberBooks` int DEFAULT NULL,
+  `useNumberReviews` int DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -142,9 +180,9 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`idUser`, `useLogin`, `usePassword`, `useAdmin`, `useRegisterDate`, `useNumberBooks`, `useNumberReviews`) VALUES
-(1, 'Alice', 'alice', 1, '2022-01-15'),
-(2, 'Bob', 'bob', 0, '2021-05-20'),
-(3, 'Charlie', 'charlie', 1, '2020-08-10');
+(1, 'Alice', 'alice', 1, '2022-01-15', 4, 4),
+(2, 'Bob', 'bob', 0, '2021-05-20', 3, 3),
+(3, 'Charlie', 'charlie', 1, '2020-08-10', 3, 3);
 
 --
 -- Index pour les tables déchargées

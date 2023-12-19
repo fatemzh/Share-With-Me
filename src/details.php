@@ -9,6 +9,14 @@
 //Ouverture de la session de l'utilisateur connecté
 session_start();
 
+if (!isset($_SESSION["user"]) ) {
+    $isUserConnected = false;
+} else {
+    $isUserConnected = true;
+    $userName = $_SESSION["user"];
+    $infos = $db->getPersonalInfos($idUser);
+}
+
 //Inclusion
 include("Database.php");
 

@@ -2,12 +2,13 @@
     //phpinfo();
     session_start();
 
-    // if (!isset($_SESSION["user"]) ) {
-    //     $isUserConnected = false;
-    // } else {
-    //     $isUserConnected = true;
-    //     $userName = $_SESSION["user"];
-    // }
+
+    if (!isset($_SESSION["user"]) ) {
+        $isUserConnected = false;
+    } else {
+        $isUserConnected = true;
+        $userName = $_SESSION["user"];
+    }
 
     $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
 

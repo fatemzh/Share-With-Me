@@ -216,44 +216,79 @@
     }
 
     public function getPersonalInfos($idUser){
-            // Vérifiez si $idUser est non nul et numérique
-            if ($idUser === null || !is_numeric($idUser)) {
-            // Gérez l'erreur ou retournez une valeur par défaut
-            return null;
 
-            $query = "SELECT 
-            useNickname AS pseudo,
-            useRegisterDate AS inscription
-            COUNT(DISTINCT idBook) AS nombreOuvragesProposes
-            COUNT(DISTINCT fkBook) AS nombreAppreciations
-            FROM t_user
-            INNER JOIN t_book ON idUser = fkUser
-            INNER JOIN t_evaluation ON idUser = fkUser
-            GROUP BY idUser
-            WHERE idUser = :idUser";
-            
-            // Exécute la requête SQL sans binds car il n'y a pas de paramètre
-            $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
+        $idUser = $_SESSION["idUser"];
 
-            // Formater les données
-            $userInformation = $this->formatData($req);
+        // Requête SQL pour récupérer le pseudo et la date d'inscription de l'utilisateur
+        $query = "SELECT useLogin AS pseudo, useRegisterDate AS inscription FROM t_user WHERE idUser = :idUser";
+    
+        // Exécute la requête SQL avec binds
+        $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
+    
+        // Formater les données
+        $userInformation = $this->formatData($req);
+    
+        // Renvoie le tableau associatif
+        return $userInformation;
+    }
+    
+    public function getUserNumberOfReviews($idUser)
+    {
+        // Vérifiez si $idUser est non nul et numérique
+        if ($idUser === null || !is_numeric($idUser)) 
+        // Gérez l'erreur ou retournez une valeur par défaut
+        return null;
+        
+        // Requête SQL pour renvoyer le nombre d'appréciations faites par l'utilisateur
+        $query = "SELECT COUNT(evaGrade)
+        FROM t_evaluation
+        WHERE fkUser=:idUser";
 
-            // Renvoie le tableau associatif
-            return $userInformation;
-        }
+        // Préparez et exécutez la requête avec le paramètre lié
+        $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
+
+        // Récupérez le résultat sous forme de tableau
+        $nbGrades = $this->formatData($req);
+
+        // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
+        return $nbGrades ? $nbGrades : null;
+
     }
 
-     public function login($useLogin, $usePassword) {
+    public function getUserNumberOfPosts($idUser)
+    {
+        // Vérifiez si $idUser est non nul et numérique
+        if ($idUser === null || !is_numeric($idUser)) 
+        // Gérez l'erreur ou retournez une valeur par défaut
+        return null;
+        
+        // Requête SQL pour renvoyer le nombre d'appréciations faites par l'utilisateur
+        $query = "SELECT COUNT(fkBook)
+        FROM t_evaluation
+        WHERE fkUser=:idUser";
 
-         $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
+        // Préparez et exécutez la requête avec le paramètre lié
+        $req = $this->queryPrepareExecute($query, array(':idUser' => $idUser));
 
-         $req = $this->connector->prepare($query);
-         $req->bindValue('useLogin', $useLogin, PDO::PARAM_STR);
-         $req->execute();
-    
-         $user = $req->fetch(PDO::FETCH_ASSOC);
-    
-             return $user;
+        // Récupérez le résultat sous forme de tableau
+        $nbPosts = $this->formatData($req);
+
+        // Retournez le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
+        return $nbPosts ? $nbPosts : null;
+
+    }
+
+    public function login($useLogin, $usePassword) {
+
+        $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
+
+        $req = $this->connector->prepare($query);
+        $req->bindValue('useLogin', $useLogin, PDO::PARAM_STR);
+        $req->execute();
+
+        $user = $req->fetch(PDO::FETCH_ASSOC);
+
+        return $user;
 
      }
  }

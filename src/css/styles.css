@@ -648,3 +648,53 @@ a.home-catalog-card{
   border-radius: 10px;
 }
 
+/******************* PROFILE *******************/
+
+#profile-h1-title{
+  margin: 60px auto;
+}
+#profile-infos{
+  margin-bottom: 100px;
+}
+.profile-title-categories{
+  font-weight: bold;
+}
+
+.profile-infos-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 450px;
+  line-height: 40px;
+}
+
+#profile-tab-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#profile-tab-header h2{
+  font-size: 50px;
+}
+
+#profile-tab-header button{
+  height: 35px;
+  width: 150px;
+  background-color: #4A4E69;
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th,
+td {
+    padding: 10px;
+    border: #ddd solid 1px;
+}

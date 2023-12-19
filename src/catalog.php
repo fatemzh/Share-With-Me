@@ -8,6 +8,15 @@
  * Description : Page de catalogue du site avec la liste de tous les livres filtrable par catégorie
  */
 
+ 
+if (!isset($_SESSION["user"]) ) {
+    $isUserConnected = false;
+} else {
+    $isUserConnected = true;
+    $userName = $_SESSION["user"];
+    $infos = $db->getPersonalInfos($idUser);
+}
+
 include('Database.php');
 
 // Création d'une instance de la classe Database
