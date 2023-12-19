@@ -217,8 +217,10 @@
 
     public function getPersonalInfos($idUser){
 
-        $idUser = $_SESSION["idUser"];
-
+        if ($idUser === null || !is_numeric($idUser)) {
+            return null;
+        }
+        
         // Requête SQL pour récupérer le pseudo et la date d'inscription de l'utilisateur
         $query = "SELECT useLogin AS pseudo, useRegisterDate AS inscription FROM t_user WHERE idUser = :idUser";
     

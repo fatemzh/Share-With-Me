@@ -2,7 +2,6 @@
     //phpinfo();
     session_start();
 
-
     if (!isset($_SESSION["user"]) ) {
         $isUserConnected = false;
     } else {

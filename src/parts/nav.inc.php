@@ -1,10 +1,13 @@
+<?php
+    $isUserConnected = isset($_SESSION["user"]);
+?>
 <div id="nav-bar">
     <nav>
         <ul>
             <li><a href="../index.php">LOGO</a></li>
             <div id="nav-menu">
-                <li><a href="../index.php">Accueil</a></li>
-                <li><a href="../catalog.php">Catalogue</a></li>
+                <li><a href="./index.php">Accueil</a></li>
+                <li><a href="./catalog.php">Catalogue</a></li>
             </div>
         </ul>
     </nav>
@@ -18,7 +21,7 @@
         <?php endif; ?>
         <?php if ($isUserConnected === true && $_SESSION["user"]["useAdmin"]===1) :?>                     
             <form action="./logout.php" method="post">
-                <p><?php echo $_SESSION["user"]['useLogin']; ?> (user)</p>  
+                <p><?php echo $_SESSION["user"]['useLogin']; ?> (admin)</p>  
                 <a href="./profile.php">Mon profil</a> 
                 <button type="submit" name="logout">Se déconnecter</button>
             </form>

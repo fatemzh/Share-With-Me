@@ -1,23 +1,19 @@
 <?php
-    //phpinfo();
     session_start();
-    
-    // Inclure le fichier Database.php
+
     include './Database.php';
 
-    // Créer une instance de la classe Database
     $db = new Database();
 
-    if (!isset($_SESSION["user"])) {
-        $isUserConnected = false;
-    } else {
-        $isUserConnected = true;
-        $userName = $_SESSION["idUser"];
-        $infos = $db->getPersonalInfos($userName); 
+    // Initialisez $isUserConnected et $idUser
+    $isUserConnected = isset($_SESSION["user"]);
+    $idUser = $isUserConnected ? $_SESSION["idUser"] : null;
+
+    if ($isUserConnected) {
+        $infos = $db->getPersonalInfos($idUser);
         $pseudo = isset($infos['pseudo']) ? $infos['pseudo'] : 'Inconnu';
         $inscription = isset($infos['inscription']) ? $infos['inscription'] : 'Inconnue';
     }
-
 ?>
 
 <!DOCTYPE html>
