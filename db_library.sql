@@ -134,9 +134,7 @@ CREATE TABLE `t_user` (
   `useLogin` varchar(50) DEFAULT NULL,
   `usePassword` varchar(255) NOT NULL,
   `useAdmin` tinyint(1) NOT NULL DEFAULT '0',
-  `useRegisterDate` date DEFAULT NULL,
-  `useNumberBooks` int DEFAULT NULL,
-  `useNumberReviews` int DEFAULT NULL
+  `useRegisterDate` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
@@ -144,9 +142,9 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`idUser`, `useLogin`, `usePassword`, `useAdmin`, `useRegisterDate`, `useNumberBooks`, `useNumberReviews`) VALUES
-(1, 'Alice', 'alice', 1, '2022-01-15', 4, 4),
-(2, 'Bob', 'bob', 0, '2021-05-20', 3, 3),
-(3, 'Charlie', 'charlie', 1, '2020-08-10', 3, 3);
+(1, 'Alice', 'alice', 1, '2022-01-15'),
+(2, 'Bob', 'bob', 0, '2021-05-20'),
+(3, 'Charlie', 'charlie', 1, '2020-08-10');
 
 --
 -- Index pour les tables déchargées
