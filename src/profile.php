@@ -68,7 +68,9 @@
         <div id="profile-booksTab">
             <div id="profile-tab-header">
                 <h2>Mes ouvrages</h2>
-                <button>Ajouter un ouvrage</button>
+                <div id="profile-add-book-button">
+                    <a href="./addBook.php">Ajouter un livre</a>
+                </div>
             </div>
             <table id="profile-booksTable">
                 <thead>

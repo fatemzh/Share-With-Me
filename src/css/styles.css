@@ -685,12 +685,27 @@ a.home-catalog-card{
   font-size: 50px;
 }
 
-#profile-tab-header button{
+#profile-add-book-button{
+  background-color: #4A4E69;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 35px;
   width: 150px;
-  background-color: #4A4E69;
   color: white;
+  border-radius: 6px;
 }
+
+#profile-add-book-button:hover{
+  background-color: #7c83ab;
+}
+
+#profile-add-book-button a{
+  color: white;
+  text-decoration: none;
+}
+
+
 
 table {
   width: 100%;
@@ -703,6 +718,8 @@ td {
     padding: 10px;
     border: #ddd solid 1px;
 }
+
+
 
 /******************* ADD BOOK *******************/
 
