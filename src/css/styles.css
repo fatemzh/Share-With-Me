@@ -61,8 +61,8 @@ button:hover {
 
 .material-symbols-outlined {
 font-variation-settings:
-'FILL' 0,
-'wght' 400,
+'FILL' 1,
+'wght' 300,
 'GRAD' 0,
 'opsz' 24
 }
@@ -311,11 +311,6 @@ width: 480px;
   align-items: center;
 }
 
-#title-detail span .material-symbols-outlined {
-  width: 61.96px;
-  height: 60px;
-}
-
 #title-detail h1 {
   font-weight: 400;
   font-size: 50px;
@@ -401,10 +396,13 @@ width: 480px;
   align-self: center;
 }
 
+input{
+  display:none;
+}
+
 .star{
   padding-right: 8px;
 }
-
 /******************* HOME CAROUSEL *******************/
 
 #home-catalog-hero {

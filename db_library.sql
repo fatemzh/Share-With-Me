@@ -120,7 +120,7 @@ INSERT INTO `t_category` (`idCategory`, `catName`) VALUES
 CREATE TABLE `t_evaluation` (
   `fkBook` int NOT NULL,
   `fkUser` int NOT NULL,
-  `evaluation` tinyint DEFAULT NULL
+  `evaGrade` tinyint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO t_evaluation (`fkBook`,`fkUser`,`evaGrade`)
@@ -133,7 +133,7 @@ VALUES (1,1,1),(1,2,3),(1,3,5),
 (7,1,1),(7,2,3),(7,3,5),
 (8,1,1),(8,2,3),(8,3,5),
 (9,1,1),(9,2,3),(9,3,5),
-(10,1,1),(10,2,3),(10,3,5)
+(10,1,1),(10,2,3),(10,3,5);
 -- --------------------------------------------------------
 
 --

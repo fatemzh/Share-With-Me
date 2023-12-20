@@ -28,9 +28,21 @@ $idBook = $_GET["idBook"];
 
 //Récupération des information du professeur dans la base de données à partir de son identifiant
 $book = $db->getOneBook($idBook);
+
+//Récupération des information de l'utilisateur qui a publié l'ouvrage à partir de son identifiant
 $user = $db->getOneUser($book["fkUser"]);
+
+//Récupération des information de l'auteur de l'ouvrage à partir de son identifiant
 $author = $db->getOneAuthor($book["fkAuthor"]);
-$category = $db->getOneAuthor($book["fkAuthor"]);
+
+//Récupération de la catégorie de l'ouvrage à partir de son identifiant
+$category = $db->getCategory($book["fkCategory"]);
+if($book["fkCategory"] === $category["idCategory"]){
+    $catName = $category["catName"];
+}
+
+//Récupération de la moyenne des avis de l'ouvrage à partir de son identifiant
+$ratings = $db->getBookRating($idBook);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -49,7 +61,7 @@ $category = $db->getOneAuthor($book["fkAuthor"]);
         <main>
             <div id="breadcrumb">
                 <div><a href="./catalog.php">CATALOGUE</a> /</div>
-                <div><a href=""><?=$book["fkCategory"]?></a> /</div>
+                <div><a href=""><?=$catName?></a> /</div>
                 <p><?=$book["booTitle"]?></p>
             </div>
             <div id="title-detail">
@@ -68,9 +80,11 @@ $category = $db->getOneAuthor($book["fkAuthor"]);
                     </div>
                     <div id="review">
                             <!-- TODO: logique pour afficher la moyenne evaluation de l'ouvrage -->
-                            <p>Moyenne des avis :</p>
+                            <p>Moyenne des avis : </p>
                             <div class="stars">
-                            <span class="material-symbols-outlined etoile">star</span>
+                            <?php for($i = 0, $i < round($rating["average"], 0), $i++){
+                                echo "<span class=\"material-symbols-outlined etoile\">star</span>";
+                            };?>
                             </div>
                     </div>
                     <p id="summary">
@@ -78,18 +92,18 @@ $category = $db->getOneAuthor($book["fkAuthor"]);
                     </p>
                     <div id="infos-1">
                         <div id="catgories-details">
-                                <p>Auteur</p>
-                                <p>Editeur</p>
-                                <p>Année d’édition</p>
-                                <p>Nombre de pages</p>
-                                <p>Catégorie</p>
+                                <p>Auteur :</p>
+                                <p>Editeur :</p>
+                                <p>Année d’édition :</p>
+                                <p>Nombre de pages :</p>
+                                <p>Catégorie :</p>
                         </div>
                         <div id="infos-2">
                                 <p><?=$author["autFirstName"]. " " . $author["autLastName"]?></p>
                                 <p><?=$book["booEditorName"]?></p>
                                 <p><?=$book["booEditionYear"]?></p>
                                 <p><?=$book["booNumberPages"]?></p>
-                                <p><?=$book["fkCategory"]?></p>
+                                <p><?=$catName?></p>
                         </div>
                     </div>
                 </div>
@@ -97,7 +111,23 @@ $category = $db->getOneAuthor($book["fkAuthor"]);
             <div id="evaluation">
                 <p>Evaluez cet ouvrage</p>
                 <div id="stars-2">
-                <span class="material-symbols-outlined etoile">star</span>
+                    <form action="bookRating.php">
+                        <input type="radio" id="star1" name="rating" value="1">
+                        <label for="star1"></label>
+                        <input type="radio" id="star2" name="rating" value="2">
+                        <label for="star2"></label>
+                        <input type="radio" id="star3" name="rating" value="3">
+                        <label for="star3"></label>
+                        <input type="radio" id="star4" name="rating" value="4">
+                        <label for="star4"></label>
+                        <input type="radio" id="star5" name="rating" value="5">
+                        <label for="star5"></label>
+                    </form>
+                
+                
+                
+                
+                
                 </div>
             </div>
         </main>

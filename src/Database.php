@@ -310,6 +310,42 @@
         return $user;
 
      }
+
+    /**
+     * Récupère les informations d'une catégorie.
+     * @param int $idCategory L'identifiant de la catégorie.
+     * @return array Le tableau associatif contenant les informations de la catégorie.
+     */
+    public function getCategory($idCategory){
+        
+        //Requête SQL pour récupérer un ouvrage
+        $query = "SELECT * FROM t_category  WHERE idCategory = :idCategory;";
+        //Appelle la méthode privée pour executer la requête
+        $binds = array("idCategory" => $idCategory);
+        $req = $this->queryPrepareExecute($query, $binds);
+        //Appelle la méthode privée pour avoir le résultat sous forme de tableau
+        $categories = $this->formatData($req);
+        //Retourne un tableau associatif
+        return $categories[0];
+    }
+
+        /**
+     * Récupère les informations d'une catégorie.
+     * @param int $idCategory L'identifiant de la catégorie.
+     * @return array Le tableau associatif contenant les informations de la catégorie.
+     */
+    public function getBookRating($idBook){
+        
+        //Requête SQL pour récupérer un ouvrage
+        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation WHERE fkBook = :idBook;";
+        //Appelle la méthode privée pour executer la requête
+        $binds = array("idBook" => $idBook);
+        $req = $this->queryPrepareExecute($query, $binds);
+        //Appelle la méthode privée pour avoir le résultat sous forme de tableau
+        $rating = $this->formatData($req);
+        //Retourne un tableau associatif
+        return $rating[0];
+    }
  }
 
 ?>
