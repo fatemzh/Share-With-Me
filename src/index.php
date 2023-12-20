@@ -45,7 +45,7 @@
                 <div class="carousel-inner">
                     <?php foreach ($newBooks as $index => $book): ?>
                         <!-- Slide pour chaque livre -->
-                        <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" <?= $index === 0 ? 'checked' : '' ?> aria-hidden="true" hidden="">
+                        <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" checked="true" aria-hidden="true" hidden="">
                         <div class="carousel-item">
                             <div id="home-container-header">
                                 <div id="home-left-part">
