@@ -717,7 +717,7 @@ td {
     border: #ddd solid 1px;
 }
 
-.profile-containerOptions{
+.profile-containerOptions, .profile-icons{
   text-align: center;
 }
 

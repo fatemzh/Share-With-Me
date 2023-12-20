@@ -72,9 +72,9 @@
                     <tr>
                         <th>Auteur</th>
                         <th>Titre</th>
-                        <th>Détails</th>
-                        <th>Modifier</th>
-                        <th>Supprimer</th>
+                        <th class="profile-icons">Détails</th>
+                        <th class="profile-icons">Modifier</th>
+                        <th class="profile-icons">Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,7 +97,7 @@
                                 </a>
                             </td>
                             <td class="profile-containerOptions">
-                                <a href="./deleteBook.php?idBook=<?=$book["idBook"];?>">
+                                <a href="javascript:confirmDelete(<?=$book["idBook"];?>)">
                                     <span class="material-symbols-outlined">delete</span>
                                 </a>               
                             </td>
@@ -108,5 +108,6 @@
         </div>
     </main>
     <?php include('./parts/footer.inc.php'); ?>
+    <script src="./js/script.js"></script>
 </body>
 </html>

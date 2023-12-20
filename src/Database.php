@@ -346,6 +346,15 @@
         //Retourne un tableau associatif
         return $rating[0];
     }
+
+    public function deleteBook($idBook) {
+        $query = "DELETE FROM t_evaluation WHERE fkBook = :idBook";
+        $binds = array(':idBook' => $idBook);
+        $this->queryPrepareExecute($query, $binds);
+    
+        $query = "DELETE FROM t_book WHERE idBook = :idBook";
+        $this->queryPrepareExecute($query, $binds);
+    }
  }
 
 ?>
