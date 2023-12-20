@@ -27,7 +27,6 @@
             </form>
         <?php endif; ?>
         <?php if ($isUserConnected === false): ?>
-            <h2>Pas connecté</h2>
             <form action="login.php" method="post">
                 <div>
                     <label for="username"> </label>

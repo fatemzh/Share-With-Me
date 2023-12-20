@@ -396,9 +396,9 @@ width: 480px;
   align-self: center;
 }
 
-input{
+/* input {
   display:none;
-}
+} */
 
 .star{
   padding-right: 8px;

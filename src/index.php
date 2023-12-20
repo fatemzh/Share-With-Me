@@ -1,8 +1,15 @@
 <?php
     //phpinfo();
     session_start();
+    
+    // Inclure le fichier Database.php
+    include './Database.php';
 
-    if (!isset($_SESSION["user"]) ) {
+    // Créer une instance de la classe Database
+    $db = new Database();
+    $isUserConnected = isset($_SESSION["user"]);
+
+    if (!$isUserConnected) {
         $isUserConnected = false;
     } else {
         $isUserConnected = true;
@@ -10,12 +17,6 @@
     }
 
     $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
-
-    // Inclure le fichier Database.php
-    include './Database.php';
-
-    // Créer une instance de la classe Database
-    $db = new Database();
 
     // Récupérer la liste des enseignants depuis la base de données
     $books =  $db->getAllBooks();

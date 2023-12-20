@@ -13,7 +13,7 @@ $user = $db->login($useLogin, $usePassword);
 if ($user) {
     if ($user['usePassword'] === $usePassword) {        
         $_SESSION['user'] = $user;
-        $_SESSION['idUser'] = $user['idUser']; // Ajoutez cette ligne pour définir idUser dans la session
+        $_SESSION['idUser'] = $user['idUser']; 
         header("Location: index.php");
         exit();
     } else {
