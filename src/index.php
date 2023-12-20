@@ -45,7 +45,7 @@
                 <div class="carousel-inner">
                     <?php foreach ($newBooks as $index => $book): ?>
                         <!-- Slide pour chaque livre -->
-                        <input class="carousel-open" type="radio" id="carousel-<?= $index ?>" name="carousel" <?= $index === 0 ? 'checked' : '' ?>  aria-hidden="true" hidden="">
+                        <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" <?= $index === 0 ? 'checked' : '' ?> aria-hidden="true" hidden="">
                         <div class="carousel-item">
                             <div id="home-container-header">
                                 <div id="home-left-part">
@@ -77,13 +77,21 @@
                     </li>
                 <?php endforeach; ?>
             </ol>
-                    <!-- Nav arrows -->
-                     <label for="carousel-3" class="carousel-control prev control-1">‹</label>
-                    <label for="carousel-2" class="carousel-control next control-1">›</label>
-                    <label for="carousel-1" class="carousel-control prev control-2">‹</label>
-                    <label for="carousel-3" class="carousel-control next control-2">›</label>
-                    <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-                    <label for="carousel-1" class="carousel-control next control-3">›</label> 
+            <!-- Slide 1 -->
+            <label for="carousel-5" class="carousel-control prev control-1">‹</label>
+            <label for="carousel-2" class="carousel-control next control-1">›</label>
+            <!-- Slide 2 -->
+            <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+            <label for="carousel-3" class="carousel-control next control-2">›</label>
+            <!-- Slide 3 -->
+            <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+            <label for="carousel-4" class="carousel-control next control-3">›</label> 
+            <!-- Slide 4 -->
+            <label for="carousel-3" class="carousel-control prev control-4">‹</label>
+            <label for="carousel-5" class="carousel-control next control-4">›</label>
+            <!-- Slide 5 -->
+            <label for="carousel-4" class="carousel-control prev control-5">‹</label>
+            <label for="carousel-1" class="carousel-control next control-5">›</label>
                 </div>
             </div>            
         </header>
