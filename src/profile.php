@@ -26,11 +26,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="./css/styles.css" rel="stylesheet">
     <title>Mon profil</title>
 </head>
@@ -90,20 +86,19 @@
                             <td>
                                 <?php echo $book['booTitle']; ?>
                             </td>
-                            <td class="profile-containerOptions"> 
-                            <i class="fa-solid fa-magnifying-glass"></i>            
-                                <a href="">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
+                            <td class="profile-containerOptions">       
+                                <a href="./details.php?idBook=<?=$book["idBook"];?>">
+                                    <span class="material-symbols-outlined">info</span>
                                 </a>
                             </td>
                             <td class="profile-containerOptions">               
-                                <a href="">
-                                    <i class="fa-solid fa-marker"></i>
+                                <a href="./modifyBook.php?idBook=<?= $book["idBook"]; ?>">
+                                    <span class="material-symbols-outlined">edit</span>
                                 </a>
                             </td>
                             <td class="profile-containerOptions">
-                                <a href="">
-                                    <i class="fa-solid fa-trash-can"></i>
+                                <a href="./deleteBook.php?idBook=<?=$book["idBook"];?>">
+                                    <span class="material-symbols-outlined">delete</span>
                                 </a>               
                             </td>
                         </tr>

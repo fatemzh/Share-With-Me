@@ -99,11 +99,10 @@
             <div id="home-latestReleases">
                 <h3 id="home-nouveautes-title">Nouveautés</h3>
                 <div id="home-latest-bookcard">
-    <?php foreach ($newBooks as $book): ?>
-        <?php include('parts/bookCard.inc.php'); ?>
-    <?php endforeach; ?>
-</div>
-
+                    <?php foreach ($newBooks as $book): ?>
+                        <?php include('parts/bookCard.inc.php'); ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
             <div id="home-categories">
                 <h3 id="home-categories-title">Categories</h3>

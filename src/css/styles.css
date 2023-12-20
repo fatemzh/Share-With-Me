@@ -705,8 +705,6 @@ a.home-catalog-card{
   text-decoration: none;
 }
 
-
-
 table {
   width: 100%;
   border-collapse: collapse;
@@ -719,6 +717,9 @@ td {
     border: #ddd solid 1px;
 }
 
+.profile-containerOptions{
+  text-align: center;
+}
 
 
 /******************* ADD BOOK *******************/
