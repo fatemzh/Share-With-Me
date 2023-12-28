@@ -61,7 +61,7 @@ button:hover {
 
 .material-symbols-outlined {
 font-variation-settings:
-'FILL' 1,
+'FILL' 0,
 'wght' 300,
 'GRAD' 0,
 'opsz' 24
@@ -288,7 +288,7 @@ width: 480px;
   font-weight: bold;
 }
 
-/******************* HEADER BOOK DETAILS *******************/
+/******************* BREADCRUMB *******************/
 #breadcrumb {
   margin: 0 auto;
   padding-bottom: 44px;
@@ -299,6 +299,11 @@ width: 480px;
 
 #breadcrumb a{
   color: #666666;
+  font-size: 16px;
+  transition: font-size 0.3s ease;
+  &:hover{
+    font-size: 20px;
+}
 }
 
 #breadcrumb div{
@@ -313,14 +318,28 @@ width: 480px;
 
 #title-detail h1 {
   font-weight: 400;
-  font-size: 50px;
+  font-size: 64px;
   padding-right: 80px;
+}
+
+#title-detail a .material-symbols-outlined{
+font-size: 70px;
+transition: font-size 0.3s ease;
+&:hover{
+  font-size: 80px;
+}
+}
+
+/******************* BOOK DETAILS *******************/
+
+#cover img{
+width: 550px;
+height: 660px;
 }
 
 #book-details{
   display: flex;
   flex-direction: row;
-  justify-content: center;
   padding: 80px 0;
 }
 
@@ -349,13 +368,14 @@ width: 480px;
 }
 
 #book-details #review p{
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   padding-bottom: 8px;
 }
 
 #book-details #summary {
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: 600;
   max-width: 568px;
   padding-top: 13px;
   padding-bottom: 61px;
@@ -375,7 +395,7 @@ width: 480px;
 
 #infos-1 #catgories-details p, #infos-2 p{
   padding-bottom: 11px;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 #catgories-details p{
@@ -384,6 +404,7 @@ width: 480px;
 
 #evaluation{
   display: flex;
+  align-items: center;
 }
 
 #evaluation p{
@@ -396,13 +417,28 @@ width: 480px;
   align-self: center;
 }
 
-/* input {
-  display:none;
-} */
+/******************* STAR RATING *******************/
 
-.star{
-  padding-right: 8px;
+.rating input {
+  display:none;
 }
+
+.stars .material-symbols-outlined{
+  padding-right: 8px;
+  color: #FFAD66;
+  font-variation-settings:
+  'FILL' 1
+}
+.rating .material-symbols-outlined {
+  padding-right: 8px;
+  color: #FFAD66;
+  transition: color 0.3s ease;
+  &:hover {
+    font-variation-settings:
+    'FILL' 1
+  }
+}
+
 /******************* HOME CAROUSEL *******************/
 
 #home-catalog-hero {
