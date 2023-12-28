@@ -297,6 +297,11 @@
 
     }
 
+    /**
+     * Retourne un tableau associatif de pseudo d'utilisateurs enregistrés dans la DB
+     * @param string $useLogin pseudo de l'utilisateur
+     * @return array Tableau associatif contenant les pseudo d'utilisateurs 
+     */
     public function login($useLogin) {
 
         $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
@@ -309,7 +314,7 @@
 
         return $user;
 
-     }
+    }
 
     /**
      * Récupère les informations d'une catégorie.
@@ -329,7 +334,7 @@
         return $categories[0];
     }
 
-        /**
+    /**
      * Récupère les informations d'une catégorie.
      * @param int $idCategory L'identifiant de la catégorie.
      * @return array Le tableau associatif contenant les informations de la catégorie.
