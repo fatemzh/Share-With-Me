@@ -14,7 +14,6 @@ if (!isset($_SESSION["user"]) ) {
 } else {
     $isUserConnected = true;
     $userName = $_SESSION["user"];
-    $infos = $db->getPersonalInfos($idUser);
 }
 
 //Inclusion
@@ -30,7 +29,7 @@ $idBook = $_GET["idBook"];
 $book = $db->getOneBook($idBook);
 
 //Récupération des information de l'utilisateur qui a publié l'ouvrage à partir de son identifiant
-$user = $db->getOneUser($book["fkUser"]);
+$userBook = $db->getOneUser($book["fkUser"]);
 
 //Récupération des information de l'auteur de l'ouvrage à partir de son identifiant
 $author = $db->getOneAuthor($book["fkAuthor"]);
@@ -43,6 +42,9 @@ if($book["fkCategory"] === $category["idCategory"]){
 
 //Récupération de la moyenne des avis de l'ouvrage à partir de son identifiant
 $ratings = $db->getBookRating($idBook);
+
+//Récupération de la moyenne des avis de l'ouvrage à partir de l'identifiant de l'utilisateur connecté
+$user = $db->getOneUser($_SESSION["idUser"]);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,6 +55,7 @@ $ratings = $db->getBookRating($idBook);
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="./js/script.js"></script>
   </head>
   <body>
         <header>
@@ -61,30 +64,31 @@ $ratings = $db->getBookRating($idBook);
         <main>
             <div id="breadcrumb">
                 <div><a href="./catalog.php">CATALOGUE</a> /</div>
-                <div><a href=""><?=$catName?></a> /</div>
+                <div><a href="./"<?=$catName?>><?=$catName?></a> /</div>
                 <p><?=$book["booTitle"]?></p>
             </div>
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
-                <span class="material-symbols-outlined">edit</span>
+                <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
             </div>
             <div id="book-details">
                 <div id="cover">
-                    <img src="" alt="couverture du livre">
+                    <img src="./img/covers/<?=$book["booImageURL"]?>" alt="couverture du livre">
                 </div>
                 <div id="infos">
                     <div id="title-author">
                         <p id="book-title"><?=$book["booTitle"]?></p>
                         <p class="author">Ajouté par</p>
-                        <p class="author"><?=$user["useNickname"]?></p>
+                        <p class="author"><?=$userBook["useLogin"]?></p>
                     </div>
                     <div id="review">
-                            <!-- TODO: logique pour afficher la moyenne evaluation de l'ouvrage -->
                             <p>Moyenne des avis : </p>
                             <div class="stars">
-                            <?php for($i = 0, $i < round($rating["average"], 0), $i++){
-                                echo "<span class=\"material-symbols-outlined etoile\">star</span>";
-                            };?>
+                                <?php if ($ratings["average"] !== null){
+                                    for($i = 0; $i < round($ratings["average"], 0); $i++){
+                                        echo "<span class=\"material-symbols-outlined etoile\">star</span>";
+                                    }
+                                };?>
                             </div>
                     </div>
                     <p id="summary">
@@ -111,23 +115,28 @@ $ratings = $db->getBookRating($idBook);
             <div id="evaluation">
                 <p>Evaluez cet ouvrage</p>
                 <div id="stars-2">
-                    <form action="bookRating.php">
-                        <input type="radio" id="star1" name="rating" value="1">
-                        <label for="star1"></label>
-                        <input type="radio" id="star2" name="rating" value="2">
-                        <label for="star2"></label>
-                        <input type="radio" id="star3" name="rating" value="3">
-                        <label for="star3"></label>
-                        <input type="radio" id="star4" name="rating" value="4">
-                        <label for="star4"></label>
-                        <input type="radio" id="star5" name="rating" value="5">
-                        <label for="star5"></label>
+                    <form action="ratingCheckForm.php" method="post" id="ratingForm">
+                        <input type="hidden" name="idBook" value="<?=$book["idBook"]?>">
+                        <input type="hidden" name="idUser" value="<?=$user["idUser"]?>">
+                        <div class="rating">
+                            <input type="radio" name="rating" value="1" id="star1" >
+                            <label for="star1"><span class="material-symbols-outlined">star</span></label>
+
+                            <input type="radio" name="rating" value="2" id="star2" >
+                            <label for="star2"><span class="material-symbols-outlined">star</span></label>
+
+                            <input type="radio" name="rating" value="3" id="star3" >
+                            <label for="star3"><span class="material-symbols-outlined">star</span></label>
+
+                            <input type="radio" name="rating" value="4" id="star4" >
+                            <label for="star4"><span class="material-symbols-outlined">star</span></label>
+
+                            <input type="radio" name="rating" value="5" id="star5" >
+                            <label for="star5"><span class="material-symbols-outlined">star</span></label>
+
+                            <input type="hidden" name="rating" id="ratingInput" value="">
+                        </div>
                     </form>
-                
-                
-                
-                
-                
                 </div>
             </div>
         </main>
