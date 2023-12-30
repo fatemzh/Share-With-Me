@@ -7,7 +7,9 @@
             echo $author["autFirstName"] . " " . $author["autLastName"];
             ?>    
         </p>
-        <h3><a href=""><?= $book["booTitle"]; ?></a></h3>
+        <h3>
+            <a href="./details.php?idBook=<?= $book["idBook"]; ?>"><?= $book["booTitle"]; ?></a>
+        </h3>
         <p>Posté par : <a href="./profile.php">
             <?php
             $user = $db->getOneUser($book["fkUser"]);

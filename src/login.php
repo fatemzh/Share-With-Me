@@ -6,8 +6,8 @@ session_start();
 $useLogin = $_POST["useLogin"] ?? "";
 $usePassword = $_POST["usePassword"] ?? "";
 
+// 
 $db = new Database();
-
 $user = $db->login($useLogin, $usePassword);
 
 if ($user) {

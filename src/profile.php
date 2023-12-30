@@ -1,4 +1,15 @@
 <?php
+    /**
+     * 
+     * ETML
+     * Auteur : Fatem Abid
+     * Date : 05.12.23
+     * Description : Page personnelle de l'utilisateur présentant ses informations personnelles comme son pseudo, sa date d'inscription au site
+     *               le nombre d'ouvrages et d'évaluations qu'il a donné. Il dispose également d'un tableau des noms d'auteurs et titres de
+     *               livre qu'il a ajouté. Depuis ce tableau il peut modifier, supprimer, ou accéder au détail du livre. Il peut également
+     *               ajouter un livre depuis cette page.
+     */
+
     session_start();
 
     include './Database.php';

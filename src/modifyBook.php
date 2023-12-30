@@ -1,3 +1,23 @@
+<?php
+    //phpinfo();
+    session_start();
+    
+    // Inclure le fichier Database.php
+    include './Database.php';
+
+    // Créer une instance de la classe Database
+    $db = new Database();
+    $isUserConnected = isset($_SESSION["user"]);
+
+    if (!$isUserConnected) {
+        $isUserConnected = false;
+    } else {
+        $isUserConnected = true;
+        $userName = $_SESSION["user"];
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>

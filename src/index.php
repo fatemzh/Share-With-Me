@@ -1,4 +1,13 @@
 <?php
+    /**
+     * 
+     * ETML
+     * Auteur : Fatem Abid
+     * Date : 05.12.23
+     * Description : Page d'accueil du site présentant les 5 derniers livres ajoutés, l'utilité du site, ainsi que les catégories
+     *               de livres présents sur le site
+     */
+
     //phpinfo();
     session_start();
     

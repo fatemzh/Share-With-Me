@@ -303,15 +303,15 @@
      * @return array Tableau associatif contenant les pseudo d'utilisateurs 
      */
     public function login($useLogin) {
-
+        // Requête SQL pour récupérer les login d'utilisateurs
         $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
-
+        // Appelle la méthode privée pour exécuter la requête et retourner un tableau
         $req = $this->connector->prepare($query);
         $req->bindValue('useLogin', $useLogin, PDO::PARAM_STR);
         $req->execute();
-
         $user = $req->fetch(PDO::FETCH_ASSOC);
 
+        // Retourne un tableau contenant les login d'utilisateur
         return $user;
 
     }
