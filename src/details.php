@@ -44,7 +44,9 @@ if($book["fkCategory"] === $category["idCategory"]){
 $ratings = $db->getBookRating($idBook);
 
 //Récupération de la moyenne des avis de l'ouvrage à partir de l'identifiant de l'utilisateur connecté
-$user = $db->getOneUser($_SESSION["idUser"]);
+if($isUserConnected === true){
+    $user = $db->getOneUser($_SESSION["idUser"]);
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -69,7 +71,9 @@ $user = $db->getOneUser($_SESSION["idUser"]);
             </div>
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
+                <?php if ($isUserConnected === true): ?>
                 <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
+                <?php endif;?>
             </div>
             <div id="book-details">
                 <div id="cover">
@@ -84,11 +88,13 @@ $user = $db->getOneUser($_SESSION["idUser"]);
                     <div id="review">
                             <p>Moyenne des avis : </p>
                             <div class="stars">
-                                <?php if ($ratings["average"] !== null){
-                                    for($i = 0; $i < round($ratings["average"], 0); $i++){
-                                        echo "<span class=\"material-symbols-outlined etoile\">star</span>";
-                                    }
-                                };?>
+                                <?php if ($ratings["average"] !== null):?>
+                                    <?php for($i = 0; $i < round($ratings["average"], 0); $i++):?>
+                                        <span class="material-symbols-outlined etoile">star</span>
+                                    <?php endfor; ?>
+                                <?php else: ?>
+                                    <p>Cet ouvrage n'a pas encore été évalué !</p>
+                                <?php endif; ?>
                             </div>
                     </div>
                     <p id="summary">
@@ -113,6 +119,7 @@ $user = $db->getOneUser($_SESSION["idUser"]);
                 </div>
             </div>
             <div id="evaluation">
+            <?php if ($isUserConnected === true): ?>
                 <p>Evaluez cet ouvrage</p>
                 <div id="stars-2">
                     <form action="ratingCheckForm.php" method="post" id="ratingForm">
@@ -138,6 +145,7 @@ $user = $db->getOneUser($_SESSION["idUser"]);
                         </div>
                     </form>
                 </div>
+            <?php endif;?>
             </div>
         </main>
         <footer class="footer">
