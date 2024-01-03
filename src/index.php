@@ -29,7 +29,7 @@
     // Récupérer la liste des enseignants depuis la base de données
     $books =  $db->getAllBooks();
     $newBooks = $db->getNewBooks();
-    $evaluation = $db->getEvaluation($idBook);
+    $evaluation = $db->getBookRating($idBook);
 ?>
 
 <!DOCTYPE html>

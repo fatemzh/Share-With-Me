@@ -225,32 +225,6 @@
     }
 
     /**
-     * Récupère la moyenne des évaluations pour un ouvrage donné.
-     * @param int $idBook L'identifiant de l'ouvrage.
-     * @return array La moyenne des évaluations de l'ouvrage ou null s'il n'y en a pas.
-     */
-    public function getEvaluation($idBook) {
-        // Vérifie si $idBook est non nul et numérique
-        if ($idBook === null || !is_numeric($idBook)) {
-            // Gére l'erreur ou retourne une valeur par défaut
-            return null;
-        }
-
-        // Requête SQL pour récupérer la moyenne des évaluations pour un ouvrage donné
-        $query = "SELECT AVG(evaluation) as average FROM t_evaluation WHERE fkBook = :idBook";
-
-        // Prépare et exécute la requête avec le paramètre lié
-        $binds = array("idBook" => $idBook);
-        $req = $this->queryPrepareExecute($query, $binds);
-
-        // Formate le résultat sous forme de tableau associatif
-        $evaluation = $this->formatData($req);
-
-        // Retourne le premier élément (la moyenne) du résultat, ou null s'il n'y a pas de résultat
-        return $evaluation ? $evaluation[0]['average'] : null;
-    }
-
-    /**
      * Récupère le pseudo et la date d'inscription d'un utilisateur.
      * @param int $idUser L'identifiant de l'utilisateur.
      * @return array Le tableau associatif contenant le pseudo et la date d'inscription de l'utilisateur.
