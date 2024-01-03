@@ -6,12 +6,11 @@ session_start();
 $useLogin = $_POST["useLogin"] ?? "";
 $usePassword = $_POST["usePassword"] ?? "";
 
-// 
 $db = new Database();
-$user = $db->login($useLogin, $usePassword);
+$user = $db->login($useLogin); // Fetch the user data based on username only
 
 if ($user) {
-    if ($user['usePassword'] === $usePassword) {        
+    if (password_verify($usePassword, $user['usePassword'])) {        
         $_SESSION['user'] = $user;
         $_SESSION['idUser'] = $user['idUser']; 
         header("Location: index.php");
