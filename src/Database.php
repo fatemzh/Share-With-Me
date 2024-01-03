@@ -335,21 +335,89 @@
     }
 
     /**
-     * Récupère les informations d'une catégorie.
-     * @param int $idCategory L'identifiant de la catégorie.
-     * @return array Le tableau associatif contenant les informations de la catégorie.
+     * Récupère la moyenne des avis de l'ouvrage.
+     * @param int $idBook L'identifiant de l'ouvrage.
+     * @return array Le tableau associatif contenant les informations de l'ouvrage.
      */
     public function getBookRating($idBook){
         
-        //Requête SQL pour récupérer un ouvrage
-        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation WHERE fkBook = :idBook;";
-        //Appelle la méthode privée pour executer la requête
+        // Requête SQL pour récupérer la moyenne des avis de l'ouvrage
+        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation JOIN t_book ON t_book.idBook = t_evaluation.fkBook WHERE idBook = :idBook;";
+        
+        // Appelle la méthode privée pour exécuter la requête
         $binds = array("idBook" => $idBook);
         $req = $this->queryPrepareExecute($query, $binds);
-        //Appelle la méthode privée pour avoir le résultat sous forme de tableau
+        
+        // Appelle la méthode privée pour avoir le résultat sous forme de tableau
         $rating = $this->formatData($req);
-        //Retourne un tableau associatif
+        
+        // Retourne un tableau associatif
         return $rating[0];
+    }
+
+    /**
+     * Met à jour la note attribuée par un utilisateur à un ouvrage.
+     * @param int $idBook L'identifiant de l'ouvrage.
+     * @param int $idUser L'identifiant de l'utilisateur.
+     * @param int $rating La note attribuée.
+     */
+    public function updateBookRating($idBook, $idUser, $rating){
+        
+        // Requête SQL pour mettre à jour la note attribuée par un utilisateur à un ouvrage
+        $query = "UPDATE t_evaluation SET evaGrade = :evaGrade WHERE fkBook = :fkBook AND fkUser = :fkUser;";
+        
+        // Associe les valeurs aux paramètres de la requête
+        $binds = array("fkBook" => $idBook,
+                    "fkUser" => $idUser,
+                    "evaGrade" => $rating);
+        
+        // Appelle la méthode privée pour exécuter la requête
+        $req = $this->queryPrepareExecute($query, $binds);
+    }
+
+    /**
+     * Ajoute une nouvelle note attribuée par un utilisateur à un ouvrage.
+     * @param int $idBook L'identifiant de l'ouvrage.
+     * @param int $idUser L'identifiant de l'utilisateur.
+     * @param int $rating La note attribuée.
+     */
+    public function addBookRating($idBook, $idUser, $rating){
+        
+        // Requête SQL pour ajouter une nouvelle note attribuée par un utilisateur à un ouvrage
+        $query = "INSERT INTO t_evaluation (fkBook, fkUser, evaGrade) VALUES (:fkBook, :fkUser, :evaGrade);";
+        
+        // Associe les valeurs aux paramètres de la requête
+        $binds = array("fkBook" => $idBook,
+                    "fkUser" => $idUser,
+                    "evaGrade" => $rating);
+        
+        // Appelle la méthode privée pour exécuter la requête
+        $req = $this->queryPrepareExecute($query, $binds);
+    }
+
+    /**
+     * Vérifie si un utilisateur a déjà attribué une note à un ouvrage.
+     * @param int $idBook L'identifiant de l'ouvrage.
+     * @param int $idUser L'identifiant de l'utilisateur.
+     * @return array Le tableau associatif contenant les informations de la note attribuée par l'utilisateur à l'ouvrage.
+     */
+    public function checkUserRating($idBook, $idUser){
+        
+        // Requête SQL pour vérifier si un utilisateur a déjà attribué une note à un ouvrage
+        $query = "SELECT * FROM t_evaluation WHERE fkUser = :fkUser AND fkBook = :fkBook;";
+        
+        // Associe les valeurs aux paramètres de la requête
+        $binds = array("fkBook" => $idBook,
+                    "fkUser" => $idUser);
+        
+        // Appelle la méthode privée pour exécuter la requête
+        $req = $this->queryPrepareExecute($query, $binds);
+        
+        // Appelle la méthode privée pour avoir le résultat sous forme de tableau
+        $ratings = $this->formatData($req);
+        
+        // Retourne un tableau associatif
+        return $ratings;
     }
 
     public function deleteBook($idBook) {
