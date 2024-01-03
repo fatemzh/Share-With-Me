@@ -8,10 +8,9 @@
      *               de livres présents sur le site
      */
 
-    //phpinfo();
     session_start();
     
-    // Inclure le fichier Database.php
+    // Inclut le fichier Database.php
     include './Database.php';
 
     // Créer une instance de la classe Database
@@ -68,9 +67,11 @@
                                     <p>
                                         <?= $book['booSummary'] ?>
                                     </p>
-                                    <div id="home-see-more">
-                                        <a href="./details.php?idBook=<?= $book["idBook"]; ?>">Voir plus</a>
-                                    </div>
+                                    <?php if ($isUserConnected === true) : ?>                     
+                                        <div id="home-see-more">
+                                            <a href="./details.php?idBook=<?= $book["idBook"]; ?>">Voir plus</a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div id="home-right-part">
                                     <img src="./img/covers/<?=$book['booImageURL'] ?>" alt="Couverture du livre <?= $book['booTitle'] ?>" id="home-cover-img">  
@@ -100,8 +101,11 @@
             <h1 id="home-title">Bienvenue sur Share With Me</h1>
             <div id="home-introduction">
                 <p>
-                    Texte d’introduction et de présentation
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
+                    Sur ce site vous trouverez les lectures, et appréciations de nos utilisateurs sur les livres qu'ils ont lu. 
+                    De la romance, à la science-fiction en passant par la poésie, 8 genres de littératures sont couverts. Ce site est une plateforme pour ceux et celles qui lisent et qui aiment
+                    partager leurs lectures. En tant qu'utilisateur vous pouvez ajouter un des livres que vous souhaitez partager en renseignant ses informations, vous pourrez également lui donner une évaluation,
+                    modifier ses informations, ou encore le supprimer, depuis votre page profile. En tant qu'utilisateur, et visiteur vous pouvez également consulter le catalogue des ouvrages
+                    publiés, pour vous informet et vous inspirer.
                 </p>
                 <img id="home-introduction-img" src="./img/covers/introduction.png" alt="Image représentant une paire de lunette sur un livre ouvert ">
             </div>
