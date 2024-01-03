@@ -482,14 +482,15 @@ height: 660px;
 }
 
 #home-see-more{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   background-color: #1A0C00;
   width: 100px;
   height: 40px;
   margin: 30px 0;
   border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #home-see-more a{
@@ -526,9 +527,11 @@ height: 660px;
   height: auto;
   max-width: 100%;
 }
+
 .carousel-open:checked + .carousel-item + .carousel-control {
   display: block;
 }
+
 .carousel-control {
   background: rgba(0, 0, 0, 0.28);
   border-radius: 50%;
@@ -576,22 +579,6 @@ height: 660px;
   right: 0;
   text-align: center;
   z-index: 10;
-}
-
-.carousel-indicators li {
-  display: inline-block;
-  margin-right: 10px;
-}
-
-.carousel-bullet {
-  color: #cd8383;
-  cursor: pointer;
-  display: block;
-  font-size: 55px;
-}
-
-.carousel-bullet:hover {
-  color: #794e4e;
 }
 
 #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,

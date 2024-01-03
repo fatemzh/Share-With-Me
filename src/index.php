@@ -61,15 +61,15 @@
                                     <h1>
                                         <?= $book['booTitle'] ?>
                                     </h1>
+                                    <!-- Affiche l'évaluation -->
                                     <div id="home-stars-review">
                                         <h4>Avis</h4>
-                                        <!-- étoiles evaluation -->
                                     </div>
                                     <p>
                                         <?= $book['booSummary'] ?>
                                     </p>
                                     <div id="home-see-more">
-                                        <a href="./details.php?idBook=<?= $book["idBook"]; ?>"> Voir plus</a>
+                                        <a href="./details.php?idBook=<?= $book["idBook"]; ?>">Voir plus</a>
                                     </div>
                                 </div>
                                 <div id="home-right-part">
@@ -78,14 +78,6 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-                    <!-- Nav bullets -->
-            <ol class="carousel-indicators">
-                <?php foreach ($newBooks as $index => $book): ?>
-                    <li>
-                        <label for="carousel-<?= $index ?>" class="carousel-bullet">•</label>
-                    </li>
-                <?php endforeach; ?>
-            </ol>
             <!-- Slide 1 -->
             <label for="carousel-5" class="carousel-control prev control-1">‹</label>
             <label for="carousel-2" class="carousel-control next control-1">›</label>

@@ -202,7 +202,7 @@
     public function getNewBooks(){
         // Requête SQL pour récupérer les 5 derniers livres ajoutés
         $query = "SELECT * FROM t_book ORDER BY idBook DESC LIMIT 5";
-        
+
         // Exécuter la requête SQL
         $result = $this->querySimpleExecute($query);
     
