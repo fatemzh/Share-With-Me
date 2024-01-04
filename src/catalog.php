@@ -34,9 +34,9 @@ if (!isset($_SESSION["user"]) ) {
     $infos = $db->getPersonalInfos($idUser);
 }
 
-/* echo "<pre>";
-var_dump($allBooks);
-echo "</pre>"; */
+echo "<pre>";
+var_dump($categoryBooks);
+echo "</pre>";
 
 ?>
 
@@ -103,8 +103,13 @@ echo "</pre>"; */
                     <!-- Affiche les ouvrages de la catégorie sélectionnées, sinon affiche tous les ouvrages -->
                     <?php
                     if (isset($_GET["idCategory"])) {
-                        foreach ($categoryBooks as $bookKey => $book) {
-                            include('parts/bookCard.inc.php');
+                        // Affiche les ouvrages de la catégories, sinon affiche "Cette catégorie ne contient aucun ouvrage actuellement."
+                        if (!empty($categoryBooks)) {
+                            foreach ($categoryBooks as $bookKey => $book) {
+                                include('parts/bookCard.inc.php');
+                            }
+                        } else {
+                            echo "<p>Cette catégorie ne contient aucun ouvrage actuellement.</p>";
                         }
                     } else {
                         foreach ($allBooks as $bookKey => $book) {
