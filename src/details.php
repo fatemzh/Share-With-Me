@@ -35,7 +35,7 @@ $userBook = $db->getOneUser($book["fkUser"]);
 $author = $db->getOneAuthor($book["fkAuthor"]);
 
 //Récupération de la catégorie de l'ouvrage à partir de son identifiant
-$category = $db->getCategory($book["fkCategory"]);
+$category = $db->getOneCategory($book["fkCategory"]);
 if($book["fkCategory"] === $category["idCategory"]){
     $catName = $category["catName"];
 }

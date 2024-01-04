@@ -8,7 +8,18 @@
  * Description : Page de catalogue du site avec la liste de tous les livres filtrable par catégorie
  */
 
- 
+include('Database.php');
+
+// Création d'une instance de la classe Database
+$db = new Database();
+
+// Récupère la liste de tous les livres
+$allBooks = $db->getAllBooks();
+
+// Récupère la liste de toutes les catégories
+$allCategories = $db->getAllCategories();
+
+// Est-ce qu'un utilisateur est connecté ?
 if (!isset($_SESSION["user"]) ) {
     $isUserConnected = false;
 } else {
@@ -17,17 +28,8 @@ if (!isset($_SESSION["user"]) ) {
     $infos = $db->getPersonalInfos($idUser);
 }
 
-include('Database.php');
-
-// Création d'une instance de la classe Database
-$db = new Database();
-
-// Récupère la liste de tous les livres
-$books = $db->getAllBooks();
-
-
 /* echo "<pre>";
-var_dump($books);
+var_dump($allBooks);
 echo "</pre>"; */
 
 ?>
@@ -66,14 +68,9 @@ echo "</pre>"; */
             <nav id="filter">
                 <h2>Catégories</h2>
                 <ul>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Aventure</a></li>
-                    <li><a href="#">Fantasy</a></li>
-                    <li><a href="#">Historique</a></li>
-                    <li><a href="#">Horreur</a></li>
-                    <li><a href="#">Mystère</a></li>
-                    <li><a href="#">Romance</a></li>
-                    <li><a href="#">Science-Fiction</a></li>
+                    <?php foreach ($allCategories as $category): ?>
+                        <li><a href="catalog.php?idCategory=<?= $category["idCategory"] ;?>"><?= $category["catName"] ;?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </nav>
 
@@ -81,7 +78,7 @@ echo "</pre>"; */
                 <h2>Toutes les catégories</h2>
                 <div id="list-container">
                     <?php
-                        foreach ($books as $bookKey => $book) {
+                        foreach ($allBooks as $bookKey => $book) {
                             include('parts/bookCard.inc.php');
                         }
                     ?>

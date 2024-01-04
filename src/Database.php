@@ -93,7 +93,7 @@
      */
     public function getOneUser($idUser) {    
         // Requête SQL pour récupérer un utilisateur
-        $query = "SELECT * FROM t_user  WHERE idUser = :idUser;";
+        $query = "SELECT * FROM t_user  WHERE idUser = :idUser";
 
         // Prépare et exécute la requête avec le paramètre lié
         $binds = array("idUser" => $idUser);
@@ -131,7 +131,7 @@
       */
      public function getOneAuthor($idAuthor) {
          // Requête SQL pour récupérer un auteur
-         $query = "SELECT * FROM t_author  WHERE idAuthor = :idAuthor;";
+         $query = "SELECT * FROM t_author  WHERE idAuthor = :idAuthor";
 
          // Prépare et exécute la requête avec le paramètre lié
          $binds = array("idAuthor" => $idAuthor);
@@ -143,6 +143,44 @@
          // Retourne le tableau associatif
          return $authors[0];
      }
+
+     /**
+     * Récupère toutes les catégories de la table t_category triées par ordre alphabétique.
+     * @return array Le tableau associatif contenant les données des catégories triées par ordre alphabétique.
+     */
+    public function getAllCategories() {
+        // Requête SQL pour récupérer toutes les catégories
+        $query = 'SELECT * FROM t_category  ORDER BY catName';
+
+        // Exécute la requête
+        $req = $this->querySimpleExecute($query);
+
+        // Formate le résultat sous forme de tableau associatif
+        $allCategories = $this->formatData($req); 
+
+        // Retourne le tableau associatif
+        return $allCategories;
+    }
+
+    /**
+     * Récupère les données d'une catégorie spécifique.
+     * @param int $idCategory L'identifiant de la catégorie.
+     * @return array Le tableau associatif contenant les données de la catégorie.
+     */
+    public function getOneCategory($idCategory) {
+        // Requête SQL pour récupérer un ouvrage
+        $query = "SELECT * FROM t_category  WHERE idCategory = :idCategory";
+
+        // Prépare et exécute la requête avec le paramètre lié
+        $binds = array("idCategory" => $idCategory);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        // Formate le résultat sous forme de tableau associatif
+        $categories = $this->formatData($req);
+
+        // Retourne le tableau associatif
+        return $categories[0];
+    }
 
     /**
      * Récupère tous les ouvrages de la table t_book.
@@ -161,6 +199,26 @@
         // Retourne le tableau associatif
         return $allBooks;
 
+    }
+
+    /**
+     * Récupère les données d'un ouvrage spécifique.
+     * @param int $idBook L'identifiant de l'ouvrage.
+     * @return array Le tableau associatif contenant les données de l'ouvrage.
+     */
+    public function getOneBook($idBook) {
+        // Requête SQL pour récupérer un ouvrage
+        $query = "SELECT * FROM t_book  WHERE idBook = :idBook";
+
+        // Prépare et exécute la requête avec le paramètre lié
+        $binds = array("idBook" => $idBook);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        // Formate le résultat sous forme de tableau associatif
+        $books = $this->formatData($req);
+
+        // Retourne le tableau associatif
+        return $books[0];
     }
 
     /**
@@ -184,26 +242,6 @@
 
         // Retourne le tableau associatif
         return $usersBooks;
-    }
-
-    /**
-     * Récupère les données d'un ouvrage spécifique.
-     * @param int $idBook L'identifiant de l'ouvrage.
-     * @return array Le tableau associatif contenant les données de l'ouvrage.
-     */
-    public function getOneBook($idBook) {
-        // Requête SQL pour récupérer un ouvrage
-        $query = "SELECT * FROM t_book  WHERE idBook = :idBook;";
-
-        // Prépare et exécute la requête avec le paramètre lié
-        $binds = array("idBook" => $idBook);
-        $req = $this->queryPrepareExecute($query, $binds);
-
-        // Formate le résultat sous forme de tableau associatif
-        $books = $this->formatData($req);
-
-        // Retourne le tableau associatif
-        return $books[0];
     }
 
     /**
@@ -329,33 +367,13 @@
     }
 
     /**
-     * Récupère les données d'une catégorie spécifique.
-     * @param int $idCategory L'identifiant de la catégorie.
-     * @return array Le tableau associatif contenant les données de la catégorie.
-     */
-    public function getCategory($idCategory) {
-        // Requête SQL pour récupérer un ouvrage
-        $query = "SELECT * FROM t_category  WHERE idCategory = :idCategory;";
-
-        // Prépare et exécute la requête avec le paramètre lié
-        $binds = array("idCategory" => $idCategory);
-        $req = $this->queryPrepareExecute($query, $binds);
-
-        // Formate le résultat sous forme de tableau associatif
-        $categories = $this->formatData($req);
-
-        // Retourne le tableau associatif
-        return $categories[0];
-    }
-
-    /**
      * Récupère la moyenne des avis d'un ouvrage.
      * @param int $idBook L'identifiant de l'ouvrage.
      * @return array La moyenne des avis de l'ouvrage.
      */
     public function getBookRating($idBook) {
         // Requête SQL pour récupérer la moyenne des avis de l'ouvrage
-        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation JOIN t_book ON t_book.idBook = t_evaluation.fkBook WHERE idBook = :idBook;";
+        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation JOIN t_book ON t_book.idBook = t_evaluation.fkBook WHERE idBook = :idBook";
         
         // Prépare et exécute la requête avec le paramètre lié
         $binds = array("idBook" => $idBook);
@@ -376,7 +394,7 @@
      */
     public function updateBookRating($idBook, $idUser, $rating) {
         // Requête SQL pour mettre à jour la note attribuée par un utilisateur à un ouvrage
-        $query = "UPDATE t_evaluation SET evaGrade = :evaGrade WHERE fkBook = :fkBook AND fkUser = :fkUser;";
+        $query = "UPDATE t_evaluation SET evaGrade = :evaGrade WHERE fkBook = :fkBook AND fkUser = :fkUser";
         
         // Prépare et exécute la requête avec les paramètres liés
         $binds = array("fkBook" => $idBook,
@@ -393,7 +411,7 @@
      */
     public function addBookRating($idBook, $idUser, $rating) {
         // Requête SQL pour ajouter une nouvelle note attribuée par un utilisateur à un ouvrage
-        $query = "INSERT INTO t_evaluation (fkBook, fkUser, evaGrade) VALUES (:fkBook, :fkUser, :evaGrade);";
+        $query = "INSERT INTO t_evaluation (fkBook, fkUser, evaGrade) VALUES (:fkBook, :fkUser, :evaGrade)";
         
         // Prépare et exécute la requête avec les paramètres liés
         $binds = array("fkBook" => $idBook,
@@ -410,7 +428,7 @@
      */
     public function checkUserRating($idBook, $idUser) {
         // Requête SQL pour vérifier si un utilisateur a déjà attribué une note à un ouvrage
-        $query = "SELECT * FROM t_evaluation WHERE fkUser = :fkUser AND fkBook = :fkBook;";
+        $query = "SELECT * FROM t_evaluation WHERE fkUser = :fkUser AND fkBook = :fkBook";
         
         // Prépare et exécute la requête avec les paramètres liés
         $binds = array("fkBook" => $idBook,
