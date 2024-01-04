@@ -640,8 +640,9 @@ a.grey {
 }
 
 #home-introduction p {
+  padding: 0 20px 16px;
   width: 600px;
-  padding: 20px;
+  line-height: 1.4;
 }
 
 /******************* HOME NOUVEAUTES *******************/

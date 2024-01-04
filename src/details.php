@@ -66,7 +66,7 @@ if($isUserConnected === true){
         <main>
             <div id="breadcrumb">
                 <div><a href="./catalog.php">CATALOGUE</a> /</div>
-                <div><a href="./"<?=$catName?>><?=$catName?></a> /</div>
+                <div><a href="./catalog.php?idCategory=<?=$book["fkCategory"];?>"><?=$catName?></a> /</div>
                 <p><?=$book["booTitle"]?></p>
             </div>
             <div id="title-detail">

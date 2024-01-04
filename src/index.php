@@ -26,10 +26,14 @@
 
     $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
 
-    // Récupérer la liste des enseignants depuis la base de données
-    $books =  $db->getAllBooks();
+    // Récupère la liste des 5 derniers ouvrages rajoutés
     $newBooks = $db->getNewBooks();
+
+    // Récupère la moyenne des avis d'un ouvrage
     $evaluation = $db->getBookRating($idBook);
+
+    // Récupère la liste de toutes les catégories triées par ordre alphabétique
+    $categories =  $db->getAllCategories();
 ?>
 
 <!DOCTYPE html>
@@ -100,13 +104,10 @@
         <main>
             <h1 id="home-title">Bienvenue sur Share With Me</h1>
             <div id="home-introduction">
-                <p>
-                    Sur ce site vous trouverez les lectures, et appréciations de nos utilisateurs sur les livres qu'ils ont lu. 
-                    De la romance, à la science-fiction en passant par la poésie, 8 genres de littératures sont couverts. Ce site est une plateforme pour ceux et celles qui lisent et qui aiment
-                    partager leurs lectures. En tant qu'utilisateur vous pouvez ajouter un des livres que vous souhaitez partager en renseignant ses informations, vous pourrez également lui donner une évaluation,
-                    modifier ses informations, ou encore le supprimer, depuis votre page profile. En tant qu'utilisateur, et visiteur vous pouvez également consulter le catalogue des ouvrages
-                    publiés, pour vous informet et vous inspirer.
-                </p>
+                <div>
+                    <p>Sur ce site vous trouverez les lectures, et appréciations de nos utilisateurs sur les livres qu'ils ont lu. De la romance, à la science-fiction en passant par la poésie, 8 genres de littératures sont couverts. Ce site est une plateforme pour ceux et celles qui lisent et qui aiment partager leurs lectures.</p>
+                    <p>En tant qu'utilisateur vous pouvez ajouter un des livres que vous souhaitez partager en renseignant ses informations, vous pourrez également lui donner une évaluation, modifier ses informations, ou encore le supprimer, depuis votre page profile. En tant qu'utilisateur, et visiteur vous pouvez également consulter le catalogue des ouvrages publiés, pour vous informer et vous inspirer.</p>
+                </div>
                 <img id="home-introduction-img" src="./img/covers/introduction.png" alt="Image représentant une paire de lunette sur un livre ouvert ">
             </div>
             <div id="home-latestReleases">
@@ -120,10 +121,11 @@
             <div id="home-categories">
                 <h3 id="home-categories-title">Categories</h3>
                 <div id="home-categories-name">
+                    <?php foreach ($categories as $category): ?>
                     <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[1];?>" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idCategory=<?= $category["idCategory"]; ?>" class="home-catalog-card"><?= $category["catName"];?></a>
                     </div>
-                    <div class="home-card-cat">
+                    <!-- <div class="home-card-cat">
                         <a href="./catalog.php?idBook=<?= $books[2];?>" class="home-catalog-card">Science-Fiction</a>
                     </div>                    
                     <div class="home-card-cat">
@@ -143,7 +145,8 @@
                     </div>
                     <div class="home-card-cat">
                         <a href="./catalog.php?idBook=<?= $books[8];?>" class="home-catalog-card">Historical Fiction</a>
-                    </div> 
+                    </div> -->
+                <?php endforeach; ?>
                 </div>
             </div>
         </main>

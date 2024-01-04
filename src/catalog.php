@@ -34,9 +34,9 @@ if (!isset($_SESSION["user"]) ) {
     $infos = $db->getPersonalInfos($idUser);
 }
 
-echo "<pre>";
+/* echo "<pre>";
 var_dump($categoryBooks);
-echo "</pre>";
+echo "</pre>"; */
 
 ?>
 
@@ -58,7 +58,7 @@ echo "</pre>";
             <?php if (isset($_GET["idCategory"])): ?>
                 <nav id="catalog-nav">
                     <a href="catalog.php" class="grey">Catalogue /</a>
-                    <a href="#"> Action</a>
+                    <a href="catalog.php?idCategory=<?= $currentCategory["idCategory"]; ?>"><?= " " . $currentCategory["catName"]; ?></a>
                 </nav>
             <?php endif; ?>
             <section id="catalog-hero-main">
