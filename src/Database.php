@@ -149,7 +149,7 @@
      * @return array Le tableau associatif contenant les données des catégories triées par ordre alphabétique.
      */
     public function getAllCategories() {
-        // Requête SQL pour récupérer toutes les catégories
+        // Requête SQL pour récupérer toutes les catégories triées par ordre alphabétique
         $query = 'SELECT * FROM t_category  ORDER BY catName';
 
         // Exécute la requête
@@ -168,7 +168,7 @@
      * @return array Le tableau associatif contenant les données de la catégorie.
      */
     public function getOneCategory($idCategory) {
-        // Requête SQL pour récupérer un ouvrage
+        // Requête SQL pour récupérer la catégorie
         $query = "SELECT * FROM t_category  WHERE idCategory = :idCategory";
 
         // Prépare et exécute la requête avec le paramètre lié
@@ -176,10 +176,10 @@
         $req = $this->queryPrepareExecute($query, $binds);
 
         // Formate le résultat sous forme de tableau associatif
-        $categories = $this->formatData($req);
+        $category = $this->formatData($req);
 
         // Retourne le tableau associatif
-        return $categories[0];
+        return $category[0];
     }
 
     /**
@@ -219,6 +219,26 @@
 
         // Retourne le tableau associatif
         return $books[0];
+    }
+
+    /**
+     * Récupère tous les ouvrages d'une catégorie spécifique triés par ordre alphabétique du titre.
+     * @param int $idCategory L'identifiant de la catégorie.
+     * @return array Le tableau associatif contenant les données des ouvrages de la catégorie triés par ordre alphabétique du titre.
+     */
+    public function getCategoryBooks($idCategory) {
+        // Requête SQL pour récupérer tous les ouvrages de la catégorie triés par ordre alphabétique du titre
+        $query = 'SELECT * FROM t_book WHERE fkCategory = :idCategory ORDER BY booTitle';
+
+        // Prépare et exécute la requête avec le paramètre lié
+        $binds = array("idCategory" => $idCategory);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        // Formate le résultat sous forme de tableau associatif
+        $categoryBooks = $this->formatData($req);
+
+        // Retourne le tableau associatif
+        return $categoryBooks;
     }
 
     /**

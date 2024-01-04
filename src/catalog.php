@@ -5,7 +5,7 @@
  * ETML
  * Auteur : Kathleen Lu
  * Date : 05.12.23
- * Description : Page de catalogue du site avec la liste de tous les livres filtrable par catégorie
+ * Description : Page de catalogue du site avec la liste de tous les ouvrages filtrable par catégorie
  */
 
 include('Database.php');
@@ -18,6 +18,12 @@ $allBooks = $db->getAllBooks();
 
 // Récupère la liste de toutes les catégories
 $allCategories = $db->getAllCategories();
+
+// Vérifie s'il s'agit d'une page avec une catégorie spécifique, et récupère la catégorie actuelle ainsi que tous ses ouvrages
+if (isset($_GET["idCategory"])) {
+    $currentCategory = $db->getOneCategory($_GET["idCategory"]);
+    $categoryBooks = $db->getCategoryBooks($_GET["idCategory"]);
+}
 
 // Est-ce qu'un utilisateur est connecté ?
 if (!isset($_SESSION["user"]) ) {
@@ -48,10 +54,13 @@ echo "</pre>"; */
     <body>
         <?php include('parts/nav.inc.php'); ?>
         <header id="catalog-hero">
-            <nav id="catalog-nav">
-                <a href="catalog.php" class="grey">Catalogue /</a>
-                <a href="#"> Action</a>
-            </nav>
+            <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
+            <?php if (isset($_GET["idCategory"])): ?>
+                <nav id="catalog-nav">
+                    <a href="catalog.php" class="grey">Catalogue /</a>
+                    <a href="#"> Action</a>
+                </nav>
+            <?php endif; ?>
             <section id="catalog-hero-main">
                 <h1>Trouve ton bonheur</h1>
                 <form id="search" action="#" method="post">
@@ -68,19 +77,40 @@ echo "</pre>"; */
             <nav id="filter">
                 <h2>Catégories</h2>
                 <ul>
+                    <!-- Affiche toutes les catégories par ordre alphabétique -->
                     <?php foreach ($allCategories as $category): ?>
-                        <li><a href="catalog.php?idCategory=<?= $category["idCategory"] ;?>"><?= $category["catName"] ;?></a></li>
+                        <!-- Souligne la catégorie actuelle s'il s'agit d'une page de catégorie -->
+                        <li><a <?php if (isset($_GET["idCategory"]) && $category["idCategory"] == $_GET["idCategory"]): ?>
+                            class="active-category"
+                        <?php endif; ?>
+                        href="catalog.php?idCategory=<?= $category["idCategory"] ;?>"><?= $category["catName"] ;?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </nav>
 
             <section id="catalog">
-                <h2>Toutes les catégories</h2>
+                <!-- Affiche le nom de la catégorie sélectionnée, sinon affiche "Toutes les catégories" -->
+                <h2>
+                <?php
+                if (isset($_GET["idCategory"])) {
+                    echo $currentCategory["catName"];
+                } else {
+                    echo "Toutes les catégories";
+                }
+                ?>    
+                </h2>
                 <div id="list-container">
+                    <!-- Affiche les ouvrages de la catégorie sélectionnées, sinon affiche tous les ouvrages -->
                     <?php
+                    if (isset($_GET["idCategory"])) {
+                        foreach ($categoryBooks as $bookKey => $book) {
+                            include('parts/bookCard.inc.php');
+                        }
+                    } else {
                         foreach ($allBooks as $bookKey => $book) {
                             include('parts/bookCard.inc.php');
                         }
+                    }
                     ?>
                 </div>
             </section>
