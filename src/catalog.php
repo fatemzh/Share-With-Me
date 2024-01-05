@@ -67,10 +67,10 @@ echo "</pre>"; */
 
     <body>
         <?php include('parts/nav.inc.php'); ?>
-        <header id="catalog-hero" class="breadcrumb">
+        <header id="catalog-hero">
             <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
             <?php if (isset($_GET["idCategory"])): ?>
-                <nav id="catalog-nav">
+                <nav id="catalog-nav" class="breadcrumb">
                     <div><a href="catalog.php" class="grey">Catalogue</a> / </div>
                     <a href="catalog.php?idCategory=<?= $currentCategory["idCategory"]; ?>"><?= $currentCategory["catName"]; ?></a>
                 </nav>
@@ -94,7 +94,7 @@ echo "</pre>"; */
         
         <main id="catalog-container">
             <nav id="filter">
-                <h2>Catégories</h2>
+                <h3>Catégories</h3>
                 <ul>
                     <!-- Affiche toutes les catégories par ordre alphabétique -->
                     <?php foreach ($allCategories as $category): ?>

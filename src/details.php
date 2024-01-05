@@ -82,11 +82,10 @@ if($isUserConnected === true){
                 <div id="infos">
                     <div id="title-author">
                         <p id="book-title"><?=$book["booTitle"]?></p>
-                        <p class="author">Ajouté par</p>
-                        <p class="author"><?=$userBook["useLogin"]?></p>
+                        <p class="author">Ajouté par : <a href="./profile.php?idUser=<?=$userBook["idUser"]?>"><?=$userBook["useLogin"]?></a></p>
                     </div>
                     <div id="review">
-                            <p>Moyenne des avis : </p>
+                            <p>Moyenne des avis :</p>
                             <div class="stars">
                                 <?php if ($ratings["average"] !== null):?>
                                     <?php for($i = 0; $i < round($ratings["average"], 0); $i++):?>

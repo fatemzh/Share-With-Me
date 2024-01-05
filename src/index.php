@@ -127,27 +127,6 @@
                     <div class="home-card-cat">
                         <a href="./catalog.php?idCategory=<?= $category["idCategory"]; ?>" class="home-catalog-card"><?= $category["catName"];?></a>
                     </div>
-                     <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[2];?>" class="home-catalog-card">Science-Fiction</a>
-                    </div>                    
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[3];?>" class="home-catalog-card">Thriller</a>
-                    </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[4];?>" class="home-catalog-card">Essay</a>
-                    </div> 
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[5];?>" class="home-catalog-card">Poetry</a>
-                    </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[6];?>" class="home-catalog-card">Classics</a>
-                    </div> 
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[7];?>" class="home-catalog-card">Horror</a>
-                    </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[8];?>" class="home-catalog-card">Historical Fiction</a>
-                    </div> 
                 <?php endforeach; ?>
                 </div>
             </div>
