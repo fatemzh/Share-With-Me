@@ -8,13 +8,14 @@
      *               de livres présents sur le site
      */
 
+    // Démarre la session
     session_start();
     
-    // Inclut le fichier Database.php
+    // Inclut le fichier Database.php et crée une instance
     include './Database.php';
-
-    // Créer une instance de la classe Database
     $db = new Database();
+    
+    // Vérifie si l'utilisateur est connecté
     $isUserConnected = isset($_SESSION["user"]);
 
     if (!$isUserConnected) {
@@ -23,14 +24,12 @@
         $isUserConnected = true;
         $userName = $_SESSION["user"];
     }
-
+    
+    // Récupère l'id du livre à afficher
     $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
 
-    // Récupère la liste des 5 derniers ouvrages rajoutés
+    // Récupère les 5 derniers ouvrages rajoutés à la DB
     $newBooks = $db->getNewBooks();
-
-    // Récupère la moyenne des avis d'un ouvrage
-    $evaluation = $db->getBookRating($idBook);
 
     // Récupère la liste de toutes les catégories triées par ordre alphabétique
     $categories =  $db->getAllCategories();
@@ -51,12 +50,14 @@
     <title>Accueil</title>
     </head>
     <body>
+        <!-- Barre de navigation -->
         <?php include('parts/nav.inc.php'); ?>
         <header id="home-catalog-hero">
+            <!-- Carousel des 5 nouveautés -->
             <div class="carousel">
                 <div class="carousel-inner">
                     <?php foreach ($newBooks as $index => $book): ?>
-                        <!-- Slide pour chaque livre -->
+                        <!-- Slide individuel -->
                         <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" checked="true" aria-hidden="true" hidden="">
                         <div class="carousel-item">
                             <div id="home-container-header">
@@ -64,13 +65,10 @@
                                     <h1>
                                         <?= $book['booTitle'] ?>
                                     </h1>
-                                    <!-- Affiche l'évaluation -->
-                                    <div id="home-stars-review">
-                                        <h4>Avis</h4>
-                                    </div>
                                     <p>
                                         <?= $book['booSummary'] ?>
                                     </p>
+                                    <!-- Lien "voir plus" pour les utilisateurs connectés -->
                                     <?php if ($isUserConnected === true) : ?>                     
                                         <div id="home-see-more">
                                             <a href="./details.php?idBook=<?= $book["idBook"]; ?>">Voir plus</a>
@@ -83,7 +81,8 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-            <!-- Slide 1 -->
+            <!-- Fleche de contrôles de la navigation du carousel 
+                 Slide 1 -->
             <label for="carousel-5" class="carousel-control prev control-1">‹</label>
             <label for="carousel-2" class="carousel-control next control-1">›</label>
             <!-- Slide 2 -->
@@ -102,6 +101,7 @@
             </div>            
         </header>
         <main>
+            <!-- Présentation du site -->
             <h1 id="home-title">Bienvenue sur Share With Me</h1>
             <div id="home-introduction">
                 <div>
@@ -110,6 +110,7 @@
                 </div>
                 <img id="home-introduction-img" src="./img/covers/introduction.png" alt="Image représentant une paire de lunette sur un livre ouvert ">
             </div>
+            <!-- Affichage des nouveautés -->
             <div id="home-latestReleases">
                 <h3 id="home-nouveautes-title">Nouveautés</h3>
                 <div id="home-latest-bookcard">
@@ -118,14 +119,15 @@
                     <?php endforeach; ?>
                 </div>
             </div>
+            <!-- Affichage des catégories -->
             <div id="home-categories">
-                <h3 id="home-categories-title">Categories</h3>
+                <h3 id="home-categories-title">Catégories</h3>
                 <div id="home-categories-name">
                     <?php foreach ($categories as $category): ?>
                     <div class="home-card-cat">
                         <a href="./catalog.php?idCategory=<?= $category["idCategory"]; ?>" class="home-catalog-card"><?= $category["catName"];?></a>
                     </div>
-                    <!-- <div class="home-card-cat">
+                     <div class="home-card-cat">
                         <a href="./catalog.php?idBook=<?= $books[2];?>" class="home-catalog-card">Science-Fiction</a>
                     </div>                    
                     <div class="home-card-cat">
@@ -145,11 +147,12 @@
                     </div>
                     <div class="home-card-cat">
                         <a href="./catalog.php?idBook=<?= $books[8];?>" class="home-catalog-card">Historical Fiction</a>
-                    </div> -->
+                    </div> 
                 <?php endforeach; ?>
                 </div>
             </div>
         </main>
+        <!-- Footer -->
         <?php include('parts/footer.inc.php'); ?>
     </body>
 </html>

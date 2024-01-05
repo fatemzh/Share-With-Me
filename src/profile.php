@@ -3,32 +3,38 @@
      * 
      * ETML
      * Auteur : Fatem Abid
-     * Date : 05.12.23
+     * Date : 19.12.23
      * Description : Page personnelle de l'utilisateur présentant ses informations personnelles comme son pseudo, sa date d'inscription au site
      *               le nombre d'ouvrages et d'évaluations qu'il a donné. Il dispose également d'un tableau des noms d'auteurs et titres de
      *               livre qu'il a ajouté. Depuis ce tableau il peut modifier, supprimer, ou accéder au détail du livre. Il peut également
      *               ajouter un livre depuis cette page.
      */
 
+    // Démarre la session
     session_start();
 
-    include './Database.php';
+    // Vérifie que l'utilisateur est connecté, et le renvoie à la page d'accueil s'il ne l'est pas
+    if (!isset($_SESSION["user"])) {
+        header("Location: ../index.php");
+        exit();
+    }
 
+    // Inclut le fichier Database.php et crée une instance
+    include './Database.php';
     $db = new Database();
 
-    // Initialisez $isUserConnected et $idUser
-    $isUserConnected = isset($_SESSION["user"]);
-    $idUser = $isUserConnected ? $_SESSION["idUser"] : null;
+    // Récupère l'id, le pseudo et la date d'inscription de l'utilisateur
+    $idUser = $_SESSION["idUser"];
+    $pseudo = $_SESSION["user"]['useLogin'];
+    $inscription = $_SESSION["user"]['useRegisterDate'];
 
-    if ($isUserConnected) {
-        $idUser = $_SESSION["idUser"]; 
-        $infos = $db->getPersonalInfos($idUser); 
-        $pseudo = $_SESSION["user"]['useLogin'];
-        $inscription = $_SESSION["user"]['useRegisterDate'];
-        $nbAppreciations = $db->getUserNumberOfReviews($idUser);
-        $nbBooksPosted = $db->getUserNumberOfPosts($idUser);
-        $usersBooks = $db->getUserBooks($idUser);
-    }
+    // Récupère les infos personnelles de l'utilisateur, le nombre d'appréciations et de livre qu'il a posté,
+    // et les livres qu'il a publié, depuis la BD
+    $infos = $db->getPersonalInfos($idUser); 
+    $nbAppreciations = $db->getUserNumberOfReviews($idUser);
+    $nbBooksPosted = $db->getUserNumberOfPosts($idUser);
+    $usersBooks = $db->getUserBooks($idUser);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +48,10 @@
     <title>Mon profil</title>
 </head>
 <body>
+    <!-- Barre de navigation  -->
     <?php include('./parts/nav.inc.php'); ?>
     <main>
+        <!-- Affichage des infos personnelles de l'utilisateur -->
         <h1 id="profile-h1-title">Mes informations personnelles</h1>
         <div id="profile-infos">
             <div class="profile-infos-container">
@@ -71,6 +79,7 @@
                 </p>
             </div>
         </div>
+        <!-- Affichage du tableau de livres qu'il a publiés -->
         <div id="profile-booksTab">
             <div id="profile-tab-header">
                 <h2>Mes ouvrages</h2>
@@ -118,6 +127,7 @@
             </table>
         </div>
     </main>
+    <!-- Footer -->
     <?php include('./parts/footer.inc.php'); ?>
     <script src="./js/script.js"></script>
 </body>

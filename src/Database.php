@@ -368,12 +368,6 @@
     public function login($useLogin) {
         // Requête SQL pour récupérer les données corespondant à un pseudo d'utilisateur
         $query = "SELECT * FROM t_user WHERE useLogin = :useLogin";
-        
-        // Appelle la méthode privée pour exécuter la requête et retourner un tableau
-        /* $req = $this->connector->prepare($query);
-        $req->bindValue('useLogin', $useLogin, PDO::PARAM_STR);
-        $req->execute();
-        $user = $req->fetch(PDO::FETCH_ASSOC); */
 
         // Prépare et exécute la requête avec le paramètre lié
         $binds = array("useLogin" => $useLogin);

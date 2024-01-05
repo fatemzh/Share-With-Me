@@ -1,27 +1,40 @@
 <?php
-include './Database.php';
 
-session_start();
+    /* ETML
+    * Auteur : Fatem Abid
+    * Date : 19.12.23
+    * Description : Page de gestion de la connexion de l'utilisateur
+    */
 
-$useLogin = $_POST["useLogin"] ?? "";
-$usePassword = $_POST["usePassword"] ?? "";
+    // Démarre la session
+    session_start();
 
-$db = new Database();
-$user = $db->login($useLogin); // Fetch the user data based on username only
+    // Inclut le fichier Database.php et crée une instance
+    include './Database.php';
+    $db = new Database();
 
-if ($user) {
-    if (password_verify($usePassword, $user['usePassword'])) {        
-        $_SESSION['user'] = $user;
-        $_SESSION['idUser'] = $user['idUser']; 
-        header("Location: index.php");
-        exit();
+    // Récupère le login et mot de passe saisi par l'utilisateur dans le formulaire de connexion
+    $useLogin = $_POST["useLogin"] ?? "";
+    $usePassword = $_POST["usePassword"] ?? "";
+
+    // Récupère les login et mots de passe utilisateurs de la DB
+    $user = $db->login($useLogin, $usePassword); 
+
+    // Vérifie que les données de l'utilisateur ont été récupérées
+    if ($user) {
+        // Vérifie que le mot de passe saisi et celui en DB correspondent
+        if (password_verify($usePassword, $user['usePassword'])) {        
+            $_SESSION['user'] = $user;
+            $_SESSION['idUser'] = $user['idUser']; 
+            header("Location: index.php");
+            exit();
+        } else {
+            echo "Mot de passe incorrect, veuillez saisir un mot de passe valide";
+            die();
+        }
     } else {
-        echo "Mot de passe incorrect";
+        echo ("Authentification incorrecte, veuillez saisir un login valide.");
         die();
     }
-} else {
-    var_dump("Problème à l'authentification");
-    die();
-}
 
 ?>
