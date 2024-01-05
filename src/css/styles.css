@@ -217,7 +217,6 @@ a.grey {
 #catalog-container {
   padding-top: 160px;
   display: flex;
-
   gap: 76px;
 }
 
@@ -242,7 +241,7 @@ a.grey {
   font-weight: bold;
 }
 
-#catalog h2 {
+#catalog h2.uppercase {
   text-transform: uppercase;
 }
 

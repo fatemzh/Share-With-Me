@@ -242,6 +242,64 @@
     }
 
     /**
+     * Récupère tous les ouvrages dont une partie ou la totalité du titre, de l'auteur ou de la description correspondent à l'entrée de recherche. Le résultat est trié par ordre alphabétique du titre.
+     * @param string $searchInput L'entrée de recherche.
+     * @return array Le tableau associatif contenant les données des ouvrages correspondants à la recherche triés par ordre alphabétique du titre.
+     */
+    public function getSearchBooks($searchInput) {
+        // Requête SQL pour récupérer tous les ouvrages dont une partie ou la totalité du titre, de l'auteur ou de la description correspondent à l'entrée de recherche, et triés par ordre alphabétique du titre
+        $query = 'SELECT * 
+        FROM t_book 
+        JOIN t_author ON fkAuthor = idAuthor 
+        WHERE (
+            LOWER(booTitle) LIKE LOWER(CONCAT("%", :searchInput, "%")) 
+            OR LOWER(booSummary) LIKE LOWER(CONCAT("%", :searchInput, "%")) 
+            OR (LOWER(autLastName) LIKE LOWER(CONCAT("%", :searchInput, "%")) OR LOWER(autFirstName) LIKE LOWER(CONCAT("%", :searchInput, "%")))
+        ) 
+        ORDER BY booTitle';
+
+        // Prépare et exécute la requête avec le paramètre lié
+        $binds = array("searchInput" => $searchInput);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        // Formate le résultat sous forme de tableau associatif
+        $categoryBooks = $this->formatData($req);
+
+        // Retourne le tableau associatif
+        return $categoryBooks;
+    }
+
+    /**
+     * Récupère tous les ouvrages d'une catégorie spécifique dont une partie ou la totalité du titre, de l'auteur ou de la description correspondent à l'entrée de recherche. Le résultat est trié par ordre alphabétique du titre.
+     * @param string $searchInput L'entrée de recherche.
+     * @param int $idCategory L'identifiant de la catégorie.
+     * @return array Le tableau associatif contenant les données des ouvrages de la catégorie correspondants à la recherche triés par ordre alphabétique du titre.
+     */
+    public function getSearchBooksInCategory($searchInput , $idCategory) {
+        // Requête SQL pour récupérer tous les ouvrages de la catégorie dont une partie ou la totalité du titre, de l'auteur ou de la description correspondent à l'entrée de recherche, et triés par ordre alphabétique du titre
+        $query = 'SELECT *
+        FROM t_book
+        JOIN t_author ON fkAuthor = idAuthor 
+        WHERE fkCategory = :idCategory
+        AND  (
+            LOWER(booTitle) LIKE LOWER(CONCAT("%", :searchInput, "%"))
+            OR LOWER(booSummary) LIKE LOWER(CONCAT("%", :searchInput, "%"))
+            OR (LOWER(autLastName) LIKE LOWER(CONCAT("%", :searchInput, "%")) OR LOWER(autFirstName) LIKE LOWER(CONCAT("%", :searchInput, "%")))
+        )
+        ORDER BY booTitle';
+
+        // Prépare et exécute la requête avec le paramètre lié
+        $binds = array("searchInput" => $searchInput, "idCategory" => $idCategory);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        // Formate le résultat sous forme de tableau associatif
+        $searchedBooksInCat = $this->formatData($req);
+
+        // Retourne le tableau associatif
+        return $searchedBooksInCat;
+    }
+
+    /**
      * Récupère tous les ouvrages d'un utilisateur spécifique.
      * @param int $idUser L'identifiant de l'utilisateur.
      * @return array Le tableau associatif contenant les données des ouvrages de l'utilisateur.

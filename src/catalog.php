@@ -25,6 +25,20 @@ if (isset($_GET["idCategory"])) {
     $categoryBooks = $db->getCategoryBooks($_GET["idCategory"]);
 }
 
+// Si une recherche a été effectuée avec la barre de recherche, récupère les ouvrages correspondants et vérifie si la recherche doit être effectuée dans la catégorie sélectionnée.
+// La recherche doit s'effectuer parmi les ouvrages de la catégorie
+if (isset($_GET["idCategory"]) && isset($_POST["search"])) {
+    $searchedBooks = $db->getSearchBooksInCategory($_POST["search"], $_GET["idCategory"]);
+}
+// La recherche doit s'effectuer parmi tous les ouvrages de la BD
+else if (!isset($_GET["idCategory"]) && isset($_POST["search"])) {
+    $searchedBooks = $db->getSearchBooks($_POST["search"]);
+}
+// Aucun résultat
+else {
+    $searchedBooks = array();
+}
+
 // Est-ce qu'un utilisateur est connecté ?
 if (!isset($_SESSION["user"]) ) {
     $isUserConnected = false;
@@ -63,7 +77,12 @@ echo "</pre>"; */
             <?php endif; ?>
             <section id="catalog-hero-main">
                 <h1>Trouve ton bonheur</h1>
-                <form id="search" action="#" method="post">
+                <!-- Recherche d'un ouvrage parmi tous ou parmi la catégorie sélectionnée -->
+                <?php if (isset($_GET["idCategory"])) : ?>
+                <form id="search" action="catalog.php?idCategory=<?= $_GET["idCategory"]; ?>" method="post">
+                <?php else : ?>
+                <form id="search" action="catalog.php" method="post">
+                <?php endif; ?>
                     <div>
                         <label for="search"></label>
                         <input type="search" name="search" id="search" placeholder="Titre, Auteur, Mot-clé, ...">
@@ -89,20 +108,35 @@ echo "</pre>"; */
             </nav>
 
             <section id="catalog">
-                <!-- Affiche le nom de la catégorie sélectionnée, sinon affiche "Toutes les catégories" -->
-                <h2>
+                <!-- Si une recherche a été effectuée, affiche un titre concernant la recherche, sinon affiche le nom de la catégorie sélectionnée, sinon affiche "Toutes les catégories" -->
                 <?php
-                if (isset($_GET["idCategory"])) {
-                    echo $currentCategory["catName"];
+                if (isset($_POST["search"])) {
+                    echo '<h2>Résultats pour la recherche "' . $_POST["search"] . '"';
+                    
+                    // Affiche la catégorie sélectionnée
+                    if (isset($_GET["idCategory"])) {
+                        echo ' dans la catégorie "' . $currentCategory["catName"] . '"';
+                    }
+                } elseif (isset($_GET["idCategory"])) {
+                    echo '<h2 class="uppercase">' . $currentCategory["catName"];
                 } else {
-                    echo "Toutes les catégories";
+                    echo '<h2 class="uppercase">' . 'Toutes les catégories';
                 }
                 ?>    
                 </h2>
                 <div id="list-container">
-                    <!-- Affiche les ouvrages de la catégorie sélectionnées, sinon affiche tous les ouvrages -->
+                    <!-- S'il y a eu une recherche, affiche les ouvrages du résultat de recherche, sinon affiche les ouvrages de la catégorie sélectionnées, sinon affiche tous les ouvrages -->
                     <?php
-                    if (isset($_GET["idCategory"])) {
+                    if (isset($_POST["search"])) {
+                        // Affiche les ouvrages de la recherche, sinon affiche qu'il n'y a pas de résultat pour la recherche
+                        if (!empty($_POST["search"] && !empty($searchedBooks))) {
+                            foreach ($searchedBooks as $bookKey => $book) {
+                                include('parts/bookCard.inc.php');
+                            }
+                        } else {
+                            echo "<p>Il n'y a pas de résultats pour cette recherche.</p>";
+                        }
+                    } elseif (isset($_GET["idCategory"])) {
                         // Affiche les ouvrages de la catégories, sinon affiche "Cette catégorie ne contient aucun ouvrage actuellement."
                         if (!empty($categoryBooks)) {
                             foreach ($categoryBooks as $bookKey => $book) {
