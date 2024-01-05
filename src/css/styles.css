@@ -285,7 +285,7 @@ a.grey {
 }
 
 /******************* BREADCRUMB *******************/
-#breadcrumb {
+.breadcrumb {
   margin: 0 auto;
   padding-bottom: 44px;
   padding-top: 54px;
@@ -293,8 +293,7 @@ a.grey {
   align-items: center;
 }
 
-#breadcrumb a {
-  color: #666666;
+.breadcrumb a {
   font-size: 16px;
   transition: font-size 0.3s ease;
   &:hover {
@@ -302,8 +301,10 @@ a.grey {
   }
 }
 
-#breadcrumb div {
+.breadcrumb div {
   padding-right: 4px;
+  color: #666666;
+  text-transform: uppercase;
 }
 
 #title-detail {

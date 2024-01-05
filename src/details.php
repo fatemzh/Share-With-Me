@@ -64,10 +64,10 @@ if($isUserConnected === true){
             <?php include("./parts/nav.inc.php") ?>
         </header>
         <main>
-            <div id="breadcrumb">
-                <div><a href="./catalog.php">CATALOGUE</a> /</div>
-                <div><a href="./catalog.php?idCategory=<?=$book["fkCategory"];?>"><?=$catName?></a> /</div>
-                <p><?=$book["booTitle"]?></p>
+            <div class="breadcrumb">
+                <div><a class="grey" href="./catalog.php">CATALOGUE</a> /</div>
+                <div><a class="grey" href="./catalog.php?idCategory=<?=$book["fkCategory"];?>"><?=$catName?></a> /</div>
+                <a href="./details.php?idBook="<?=$book["idBook"]?>><?=$book["booTitle"]?></a>
             </div>
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>

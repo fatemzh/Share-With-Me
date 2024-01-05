@@ -67,12 +67,12 @@ echo "</pre>"; */
 
     <body>
         <?php include('parts/nav.inc.php'); ?>
-        <header id="catalog-hero">
+        <header id="catalog-hero" class="breadcrumb">
             <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
             <?php if (isset($_GET["idCategory"])): ?>
                 <nav id="catalog-nav">
-                    <a href="catalog.php" class="grey">Catalogue /</a>
-                    <a href="catalog.php?idCategory=<?= $currentCategory["idCategory"]; ?>"><?= " " . $currentCategory["catName"]; ?></a>
+                    <div><a href="catalog.php" class="grey">Catalogue</a> / </div>
+                    <a href="catalog.php?idCategory=<?= $currentCategory["idCategory"]; ?>"><?= $currentCategory["catName"]; ?></a>
                 </nav>
             <?php endif; ?>
             <section id="catalog-hero-main">

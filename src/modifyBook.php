@@ -33,8 +33,8 @@
         <?php include("./parts/nav.inc.php") ?>
     </header>
     <main>
-        <nav id="add-nav">
-            <a href="profile.php" class="grey">mon profil /</a>
+        <nav id="add-nav" class="breadcrumb">
+            <div><a href="profile.php" class="grey">mon profil</a> /</div>
             <a href="modifyBook.php"> modifier</a>
 
         </nav>
