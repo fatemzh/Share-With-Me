@@ -288,7 +288,7 @@
      * @return array Le tableau associatif contenant le pseudo et la date d'inscription de l'utilisateur.
      */
     public function getPersonalInfos($idUser) {
-        // Vérifie si $idUser est non nul et numérique
+        // Vérifie que l'ID est valide (non nul et numérique)
         if ($idUser === null || !is_numeric($idUser)) {
             // Gére l'erreur ou retourne une valeur par défaut
             return null;
@@ -304,7 +304,7 @@
         // Formate le résultat sous forme de tableau associatif
         $userInformation = $this->formatData($req);
     
-        // Retourne le tableau associatif
+        // Retourne le résultat sous forme de tableau associatif
         return $userInformation;
     }
     
@@ -314,7 +314,7 @@
      * @return array Le nombre d'appréciations faites par l'utilisateur ou null s'il n'y en a pas.
      */
     public function getUserNumberOfReviews($idUser) {
-        // Vérifie si $idUser est non nul et numérique
+        // Vérifie que l'ID est valide (non nul et numérique)
         if ($idUser === null || !is_numeric($idUser)) {
             // Gérez l'erreur ou retourne une valeur par défaut
             return null;
@@ -330,7 +330,8 @@
         // Formate le résultat sous forme de tableau associatif
         $result = $this->formatData($req);
 
-        // Retourne le nombre d'appréciations faites par l'utilisateur ou null s'il n'y a pas de résultat
+        // Retourne le nombre total d'appréciations publiées, ou null s'il n'y a pas de résultats
+        // car l'utilisateur n'a pas encore posté d'appréciations
         return $result[0]['COUNT(evaGrade)'] ?? 0;
     }
 
@@ -340,7 +341,7 @@
      * @return array Le nombre nombre d'ouvrages publiés par l'utilisateur ou null s'il n'y en a pas.
      */
     public function getUserNumberOfPosts($idUser) {
-        // Vérifie si $idUser est non nul et numérique
+        // Vérifie que l'ID est valide (non nul et numérique)
         if ($idUser === null || !is_numeric($idUser))  {
             // Gére l'erreur ou retourne une valeur par défaut
             return null;
@@ -356,12 +357,13 @@
         // Formate le résultat sous forme de tableau associatif
         $nbPosts = $this->formatData($req);
 
-        // Retourne le premier élément (le total) du résultat, ou null s'il n'y a pas de résultat
+        // Retourne le nombre total de livres publiés, ou null s'il n'y a pas de résultats
+        // car l'utilisateur n'a pas encore posté de livres
         return $nbPosts[0]['COUNT(idBook)'] ?? 0;
     }
 
     /**
-     * Récupère les données correspondant à un pseudo d'utilisateur
+     * Récupère les données correspondant à un pseudo d'utilisateur, nécessaire pour gérer l'authentification
      * @param string $useLogin pseudo de l'utilisateur
      * @return array Tableau associatif contenant les données d'un pseudo d'utilisateur
      */
@@ -376,7 +378,7 @@
         // Formate le résultat sous forme de tableau associatif
         $user = $this->formatData($req);
 
-        // Retourne le tableau associatif
+        // Retourne les login et mot de passe sous forme de tableau associatif
         return $user;
     }
 
@@ -457,7 +459,7 @@
     }
 
     /**
-     * Supprime un ouvrage de la BD ainsi que toutes les évalutions qui lui sont liées.
+     * Supprime un ouvrage de la DB ainsi que toutes les évalutions qui lui sont liées.
      * @param int $idBook L'identifiant de l'ouvrage.
      */
     public function deleteBook($idBook) {
