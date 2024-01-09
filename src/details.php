@@ -71,7 +71,7 @@ if($isUserConnected === true){
             </div>
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
-                <?php if ($isUserConnected === true): ?>
+                <?php if ($isUserConnected === true && $user["useLogin"] === $userBook["useLogin"]): ?>
                 <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
                 <?php endif;?>
             </div>
