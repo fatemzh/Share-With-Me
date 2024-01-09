@@ -72,7 +72,10 @@ if($isUserConnected === true){
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
                 <?php if ($isUserConnected === true && $user["useLogin"] === $userBook["useLogin"]): ?>
-                <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
+                    <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
+                <?php endif;?>
+                <?php if ($isUserConnected === true && $user["useAdmin"] === 1): ?>
+                    <a href="javascript:confirmDelete(<?=$book["idBook"];?>)"><span class="material-symbols-outlined">delete</span></a>
                 <?php endif;?>
             </div>
             <div id="book-details">
