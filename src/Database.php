@@ -534,6 +534,18 @@
         // Prépare et exécute la requête avec les paramètres liés
         $this->queryPrepareExecute($query, $binds);
     }
+
+    /* 
+     * Crée et insère un nouvel ouvrage dans la BD
+     * @param int $idBook L'identifiant de l'ouvrage.
+     */
+    public function addBook($title, $nbPages, $excerpt, $summary, $editionYear, $imgCover, $edithor, $idUser, $idAuthor, $idCategory) {
+        // Appelle la méthode pour executer la requête
+        $query = "INSERT INTO t_teacher (teaFirstname, teaName, teaGender, teaNickname, teaOrigine, fkSection) VALUES (:firstName, :lastName, :gender, :nickName, :origin, :sectionID)";
+        $binds = array(':firstName' => $firstName, ':lastName' => $lastName, ':gender' => $gender, ':nickName' => $nickname, ':origin' => $origin, ':sectionID' => $sectionID);
+        $this->queryPrepareExecute($query, $binds);
+    }
+    
  }
 
 ?>

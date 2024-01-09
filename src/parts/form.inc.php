@@ -8,8 +8,9 @@
             <label for="category">Catégorie</label>
             <select name="category" id="category">
                 <option value="">Catégorie</option>
-                <option value="">Action</option>
-                <option value="">Romance</option>
+                <?php foreach ($categories as $category) : ?>
+                <option value="<?= $category["idCategory"] ;?>" <?php if ($category["idCategory"] === $bookData["category"]) : ?>selected<?php endif; ?>><?= $category["catName"] ;?></option>
+                <?php endforeach; ?>
             </select>
         </p>
         <p class="space">
@@ -21,8 +22,12 @@
             <textarea name="summary" id="summary" placeholder="Résumé" rows="5" cols="35"></textarea>
         </p>
         <p class="space">
-            <label for="author">Auteur-e </label>
-            <input type="text" name="author" id="author" placeholder="Auteur-e">
+            <label for="authorFirstname">Prénom de l'auteur-e</label>
+            <input type="text" name="authorFirstname" id="authorFirstname" placeholder="Prénom de l'auteur-e">
+        </p>
+        <p class="space">
+            <label for="authorLastname">Nom de famille de l'auteur-e</label>
+            <input type="text" name="authorLastname" id="authorLastname" placeholder="Nom de famille de l'auteur-e">
         </p>
         <p class="space">
             <label for="edithor">Editeur  </label>
