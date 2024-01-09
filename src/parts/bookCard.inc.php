@@ -10,12 +10,11 @@
         <h3>
             <a href="./details.php?idBook=<?= $book["idBook"]; ?>"><?= $book["booTitle"]; ?></a>
         </h3>
-        <!-- Pourquoi mettre un lien vers le profil utilisateur ?  -->
-        <p>Posté par : <a href="./profile.php">
+        <p>Posté par : 
             <?php
             $user = $db->getOneUser($book["fkUser"]);
             echo $user["useLogin"];
             ?>
-        </a></p>
+        </p>
     </div>
 </div>
