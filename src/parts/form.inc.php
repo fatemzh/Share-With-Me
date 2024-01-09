@@ -30,8 +30,8 @@
             <input type="text" name="authorLastname" id="authorLastname" placeholder="Nom de famille de l'auteur-e">
         </p>
         <p class="space">
-            <label for="edithor">Editeur  </label>
-            <input type="text" name="edithor" id="edithor" placeholder="Editeur">
+            <label for="editor">Editeur  </label>
+            <input type="text" name="editor" id="editor" placeholder="Editeur">
         </p>
         <p class="space">
             <label for="year">Année d'édition </label>

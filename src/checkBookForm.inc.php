@@ -44,7 +44,7 @@ if (!isset($_POST["authorLastname"]) || empty($_POST["authorLastname"]) || !preg
 }
 
 // Vérifie que l'éditeur est bien renseigné
-if (!isset($_POST["edithor"]) || empty($_POST["edithor"]) || !preg_match("/^[a-zA-ZÀ-ÿ\s-]*$/", $_POST["edithor"])) {
+if (!isset($_POST["editor"]) || empty($_POST["editor"]) || !preg_match("/^[a-zA-ZÀ-ÿ\s-]*$/", $_POST["editor"])) {
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner un éditeur !</p>";
 }
 
@@ -70,14 +70,14 @@ if (!isset($_POST["book-cover"]) || empty($_POST["book-cover"]) || (strtolower(e
 }
 
 // Récupère les données de l'ouvrage
-if (isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["page-number"]) && isset($_POST["summary"]) && isset($_POST["authorFirstname"]) && isset($_POST["authorLastname"])&& isset($_POST["edithor"]) && isset($_POST["book-link"]) && isset($_POST["book-cover"])) {
+if (isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["page-number"]) && isset($_POST["summary"]) && isset($_POST["authorFirstname"]) && isset($_POST["authorLastname"]) && isset($_POST["editor"]) && isset($_POST["year"]) && isset($_POST["book-link"]) && isset($_POST["book-cover"])) {
     $_SESSION["title"] = $_POST["title"];
-    $_SESSION["category"] = $_POST["category"];
+    $_SESSION["idCategory"] = $_POST["category"];
     $_SESSION["nbPages"] = $_POST["page-number"];
     $_SESSION["summary"] = $_POST["summary"];
     $_SESSION["authorFirstname"] = $_POST["authorFirstname"];
     $_SESSION["authorLastname"] = $_POST["authorLastname"];
-    $_SESSION["edithor"] = $_POST["edithor"];
+    $_SESSION["edihor"] = $_POST["editor"];
     $_SESSION["editionYear"] = $_POST["year"];
     $_SESSION["excerptLink"] = $_POST["book-link"];
     $_SESSION["bookCover"] = $_POST["book-cover"];

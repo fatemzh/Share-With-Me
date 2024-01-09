@@ -535,14 +535,51 @@
         $this->queryPrepareExecute($query, $binds);
     }
 
+    /**
+      * Récupère un auteur de la BD en fonction de son prénom et son nom.
+      * @param string $firstname Le prénom de l'auteur.
+      * @param string $lastname Le nom de l'auteur.
+      * @return array Le tableau associatif contenant les données de l'auteur.
+      */
+      public function getAuthor($lastname, $firstname) {
+        // Requête SQL pour récupérer un auteur en fonction de son prénom et son nom
+        $query = "SELECT * FROM t_author  WHERE autLastName = :lastname AND autFirstName = :firstname";
+
+        // Prépare et exécute la requête avec les paramètres liés
+        $binds = array("lastname" => $lastname, "firstname" => $firstname);
+        $req = $this->queryPrepareExecute($query, $binds);
+
+        // Formate le résultat sous forme de tableau associatif
+        $author = $this->formatData($req);
+
+        // Retourne le tableau associatif
+        return $author[0];
+    }
+
+    /**
+     * Ajoute un nouvel auteur dans la DB.
+     * @param string $firstname Le prénom de l'auteur.
+     * @param string $lastname Le nom de l'auteur.
+     */
+    public function addAuthor($lastname, $firstname) {
+        // Requête SQL pour ajouter un nouvel auteur dans la DB
+        $query = "INSERT INTO t_author (autLastName, autFirstName) VALUES (:lastname, :firstname)";
+        
+        // Prépare et exécute la requête avec les paramètres liés
+        $binds = array("lastname" => $lastname, "firstname" => $firstname);
+        $this->queryPrepareExecute($query, $binds);
+    }
+
     /* 
      * Crée et insère un nouvel ouvrage dans la BD
      * @param int $idBook L'identifiant de l'ouvrage.
      */
-    public function addBook($title, $nbPages, $excerpt, $summary, $editionYear, $imgCover, $edithor, $idUser, $idAuthor, $idCategory) {
-        // Appelle la méthode pour executer la requête
-        $query = "INSERT INTO t_teacher (teaFirstname, teaName, teaGender, teaNickname, teaOrigine, fkSection) VALUES (:firstName, :lastName, :gender, :nickName, :origin, :sectionID)";
-        $binds = array(':firstName' => $firstName, ':lastName' => $lastName, ':gender' => $gender, ':nickName' => $nickname, ':origin' => $origin, ':sectionID' => $sectionID);
+    public function addBook($title, $nbPages, $excerpt, $summary, $editionYear, $imgCover, $editor, $idUser, $idAuthor, $idCategory) {
+        // Requête SQL pour ajouter un nouvel ouvrage dans la DB
+        $query = "INSERT INTO t_book (booTitle, booNumberPages, booExcerpt, booSummary, booEditionYear, booImageURL, booEditorName, fkUser, fkAuthor, fkCategory) VALUES (:title, :nbPages, :excerpt, :summary, :editionYear, :imgCover, :editor, :idUser, :idAuthor, :idCategory)";
+
+        // Prépare et exécute la requête avec les paramètres liés
+        $binds = array(':title' => $title, ':nbPages' => $nbPages, ':excerpt' => $excerpt, ':summary' => $summary, ':editionYear' => $editionYear, ':imgCover' => $imgCover, ':editor' => $editor, ':idUser' => $idUser, ':idAuthor' => $idAuthor, ':idCategory' => $idCategory);
         $this->queryPrepareExecute($query, $binds);
     }
     

@@ -26,12 +26,12 @@ $_SESSION["currentPage"] = "addBook.php";
 // Pour afficher un formulaire vide
 $bookData = array(
     "title" => "",
-    "category" => "",
+    "idCategory" => "",
     "nbPages" => "m",
     "summary" => "",
     "authorFirstname" => "",
     "authorLastname" => "",
-    "edithor" => "",
+    "editor" => "",
     "editionYear" => "",
     "excerptLink" => "",
     "bookCover" => ""
