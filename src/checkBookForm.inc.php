@@ -3,7 +3,7 @@
 /**
  * 
  * ETML
- * Auteur : Anelisse Corozel
+ * Auteur : Kathleen Lu
  * Date : 09.01.24
  * Description : Page de vérification pour le formulaire d'ajout ou de modification d'un ouvrage
  */

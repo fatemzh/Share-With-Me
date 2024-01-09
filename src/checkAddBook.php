@@ -3,7 +3,7 @@
 /**
  * 
  * ETML
- * Auteur : Anelisse Corozel
+ * Auteur : Kathleen Lu
  * Date : 09.01.24
  * Description : Page de vérification pour le formulaire d'ajout d'un ouvrage
  */
@@ -27,7 +27,7 @@ if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
         $idAuthor = $author["idAuthor"];
     } else {
         $db->addAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
-        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
+        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);/* Répétitif ? Simplifier ? --------------- */
         $idAuthor = $newAuthor["idAuthor"];
     }
 

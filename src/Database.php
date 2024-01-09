@@ -571,8 +571,17 @@
     }
 
     /* 
-     * Crée et insère un nouvel ouvrage dans la BD
-     * @param int $idBook L'identifiant de l'ouvrage.
+     * Crée et insère un nouvel ouvrage dans la BD.
+     * @param string $title Le titre de l'ouvrage.
+     * @param int $nbPages Le nombre de pages de l'ouvrage.
+     * @param string $excerpt Le nom du fichier de l'extrait PDF de l'ouvrage.
+     * @param string $summary Le résumé de l'ouvrage.
+     * @param int $editionYear L'année d'édition de l'ouvrage.
+     * @param string $imgCover Le nom du fichier de l'image de couverture de l'ouvrage.
+     * @param string $editor Le nom de l'éditeur.
+     * @param int $idUser L'identifiant de l'utilisateur.
+     * @param int $idAutheur L'identifiant de l'auteur.
+     * @param int $idCategory L'identifiant de la catégorie.
      */
     public function addBook($title, $nbPages, $excerpt, $summary, $editionYear, $imgCover, $editor, $idUser, $idAuthor, $idCategory) {
         // Requête SQL pour ajouter un nouvel ouvrage dans la DB
@@ -580,6 +589,29 @@
 
         // Prépare et exécute la requête avec les paramètres liés
         $binds = array(':title' => $title, ':nbPages' => $nbPages, ':excerpt' => $excerpt, ':summary' => $summary, ':editionYear' => $editionYear, ':imgCover' => $imgCover, ':editor' => $editor, ':idUser' => $idUser, ':idAuthor' => $idAuthor, ':idCategory' => $idCategory);
+        $this->queryPrepareExecute($query, $binds);
+    }
+
+    /* 
+     * Modifie un ouvrage dans la BD
+     * @param int $idBook L'identifiant de l'ouvrage.
+     * @param string $title Le titre de l'ouvrage.
+     * @param int $nbPages Le nombre de pages de l'ouvrage.
+     * @param string $excerpt Le nom du fichier de l'extrait PDF de l'ouvrage.
+     * @param string $summary Le résumé de l'ouvrage.
+     * @param int $editionYear L'année d'édition de l'ouvrage.
+     * @param string $imgCover Le nom du fichier de l'image de couverture de l'ouvrage.
+     * @param string $editor Le nom de l'éditeur.
+     * @param int $idUser L'identifiant de l'utilisateur.
+     * @param int $idAutheur L'identifiant de l'auteur.
+     * @param int $idCategory L'identifiant de la catégorie.
+     */
+    public function modifyBook($idBook, $title, $nbPages, $excerpt, $summary, $editionYear, $imgCover, $editor, $idUser, $idAuthor, $idCategory) {
+        // Requête SQL pour modifier un ouvrage dans la DB
+        $query = "UPDATE t_book SET booTitle = :title, booNumberPages = :nbPages, booExcerpt = :excerpt, booSummary = :summary, booEditionYear = :editionYear, booImageURL = :imgCover, booEditorName = :editor, fkUser = :idUser, fkAuthor = :idAuthor, fkCategory = :idCategory WHERE idBook = :idBook";
+
+        // Prépare et exécute la requête avec les paramètres liés
+        $binds = array(':title' => $title, ':nbPages' => $nbPages, ':excerpt' => $excerpt, ':summary' => $summary, ':editionYear' => $editionYear, ':imgCover' => $imgCover, ':editor' => $editor, ':idUser' => $idUser, ':idAuthor' => $idAuthor, ':idCategory' => $idCategory, ':idBook' => $idBook);
         $this->queryPrepareExecute($query, $binds);
     }
     
