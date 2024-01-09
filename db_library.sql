@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : jeu. 04 jan. 2024 à 20:52
+-- Généré le : mar. 09 jan. 2024 à 07:37
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -178,9 +178,9 @@ CREATE TABLE `t_user` (
 --
 
 INSERT INTO `t_user` (`idUser`, `useLogin`, `usePassword`, `useAdmin`, `useRegisterDate`) VALUES
-(1, 'Alice', 'alice', 1, '2022-01-15'),
-(2, 'Bob', 'bob', 0, '2021-05-20'),
-(3, 'Charlie', 'charlie', 1, '2020-08-10');
+(1, 'Alice', '$2a$12$q51NrqV8xgUT4xrHqBZlfOWIBF8czFKH5YisPOL9XCbC2e5HQg0d2', 1, '2022-01-15'),
+(2, 'Bob', '$2a$12$9pZivQ4E014jyiQfE1Wczu95GTv6LEGnE0aWxNUR1p/hicBB3ZO6a', 0, '2021-05-20'),
+(3, 'Charlie', '$2a$12$TkSE1WqcsKCz6j8/NZkrbejYkoTvpva/V1/QlmCiF3mxkUmemCxpK', 1, '2020-08-10');
 
 --
 -- Index pour les tables déchargées

@@ -437,7 +437,7 @@
         $user = $this->formatData($req);
 
         // Retourne les login et mot de passe sous forme de tableau associatif
-        return $user;
+        return $user[0];
     }
 
     /**

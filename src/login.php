@@ -18,7 +18,7 @@
     $usePassword = $_POST["usePassword"] ?? "";
 
     // Récupère les login et mots de passe utilisateurs de la DB
-    $user = $db->login($useLogin, $usePassword); 
+    $user = $db->login($useLogin); 
 
     // Vérifie que les données de l'utilisateur ont été récupérées
     if ($user) {
@@ -26,7 +26,7 @@
         if (password_verify($usePassword, $user['usePassword'])) {        
             $_SESSION['user'] = $user;
             $_SESSION['idUser'] = $user['idUser']; 
-            header("Location: index.php");
+            header("Location: ./index.php");
             exit();
         } else {
             echo "Mot de passe incorrect, veuillez saisir un mot de passe valide";
