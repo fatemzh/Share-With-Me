@@ -38,9 +38,9 @@ if (!isset($_POST["authorFirstname"]) || empty($_POST["authorFirstname"]) || !pr
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner un prénom pour l'autheur !</p>";
 }
 
-// Vérifie que le nom de famille de l'auteur est bien renseigné
+// Vérifie que le nom de l'auteur est bien renseigné
 if (!isset($_POST["authorLastname"]) || empty($_POST["authorLastname"]) || !preg_match("/^[a-zA-ZÀ-ÿ\s-]*$/", $_POST["authorLastname"])) {
-    $_SESSION["incorrect"] .= "<p>Vous devez renseigner un nom de famille pour l'autheur !</p>";
+    $_SESSION["incorrect"] .= "<p>Vous devez renseigner un nom pour l'autheur !</p>";
 }
 
 // Vérifie que l'éditeur est bien renseigné

@@ -14,9 +14,7 @@ include('Database.php');
 $db = new Database();
 
 // Vérifie si l'utilisateur est connecté
-$isUserConnected = isset($_SESSION["user"]);
-
-if (!$isUserConnected) {
+if (!isset($_SESSION["user"])) {
     $isUserConnected = false;
 } else {
     $isUserConnected = true;
