@@ -148,7 +148,7 @@ if($isUserConnected === true){
             </div>
         </main>
         <footer class="footer">
-            <? include("./src/parts/footer.inc.php"); ?>
+            <?php include('parts/footer.inc.php'); ?>
         </footer>
     </body>
 </html>
