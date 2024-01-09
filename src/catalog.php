@@ -13,6 +13,16 @@ include('Database.php');
 // Création d'une instance de la classe Database
 $db = new Database();
 
+// Vérifie si l'utilisateur est connecté
+$isUserConnected = isset($_SESSION["user"]);
+
+if (!$isUserConnected) {
+    $isUserConnected = false;
+} else {
+    $isUserConnected = true;
+    $userName = $_SESSION["user"];
+}
+
 // Récupère la liste de tous les livres
 $allBooks = $db->getAllBooks();
 
@@ -37,15 +47,6 @@ else if (!isset($_GET["idCategory"]) && isset($_POST["search"])) {
 // Aucun résultat
 else {
     $searchedBooks = array();
-}
-
-// Est-ce qu'un utilisateur est connecté ?
-if (!isset($_SESSION["user"]) ) {
-    $isUserConnected = false;
-} else {
-    $isUserConnected = true;
-    $userName = $_SESSION["user"];
-    $infos = $db->getPersonalInfos($idUser);
 }
 
 /* echo "<pre>";

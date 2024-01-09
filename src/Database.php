@@ -401,7 +401,7 @@
     public function getUserNumberOfPosts($idUser) {
         // Vérifie que l'ID est valide (non nul et numérique)
         if ($idUser === null || !is_numeric($idUser))  {
-            // Gére l'erreur ou retourne une valeur par défaut
+            // Retourne une valeur par défaut 
             return null;
         }
         
