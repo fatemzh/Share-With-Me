@@ -43,9 +43,12 @@ if($book["fkCategory"] === $category["idCategory"]){
 //Récupération de la moyenne des avis de l'ouvrage à partir de son identifiant
 $ratings = $db->getBookRating($idBook);
 
-//Récupération de la moyenne des avis de l'ouvrage à partir de l'identifiant de l'utilisateur connecté
+//Vérification de l'utilisateur connecté
 if($isUserConnected === true){
     $user = $db->getOneUser($_SESSION["idUser"]);
+}
+else{
+    echo "Veuillez vous connecter.";
 }
 ?>
 <!DOCTYPE html>
@@ -71,11 +74,11 @@ if($isUserConnected === true){
             </div>
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
-                <?php if ($isUserConnected === true && $user["useLogin"] === $userBook["useLogin"]): ?>
+                <?php if ($user["useAdmin"] === 1): ?>
                     <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
-                <?php endif;?>
-                <?php if ($isUserConnected === true && $user["useAdmin"] === 1): ?>
                     <a href="javascript:confirmDelete(<?=$book["idBook"];?>)"><span class="material-symbols-outlined">delete</span></a>
+                <?php elseif($user["useLogin"] === $userBook["useLogin"]):?>
+                    <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
                 <?php endif;?>
             </div>
             <div id="book-details">
