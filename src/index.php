@@ -86,22 +86,22 @@
                             </div>
                         </div>
                     <?php endforeach; ?>
-            <!-- Fleche de contrôles de la navigation du carousel 
-                 Slide 1 -->
-            <label for="carousel-5" class="carousel-control prev control-1">‹</label>
-            <label for="carousel-2" class="carousel-control next control-1">›</label>
-            <!-- Slide 2 -->
-            <label for="carousel-1" class="carousel-control prev control-2">‹</label>
-            <label for="carousel-3" class="carousel-control next control-2">›</label>
-            <!-- Slide 3 -->
-            <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-            <label for="carousel-4" class="carousel-control next control-3">›</label> 
-            <!-- Slide 4 -->
-            <label for="carousel-3" class="carousel-control prev control-4">‹</label>
-            <label for="carousel-5" class="carousel-control next control-4">›</label>
-            <!-- Slide 5 -->
-            <label for="carousel-4" class="carousel-control prev control-5">‹</label>
-            <label for="carousel-1" class="carousel-control next control-5">›</label>
+                    <!-- Fleche de contrôles de la navigation du carousel 
+                        Slide 1 -->
+                    <label for="carousel-5" class="carousel-control prev control-1">‹</label>
+                    <label for="carousel-2" class="carousel-control next control-1">›</label>
+                    <!-- Slide 2 -->
+                    <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+                    <label for="carousel-3" class="carousel-control next control-2">›</label>
+                    <!-- Slide 3 -->
+                    <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+                    <label for="carousel-4" class="carousel-control next control-3">›</label> 
+                    <!-- Slide 4 -->
+                    <label for="carousel-3" class="carousel-control prev control-4">‹</label>
+                    <label for="carousel-5" class="carousel-control next control-4">›</label>
+                    <!-- Slide 5 -->
+                    <label for="carousel-4" class="carousel-control prev control-5">‹</label>
+                    <label for="carousel-1" class="carousel-control next control-5">›</label>
                 </div>
             </div>            
         </header>
