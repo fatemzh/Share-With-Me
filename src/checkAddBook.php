@@ -27,7 +27,7 @@ if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
         $idAuthor = $author["idAuthor"];
     } else {
         $db->addAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
-        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);/* Répétitif ? Simplifier ? --------------- */
+        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
         $idAuthor = $newAuthor["idAuthor"];
     }
 

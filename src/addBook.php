@@ -8,8 +8,8 @@
  * Description : Page d'ajout d'un ouvrage contenant un formulaire permettant d'ajouter un nouvel ouvrage dans la BD
  */
 
- include('Database.php');
- include('helper.php');
+include('Database.php');
+include('helper.php');
 
 session_start();
     
@@ -47,10 +47,6 @@ $bookData = array(
     "excerptName" => "",
     "coverName" => ""
 );
-
-/* echo "<pre>";
-var_dump($_SESSION["bookCover"]);
-echo "</pre>"; */
 
 ?>
 

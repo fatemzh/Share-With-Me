@@ -63,9 +63,6 @@ if (!isset($_FILES["coverImg"]) || empty($_FILES["coverImg"]) || ($_FILES["cover
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner une image de couverture (png, jpeg ou jpg) !</p>";
 }
 
-$_SESSION["pdfExt"] = $_FILES["excerptPDF"]["type"];
-$_SESSION["imgExt"] = $_FILES["coverImg"]["type"];
-
 // Récupère les données de l'ouvrage et déplace l'extrait PDF ainsi que l'image de couverture dans le bon répertoire
 if (isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["page-number"]) && isset($_POST["summary"]) && isset($_POST["authorFirstname"]) && isset($_POST["authorLastname"]) && isset($_POST["editor"]) && isset($_POST["year"]) && isset($_FILES["excerptPDF"]) && isset($_FILES["coverImg"])) {
     $_SESSION["title"] = $_POST["title"];
@@ -79,12 +76,12 @@ if (isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["page-nu
     $_SESSION["excerptName"] = $_FILES["excerptPDF"]["name"];
     $_SESSION["coverName"] = $_FILES["coverImg"]["name"];
     
-    // Déplace l'extrait PDF
+    // Ajoute l'extrait PDF dans le répertoire excerptPDF/
     $pdfSource = $_FILES["excerptPDF"]["tmp_name"];
     $pdfDestination = "excerptPDF/" . $_FILES["excerptPDF"]["name"];
     move_uploaded_file($pdfSource, $pdfDestination);
 
-    // Déplace l'image de couverture
+    // Ajoute l'image de couverture dans le répertoire img/covers/
     $coverSource = $_FILES["coverImg"]["tmp_name"];
     $coverDestination = "img/covers/" . $_FILES["coverImg"]["name"];
     move_uploaded_file($coverSource, $coverDestination);
