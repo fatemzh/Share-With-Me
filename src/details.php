@@ -91,7 +91,7 @@ if($isUserConnected === true){
                     <div id="review">
                             <p>Moyenne des avis :</p>
                             <div class="stars">
-                                <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
+                                <!-- Affiche le nombre d'étoile correspondant à la moyenne arrondie des avis de l'ouvrage -->
                                 <?php if ($ratings["average"] !== null):?>
                                     <?php for($i = 0; $i < round($ratings["average"], 0); $i++):?>
                                         <span class="material-symbols-outlined etoile">star</span>

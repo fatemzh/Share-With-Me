@@ -3,7 +3,7 @@
  * ETML
  * Auteur:
  * Date:
- * Description: Information sur la connexion à la base de données. Administrateur: Login--> Edouard, Mot de passe--> Admin. Utilisateur: Login--> Albert, Mot de passse--> User
+ * Description: Information sur la connexion à la base de données.
  */
 
 return[
