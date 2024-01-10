@@ -39,14 +39,14 @@
         </p>
         <p  class="space">
             <label for="excerptPDF">Lien d'extrait de l'ouvrage</label>
-            <input type="file" id="excerptPDF" name="excerptPDF" value="Lien URL" accept="application/pdf" value="<?= $bookData["excerptName"]; ?>">
+            <input type="file" id="excerptPDF" name="excerptPDF" value="Lien URL" accept="application/pdf" value="excerptPDF/<?= $bookData["excerptName"]; ?>">
         </p>
     </div>
     <div id="form-right">
         <div id="img-cover"></div>
         <p class="space">
             <label for="coverImg">Image de couverture</label>
-            <input type="file" id="coverImg" name="coverImg" accept="image/png, image/jpeg, img/jpg" value="<?= $bookData["coverName"]; ?>">
+            <input type="file" id="coverImg" name="coverImg" accept="image/png, image/jpeg, img/jpg" value="img/covers/<?= $bookData["coverName"]; ?>">
         </p>
     </div>
 </div>

@@ -3,7 +3,7 @@
  * ETML
  * Auteur: Salma Abdulkadir
  * Date: 27.12.2023
- * Description: Ajoute la nouvelle note à la base de données avec l'id de l'utilisateur et du livre
+ * Description: Ajoute la nouvelle note à la base de données avec l'id de l'utilisateur et de l'ouvrage.
  */
 
 //Inclusion
@@ -12,7 +12,7 @@ include("Database.php");
 //Instanciation de la base de données
 $db = new Database();
 
-// Traitement du formulaire) 
+//
 $idBook = $_POST["idBook"];
 $idUser = $_POST["idUser"];
 $rating = $_POST["rating"];

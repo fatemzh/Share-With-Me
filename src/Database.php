@@ -460,7 +460,7 @@
      */
     public function getBookRating($idBook) {
         // Requête SQL pour récupérer la moyenne des avis de l'ouvrage
-        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation JOIN t_book ON t_book.idBook = t_evaluation.fkBook WHERE idBook = :idBook";
+        $query = "SELECT AVG(evaGrade) AS average FROM t_evaluation WHERE fkBook = :idBook";
         
         // Prépare et exécute la requête avec le paramètre lié
         $binds = array("idBook" => $idBook);
