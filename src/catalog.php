@@ -50,12 +50,7 @@ else {
     $searchedBooks = array();
 }
 
-/* echo "<pre>";
-var_dump($categoryBooks);
-echo "</pre>"; */
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">

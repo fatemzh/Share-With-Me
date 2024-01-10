@@ -18,13 +18,9 @@ if (!isset($_SESSION["user"]) ) {
 
 //Inclusion
 include("Database.php");
-include("helper.php");
 
 //Instanciation de la base de données
 $db = new Database();
-
-// Vérifie si l'utilisateur a accès à cette page
-IsUserAllowed();
 
 //Récupération de l'identifiant du livre dans l'URL
 $idBook = $_GET["idBook"];
@@ -77,10 +73,10 @@ if($isUserConnected === true){
                 <h1>Détails de l’ouvrage</h1>
                 <!-- Affiche l'icon de modification et de suppression si l'admin est connecté ou juste l'icon de modification si l'utilisateur connecté est sur la page d'un ouvrage qu'il a publié -->
                 <?php if ($user["useAdmin"] === 1): ?>
-                    <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
+                    <a href="./modifyBook.php?idBook=<?= $book["idBook"]; ?>"><span class="material-symbols-outlined">edit</span></a>
                     <a href="javascript:confirmDelete(<?=$book["idBook"];?>)"><span class="material-symbols-outlined">delete</span></a>
                 <?php elseif($user["useLogin"] === $userBook["useLogin"]):?>
-                    <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
+                    <a href="./modifyBook.php?idBook=<?= $book["idBook"]; ?>"><span class="material-symbols-outlined">edit</span></a>
                 <?php endif;?>
             </div>
             <div id="book-details">
@@ -90,7 +86,7 @@ if($isUserConnected === true){
                 <div id="infos">
                     <div id="title-author">
                         <p id="book-title"><?=$book["booTitle"]?></p>
-                        <p class="author">Ajouté par : <a href="./profile.php?idUser=<?=$userBook["idUser"]?>"><?=$userBook["useLogin"]?></a></p>
+                        <p class="author">Ajouté par : <?=$userBook["useLogin"]?></p>
                     </div>
                     <div id="review">
                             <p>Moyenne des avis :</p>
@@ -127,7 +123,7 @@ if($isUserConnected === true){
                 </div>
             </div>
             <div id="evaluation">
-                <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
+                <!-- Affiche le formulaire d'évaluation -->
             <?php if ($isUserConnected === true): ?>
                 <p>Evaluez cet ouvrage</p>
                 <div id="stars-2">

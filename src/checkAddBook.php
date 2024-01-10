@@ -27,12 +27,12 @@ if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
         $idAuthor = $author["idAuthor"];
     } else {
         $db->addAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
-        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);/* Répétitif ? Simplifier ? --------------- */
+        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
         $idAuthor = $newAuthor["idAuthor"];
     }
 
     // Ajoute l'ouvrage dans la BD
-    $db->addBook($_SESSION["title"], $_SESSION["nbPages"], $_SESSION["excerptLink"], $_SESSION["summary"], $_SESSION["editionYear"], $_SESSION["bookCover"], $_SESSION["editor"], $_SESSION["idUser"], $idAuthor, $_SESSION["idCategory"]);
+    $db->addBook($_SESSION["title"], $_SESSION["nbPages"], $_SESSION["excerptName"], $_SESSION["summary"], $_SESSION["editionYear"], $_SESSION["coverName"], $_SESSION["editor"], $_SESSION["idUser"], $idAuthor, $_SESSION["idCategory"]);
 
     header("Location: catalog.php");
 }

@@ -8,8 +8,8 @@
  * Description : Page d'ajout d'un ouvrage contenant un formulaire permettant d'ajouter un nouvel ouvrage dans la BD
  */
 
- include('Database.php');
- include('helper.php');
+include('Database.php');
+include('helper.php');
 
 session_start();
     
@@ -44,13 +44,9 @@ $bookData = array(
     "authorLastname" => "",
     "editor" => "",
     "editionYear" => "",
-    "excerptLink" => "",
-    "bookCover" => ""
+    "excerptName" => "",
+    "coverName" => ""
 );
-
-/* echo "<pre>";
-var_dump($_SESSION["bookCover"]);
-echo "</pre>"; */
 
 ?>
 
@@ -74,7 +70,7 @@ echo "</pre>"; */
                 <a href="addBook.php"> Ajouter</a>
             </nav>
             <h1>Ajouter un ouvrage</h1>
-            <form action="checkBookForm.inc.php" method="post" id="book-form">
+            <form action="checkBookForm.inc.php" method="post" enctype="multipart/form-data" id="book-form">
                 <?php include("parts/form.inc.php");?>
                 <p>
                     <input type="submit" value="Ajouter">
