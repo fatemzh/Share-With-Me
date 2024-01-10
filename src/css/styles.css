@@ -654,6 +654,10 @@ a.grey {
     -1px 0px 2px rgba(255, 255, 255, 0);
 }
 
+.index-h4{
+  margin: 10px 0px;
+}
+
 /******************* HOME INTRODUCTION *******************/
 
 #home-title {

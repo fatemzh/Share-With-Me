@@ -38,9 +38,6 @@
 
     // Récupère la liste de toutes les catégories triées par ordre alphabétique
     $categories =  $db->getAllCategories();
-
-    //Récupération de la moyenne des avis de l'ouvrage à partir de son identifiant
-    $ratings = $db->getBookRating($idBook);
 ?>
 
 <!DOCTYPE html>
@@ -50,11 +47,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
         <link href="./css/styles.css" rel="stylesheet">
     <title>Accueil</title>
@@ -67,6 +59,8 @@
             <div class="carousel">
                 <div class="carousel-inner">
                     <?php foreach ($newBooks as $index => $book): ?>
+                        <!-- Récupération des moyennes des livres affichés -->
+                        <?php $ratings = $db->getBookRating($book['idBook']); ?>
                         <!-- Slide individuel -->
                         <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" checked="true" aria-hidden="true" hidden="">
                         <div class="carousel-item">
@@ -75,14 +69,18 @@
                                     <h1>
                                         <?= $book['booTitle'] ?>
                                     </h1>
-                                    <!-- TODO: afficher les étoiles -->
+                                    <!-- Affiche la moyenne sous forme d'étoiles -->
                                     <div class="stars">
+                                        <h4 class="index-h4">Moyenne des avis</h4>
                                         <?php if ($ratings["average"] !== null):?>
                                             <?php for($i = 0; $i < round($ratings["average"], 0); $i++):?>
                                                 <span class="material-symbols-outlined etoile">star</span>
                                             <?php endfor; ?>
+                                            <?php else: ?>
+                                                <p>Cet ouvrage n'a pas encore été évalué !</p>
                                         <?php endif; ?>
                                     </div>
+                                    <h4 class="index-h4">Résumé</h4>
                                     <p>
                                         <?= $book['booSummary'] ?>
                                     </p>
