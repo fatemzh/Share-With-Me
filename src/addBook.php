@@ -9,8 +9,12 @@
  */
 
  include('Database.php');
+ include('helper.php');
 
 session_start();
+    
+// Vérifie si l'utilisateur a accès à cette page
+IsUserAllowed();
 
 // Crée une instance de la classe Database
 $db = new Database();
@@ -18,6 +22,7 @@ $db = new Database();
 // Est-ce qu'un utilisateur est connecté ?
 if (!isset($_SESSION["user"])) {
     $isUserConnected = false;
+    header('./index.php');
 } else {
     $isUserConnected = true;
     $userName = $_SESSION["user"];

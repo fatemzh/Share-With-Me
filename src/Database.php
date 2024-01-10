@@ -3,8 +3,21 @@
  * ETML
  * Auteur: Salma Abdulkadir
  * Date: 21.11.2023
- * Description: Programme de la calsse Database permettant de gérer les interactions entre l'application et la BD.
+ * Description: Programme de la classe Database permettant de gérer les interactions entre l'application et la BD.
+ * 
+ * USER
+ * Login : Bob
+ * Mdp : bob
+ * 
+ * ADMIN
+ * Login : Alice
+ * Mdp : alice
+ * 
+ * Login : Charlie
+ * Mdp : charlie
  */
+
+
 
  class Database {
     // Variable de classe

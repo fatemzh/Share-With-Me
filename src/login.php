@@ -23,7 +23,8 @@
     // Vérifie que les données de l'utilisateur ont été récupérées
     if ($user) {
         // Vérifie que le mot de passe saisi et celui en DB correspondent
-        if (password_verify($usePassword, $user['usePassword'])) {        
+        if (password_verify($usePassword, $user['usePassword'])) {       
+            $_SESSION["isConnected"] = true; 
             $_SESSION['user'] = $user;
             $_SESSION['idUser'] = $user['idUser']; 
             header("Location: ./index.php");
@@ -33,6 +34,7 @@
             die();
         }
     } else {
+        $_SESSION["isConnected"] = false;
         echo ("Authentification incorrecte, veuillez saisir un login valide.");
         die();
     }

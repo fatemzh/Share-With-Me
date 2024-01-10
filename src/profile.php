@@ -13,15 +13,19 @@
     // Démarre la session
     session_start();
 
+    // Inclut le fichier Database.php et crée une instance
+    include './Database.php';
+    include("./helper.php");
+    $db = new Database();
+
     // Vérifie que l'utilisateur est connecté, et le renvoie à la page d'accueil s'il ne l'est pas
     if (!isset($_SESSION["user"])) {
         header("Location: ../index.php");
         exit();
     }
 
-    // Inclut le fichier Database.php et crée une instance
-    include './Database.php';
-    $db = new Database();
+    // Vérifie si l'utilisateur a accès à cette page
+    IsUserAllowed();
 
     // Récupère l'id, le pseudo et la date d'inscription de l'utilisateur
     $idUser = $_SESSION["idUser"];

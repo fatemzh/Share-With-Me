@@ -7,9 +7,14 @@
  * Date : 05.12.23
  * Description : Page de modification d'un ouvrage contenant un formulaire permettant de modifier un ouvrage existant dans la BD
  */
-include('Database.php');
+include('./Database.php');
+include("./helper.php");
 
+//Démarre une session
 session_start();
+
+// Vérifie si l'utilisateur a accès à cette page
+IsUserAllowed();
 
 // Crée une instance de la classe Database
 $db = new Database();

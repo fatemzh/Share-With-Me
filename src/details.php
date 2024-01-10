@@ -18,9 +18,13 @@ if (!isset($_SESSION["user"]) ) {
 
 //Inclusion
 include("Database.php");
+include("helper.php");
 
 //Instanciation de la base de données
 $db = new Database();
+
+// Vérifie si l'utilisateur a accès à cette page
+IsUserAllowed();
 
 //Récupération de l'identifiant du livre dans l'URL
 $idBook = $_GET["idBook"];

@@ -11,6 +11,11 @@
     // Démarre la session
     session_start();
     
+    // Au départ, aucun utilisateur n'est connecté
+    if (!isset($_SESSION["isConnected"])) {
+        $_SESSION["isConnected"] = false;
+    }
+
     // Inclut le fichier Database.php et crée une instance
     include './Database.php';
     $db = new Database();
