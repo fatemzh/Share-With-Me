@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : db:3306
--- Généré le : mar. 09 jan. 2024 à 07:37
+-- Généré le : mer. 10 jan. 2024 à 10:23
 -- Version du serveur : 8.0.30
 -- Version de PHP : 8.0.27
 
@@ -49,7 +49,9 @@ INSERT INTO `t_author` (`idAuthor`, `autLastName`, `autFirstName`) VALUES
 (9, 'Tolkien', 'J.R.R'),
 (10, 'Rowling', 'J:K'),
 (11, 'Sapkowski', 'Andrzej'),
-(12, 'Yazawa', 'Ai');
+(12, 'Yazawa', 'Ai'),
+(13, 'Baudelaire', 'Charles'),
+(14, 'Ben Jelloun', 'Tahar');
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,9 @@ INSERT INTO `t_book` (`idBook`, `booTitle`, `booNumberPages`, `booExcerpt`, `boo
 (9, 'Le Hobbit', 320, 'In a hole in the ground there lived a hobbit...', 'Dans \"The Hobbit\" de J.R.R. Tolkien, Bilbon Sacquet, un hobbit paisible, est entraîné dans une quête épique par le sage magicien Gandalf et un groupe de nains. Ils cherchent à récupérer leur trésor volé par le dragon Smaug. Le voyage de Bilbon le mène à affronter des dangers, à découvrir un anneau puissant et à se transformer en un héros improbable. Ce récit de courage et d\'amitié pose les bases du monde plus vaste de la Terre du Milieu.', 1937, 'theHobbit.jpg', 'George Allen & Unwin', 3, 9, 4),
 (10, 'Harry Potter à l\'école des sorciers', 400, 'Mr. and Mrs. Dursley...', 'C\'est l\'histoire d\'Harry Potter, un jeune garçon qui découvre qu\'il est un sorcier le jour de son 11ème anniversaire. Envoyé à l\'école de sorcellerie de Poudlard, Harry se lie d\'amitié avec Ron Weasley et Hermione Granger. Ensemble, ils découvrent un complot lié à la pierre philosophale et affrontent le maléfique Voldemort. Ce premier livre est un mélange captivant de magie, d\'aventure, et de l\'importance de l\'amitié.', 1997, 'sorcerersStone.jpg', 'Bloomsbury', 1, 10, 4),
 (11, 'Le sorceleur', 222, 'urlPDF', 'Ce livre raconte l\'histoire de Geralt de Riv, un chasseur de monstres professionnel dans un monde médiéval fantastique. Geralt, doté de pouvoirs surnaturels, navigue dans un monde moral complexe, luttant contre des créatures dangereuses tout en étant souvent confronté à des choix éthiques difficiles. Le livre mêle des éléments de mythologie slave, de politique et de magie, et explore les thèmes de la destinée, de l\'amour et de l\'humanité.', 1999, 'theWitcher.jpg', 'Bloomsbury', 1, 11, 4),
-(12, 'Nana', 100, 'urlPDF', '\"Nana\", un manga de Ai Yazawa, suit les vies croisées de deux jeunes femmes nommées Nana. Nana Osaki est une chanteuse punk ambitieuse, tandis que Nana Komatsu est une fille rêveuse à la recherche de l\'amour. À Tokyo, leurs chemins se croisent et elles deviennent colocataires. Le manga explore les thèmes de l\'amour, de l\'amitié, et des défis de la vie adulte, tout en présentant le monde de la musique rock japonaise.', 2000, 'Nana-T01.jpg', 'Shueisha', 1, 12, 1);
+(12, 'Nana', 100, 'urlPDF', '\"Nana\", un manga de Ai Yazawa, suit les vies croisées de deux jeunes femmes nommées Nana. Nana Osaki est une chanteuse punk ambitieuse, tandis que Nana Komatsu est une fille rêveuse à la recherche de l\'amour. À Tokyo, leurs chemins se croisent et elles deviennent colocataires. Le manga explore les thèmes de l\'amour, de l\'amitié, et des défis de la vie adulte, tout en présentant le monde de la musique rock japonaise.', 2000, 'Nana-T01.jpg', 'Shueisha', 1, 12, 1),
+(13, 'Les fleurs du mal', 142, 'extraitBaudelaire.pdf', '\"Les Fleurs du Mal\" de Baudelaire explore la beauté et la décadence à travers des poèmes sur l\'amour, la mort et la mélancolie, défiant les normes morales du 19e siècle.', 2022, 'lesFleursDuMal.jpg', 'Tanos', 1, 13, 5),
+(14, 'Sur ma mère', 341, 'surMaMere.pdf', '\"Sur ma mère\" de Tahar Ben Jelloun est un récit émouvant qui explore les thèmes de l\'amour, de la mémoire et du deuil. À travers les souvenirs de sa mère, l\'auteur entrelace les récits familiaux et les traditions marocaines, offrant un portrait intime et poétique de la vie et de la culture du Maroc.', 2022, 'surMaMere.jpg', 'Gallimard', 2, 14, 8);
 
 -- --------------------------------------------------------
 
@@ -107,11 +111,11 @@ INSERT INTO `t_category` (`idCategory`, `catName`) VALUES
 (1, 'Romance'),
 (2, 'Science-Fiction'),
 (3, 'Thriller'),
-(4, 'Fantasy'),
-(5, 'Poetry'),
-(6, 'Classics'),
-(7, 'Horror'),
-(8, 'Historical Fiction');
+(4, 'Fiction'),
+(5, 'Poésie'),
+(6, 'Classique'),
+(7, 'Horreur'),
+(8, 'Fiction historique');
 
 -- --------------------------------------------------------
 
@@ -157,7 +161,8 @@ INSERT INTO `t_evaluation` (`fkBook`, `fkUser`, `evaGrade`) VALUES
 (10, 1, 1),
 (10, 2, 3),
 (10, 3, 5),
-(12, 1, 5);
+(12, 1, 5),
+(14, 2, 4);
 
 -- --------------------------------------------------------
 
@@ -228,13 +233,13 @@ ALTER TABLE `t_user`
 -- AUTO_INCREMENT pour la table `t_author`
 --
 ALTER TABLE `t_author`
-  MODIFY `idAuthor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idAuthor` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `t_book`
 --
 ALTER TABLE `t_book`
-  MODIFY `idBook` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idBook` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT pour la table `t_category`
