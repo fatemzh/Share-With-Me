@@ -5,21 +5,54 @@
  * ETML
  * Auteur : Kathleen Lu
  * Date : 05.12.23
- * Description : Page de catalogue du site avec la liste de tous les livres filtrable par catégorie
+ * Description : Page de catalogue du site avec la liste de tous les ouvrages filtrable par catégorie
  */
+
+// Démarre la session
+session_start();
 
 include('Database.php');
 
 // Création d'une instance de la classe Database
 $db = new Database();
 
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION["user"])) {
+    $isUserConnected = false;
+} else {
+    $isUserConnected = true;
+    $userName = $_SESSION["user"];
+}
+
 // Récupère la liste de tous les livres
-$books = $db->getAllBooks();
+$allBooks = $db->getAllBooks();
 
+// Récupère la liste de toutes les catégories
+$allCategories = $db->getAllCategories();
 
-echo "<pre>";
-var_dump($books);
-echo "</pre>";
+// Vérifie s'il s'agit d'une page avec une catégorie spécifique, et récupère la catégorie actuelle ainsi que tous ses ouvrages
+if (isset($_GET["idCategory"])) {
+    $currentCategory = $db->getOneCategory($_GET["idCategory"]);
+    $categoryBooks = $db->getCategoryBooks($_GET["idCategory"]);
+}
+
+// Si une recherche a été effectuée avec la barre de recherche, récupère les ouvrages correspondants et vérifie si la recherche doit être effectuée dans la catégorie sélectionnée.
+// La recherche doit s'effectuer parmi les ouvrages de la catégorie
+if (isset($_GET["idCategory"]) && isset($_POST["search"])) {
+    $searchedBooks = $db->getSearchBooksInCategory($_POST["search"], $_GET["idCategory"]);
+}
+// La recherche doit s'effectuer parmi tous les ouvrages de la BD
+else if (!isset($_GET["idCategory"]) && isset($_POST["search"])) {
+    $searchedBooks = $db->getSearchBooks($_POST["search"]);
+}
+// Aucun résultat
+else {
+    $searchedBooks = array();
+}
+
+/* echo "<pre>";
+var_dump($categoryBooks);
+echo "</pre>"; */
 
 ?>
 
@@ -37,13 +70,21 @@ echo "</pre>";
     <body>
         <?php include('parts/nav.inc.php'); ?>
         <header id="catalog-hero">
-            <nav id="catalog-nav">
-                <a href="catalog.php" class="grey">Catalogue /</a>
-                <a href="#"> Action</a>
-            </nav>
+            <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
+            <?php if (isset($_GET["idCategory"])): ?>
+                <nav id="catalog-nav" class="breadcrumb">
+                    <div><a href="catalog.php" class="grey">Catalogue</a> / </div>
+                    <a href="catalog.php?idCategory=<?= $currentCategory["idCategory"]; ?>"><?= $currentCategory["catName"]; ?></a>
+                </nav>
+            <?php endif; ?>
             <section id="catalog-hero-main">
                 <h1>Trouve ton bonheur</h1>
-                <form id="search" action="#" method="post">
+                <!-- Recherche d'un ouvrage parmi tous ou parmi la catégorie sélectionnée -->
+                <?php if (isset($_GET["idCategory"])) : ?>
+                <form id="search" action="catalog.php?idCategory=<?= $_GET["idCategory"]; ?>" method="post">
+                <?php else : ?>
+                <form id="search" action="catalog.php" method="post">
+                <?php endif; ?>
                     <div>
                         <label for="search"></label>
                         <input type="search" name="search" id="search" placeholder="Titre, Auteur, Mot-clé, ...">
@@ -55,26 +96,62 @@ echo "</pre>";
         
         <main id="catalog-container">
             <nav id="filter">
-                <h2>Catégories</h2>
+                <h3>Catégories</h3>
                 <ul>
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Aventure</a></li>
-                    <li><a href="#">Fantasy</a></li>
-                    <li><a href="#">Historique</a></li>
-                    <li><a href="#">Horreur</a></li>
-                    <li><a href="#">Mystère</a></li>
-                    <li><a href="#">Romance</a></li>
-                    <li><a href="#">Science-Fiction</a></li>
+                    <!-- Affiche toutes les catégories par ordre alphabétique -->
+                    <?php foreach ($allCategories as $category): ?>
+                        <!-- Souligne la catégorie actuelle s'il s'agit d'une page de catégorie -->
+                        <li><a <?php if (isset($_GET["idCategory"]) && $category["idCategory"] == $_GET["idCategory"]): ?>
+                            class="active-category"
+                        <?php endif; ?>
+                        href="catalog.php?idCategory=<?= $category["idCategory"] ;?>"><?= $category["catName"] ;?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </nav>
 
             <section id="catalog">
-                <h2>Toutes les catégories</h2>
+                <!-- Si une recherche a été effectuée, affiche un titre concernant la recherche, sinon affiche le nom de la catégorie sélectionnée, sinon affiche "Toutes les catégories" -->
+                <?php
+                if (isset($_POST["search"])) {
+                    echo '<h2>Résultats pour la recherche "' . $_POST["search"] . '"';
+                    
+                    // Affiche la catégorie sélectionnée
+                    if (isset($_GET["idCategory"])) {
+                        echo ' dans la catégorie "' . $currentCategory["catName"] . '"';
+                    }
+                } elseif (isset($_GET["idCategory"])) {
+                    echo '<h2 class="uppercase">' . $currentCategory["catName"];
+                } else {
+                    echo '<h2 class="uppercase">' . 'Toutes les catégories';
+                }
+                ?>    
+                </h2>
                 <div id="list-container">
+                    <!-- S'il y a eu une recherche, affiche les ouvrages du résultat de recherche, sinon affiche les ouvrages de la catégorie sélectionnées, sinon affiche tous les ouvrages -->
                     <?php
-                        foreach ($books as $bookKey => $book) {
+                    if (isset($_POST["search"])) {
+                        // Affiche les ouvrages de la recherche, sinon affiche qu'il n'y a pas de résultat pour la recherche
+                        if (!empty($_POST["search"] && !empty($searchedBooks))) {
+                            foreach ($searchedBooks as $bookKey => $book) {
+                                include('parts/bookCard.inc.php');
+                            }
+                        } else {
+                            echo "<p>Il n'y a pas de résultats pour cette recherche.</p>";
+                        }
+                    } elseif (isset($_GET["idCategory"])) {
+                        // Affiche les ouvrages de la catégories, sinon affiche "Cette catégorie ne contient aucun ouvrage actuellement."
+                        if (!empty($categoryBooks)) {
+                            foreach ($categoryBooks as $bookKey => $book) {
+                                include('parts/bookCard.inc.php');
+                            }
+                        } else {
+                            echo "<p>Cette catégorie ne contient aucun ouvrage actuellement.</p>";
+                        }
+                    } else {
+                        foreach ($allBooks as $bookKey => $book) {
                             include('parts/bookCard.inc.php');
                         }
+                    }
                     ?>
                 </div>
             </section>

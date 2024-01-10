@@ -1,25 +1,38 @@
 <?php
-    //phpinfo();
+    /**
+     * 
+     * ETML
+     * Auteur : Fatem Abid
+     * Date : 05.12.23
+     * Description : Page d'accueil du site présentant les 5 derniers livres ajoutés, l'utilité du site, ainsi que les catégories
+     *               de livres présents sur le site
+     */
+
+    // Démarre la session
     session_start();
+    
+    // Inclut le fichier Database.php et crée une instance
+    include './Database.php';
+    $db = new Database();
+    
+    // Vérifie si l'utilisateur est connecté
+    $isUserConnected = isset($_SESSION["user"]);
 
-    // if (!isset($_SESSION["user"]) ) {
-    //     $isUserConnected = false;
-    // } else {
-    //     $isUserConnected = true;
-    //     $userName = $_SESSION["user"];
-    // }
-
+    if (!$isUserConnected) {
+        $isUserConnected = false;
+    } else {
+        $isUserConnected = true;
+        $userName = $_SESSION["user"];
+    }
+    
+    // Récupère l'id du livre à afficher
     $idBook = isset($_GET["idBook"]) ? $_GET["idBook"] : null;
 
-    // Inclure le fichier Database.php
-    include './Database.php';
+    // Récupère les 5 derniers ouvrages rajoutés à la DB
+    $newBooks = $db->getNewBooks();
 
-    // Créer une instance de la classe Database
-    $db = new Database();
-
-    // Récupérer la liste des enseignants depuis la base de données
-    $books =  $db->getAllBooks();
-    $book = $db->getNewBooks($idBook);
+    // Récupère la liste de toutes les catégories triées par ordre alphabétique
+    $categories =  $db->getAllCategories();
 ?>
 
 <!DOCTYPE html>
@@ -29,137 +42,96 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
         <link href="./css/styles.css" rel="stylesheet">
     <title>Accueil</title>
     </head>
     <body>
+        <!-- Barre de navigation -->
         <?php include('parts/nav.inc.php'); ?>
         <header id="home-catalog-hero">
-        <div class="carousel">
+            <!-- Carousel des 5 nouveautés -->
+            <div class="carousel">
                 <div class="carousel-inner">
-                    <!-- First slide -->
-                    <?php foreach($newBooks as $newBook):?>
-                        <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked">
+                    <?php foreach ($newBooks as $index => $book): ?>
+                        <!-- Slide individuel -->
+                        <input class="carousel-open" type="radio" id="carousel-<?= $index + 1 ?>" name="carousel" checked="true" aria-hidden="true" hidden="">
                         <div class="carousel-item">
                             <div id="home-container-header">
                                 <div id="home-left-part">
-                                    <h1><?php echo $newBook['booTitle']; ?></h1>
-                                    <div id="home-stars-review">
-                                        <h4>Avis</h4>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star</span>
-                                        <span class="material-symbols-outlined">star_half</span>
-                                    </div>
+                                    <h1>
+                                        <?= $book['booTitle'] ?>
+                                    </h1>
                                     <p>
-                                        Résumé Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
+                                        <?= $book['booSummary'] ?>
                                     </p>
-                                    <div id="home-see-more">
-                                        <a href="./details.php?idBook=<?= $books["idBook"];?>"> Voir plus</a>
-                                    </div>
+                                    <!-- Lien "voir plus" pour les utilisateurs connectés -->
+                                    <?php if ($isUserConnected === true) : ?>                     
+                                        <div id="home-see-more">
+                                            <a href="./details.php?idBook=<?= $book["idBook"]; ?>">Voir plus</a>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                                 <div id="home-right-part">
-                                    <img src="./img/covers/twilight.jpg" alt="Image représentant la couverture du livre" id="home-cover-img">  
+                                    <img src="./img/covers/<?=$book['booImageURL'] ?>" alt="Couverture du livre <?= $book['booTitle'] ?>" id="home-cover-img">  
                                 </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
-                                       
-                    <!-- Examples Slides -->
-                    <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="">
-                    <div class="carousel-item">
-                        <img src="http://fakeimg.pl/2000x800/DA5930/fff/?text=JavaScript">
-                    </div>
-                    <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="">
-                    <div class="carousel-item">
-                        <img src="http://fakeimg.pl/2000x800/F90/fff/?text=Carousel">
-                    </div>
-                    <!-- Nav arrows -->
-                    <label for="carousel-3" class="carousel-control prev control-1">‹</label>
-                    <label for="carousel-2" class="carousel-control next control-1">›</label>
-                    <label for="carousel-1" class="carousel-control prev control-2">‹</label>
-                    <label for="carousel-3" class="carousel-control next control-2">›</label>
-                    <label for="carousel-2" class="carousel-control prev control-3">‹</label>
-                    <label for="carousel-1" class="carousel-control next control-3">›</label>
-                    <!-- Nav bullets -->
-                    <ol class="carousel-indicators">
-                        <li>
-                            <label for="carousel-1" class="carousel-bullet">•</label>
-                        </li>
-                        <li>
-                            <label for="carousel-2" class="carousel-bullet">•</label>
-                        </li>
-                        <li>
-                            <label for="carousel-3" class="carousel-bullet">•</label>
-                        </li>
-                    </ol>
+            <!-- Fleche de contrôles de la navigation du carousel 
+                 Slide 1 -->
+            <label for="carousel-5" class="carousel-control prev control-1">‹</label>
+            <label for="carousel-2" class="carousel-control next control-1">›</label>
+            <!-- Slide 2 -->
+            <label for="carousel-1" class="carousel-control prev control-2">‹</label>
+            <label for="carousel-3" class="carousel-control next control-2">›</label>
+            <!-- Slide 3 -->
+            <label for="carousel-2" class="carousel-control prev control-3">‹</label>
+            <label for="carousel-4" class="carousel-control next control-3">›</label> 
+            <!-- Slide 4 -->
+            <label for="carousel-3" class="carousel-control prev control-4">‹</label>
+            <label for="carousel-5" class="carousel-control next control-4">›</label>
+            <!-- Slide 5 -->
+            <label for="carousel-4" class="carousel-control prev control-5">‹</label>
+            <label for="carousel-1" class="carousel-control next control-5">›</label>
                 </div>
-            </div>
-            
+            </div>            
         </header>
         <main>
+            <!-- Présentation du site -->
             <h1 id="home-title">Bienvenue sur Share With Me</h1>
             <div id="home-introduction">
-                <p>
-                    Texte d’introduction et de présentation
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat. Duis semper. 
-                </p>
+                <div>
+                    <p>Sur ce site vous trouverez les lectures, et appréciations de nos utilisateurs sur les livres qu'ils ont lu. De la romance, à la science-fiction en passant par la poésie, 8 genres de littératures sont couverts. Ce site est une plateforme pour ceux et celles qui lisent et qui aiment partager leurs lectures.</p>
+                    <p>En tant qu'utilisateur vous pouvez ajouter un des livres que vous souhaitez partager en renseignant ses informations, vous pourrez également lui donner une évaluation, modifier ses informations, ou encore le supprimer, depuis votre page profile. En tant qu'utilisateur, et visiteur vous pouvez également consulter le catalogue des ouvrages publiés, pour vous informer et vous inspirer.</p>
+                </div>
                 <img id="home-introduction-img" src="./img/covers/introduction.png" alt="Image représentant une paire de lunette sur un livre ouvert ">
             </div>
+            <!-- Affichage des nouveautés -->
             <div id="home-latestReleases">
                 <h3 id="home-nouveautes-title">Nouveautés</h3>
                 <div id="home-latest-bookcard">
-                    <?php include('parts/bookCard.inc.php'); ?>
-                    <?php include('parts/bookCard.inc.php'); ?>
-                    <?php include('parts/bookCard.inc.php'); ?>
-                    <?php include('parts/bookCard.inc.php'); ?>
-                    <?php include('parts/bookCard.inc.php'); ?>
+                    <?php foreach ($newBooks as $book): ?>
+                        <?php include('parts/bookCard.inc.php'); ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
+            <!-- Affichage des catégories -->
             <div id="home-categories">
-                <h3 id="home-categories-title">Categories</h3>
+                <h3 id="home-categories-title">Catégories</h3>
                 <div id="home-categories-name">
-                    <?php
-                    // foreach($categories as $category)
-                    // {
-                    //     echo 
-                    //     "<div class="home-card-cat">
-                    //         <a href="./catalog.php" class="home-catalog-card"> . $cat</a>
-                    //     </div>"
-                    // }
-                    ?>
+                    <?php foreach ($categories as $category): ?>
                     <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[1];?>" class="home-catalog-card">Romance</a>
+                        <a href="./catalog.php?idCategory=<?= $category["idCategory"]; ?>" class="home-catalog-card"><?= $category["catName"];?></a>
                     </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[2];?>" class="home-catalog-card">Science-Fiction</a>
-                    </div>                    
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[3];?>" class="home-catalog-card">Thriller</a>
-                    </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[4];?>" class="home-catalog-card">Essay</a>
-                    </div> 
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[5];?>" class="home-catalog-card">Poetry</a>
-                    </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[6];?>" class="home-catalog-card">Classics</a>
-                    </div> 
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[7];?>" class="home-catalog-card">Horror</a>
-                    </div>
-                    <div class="home-card-cat">
-                        <a href="./catalog.php?idBook=<?= $books[8];?>" class="home-catalog-card">Historical Fiction</a>
-                    </div> 
+                <?php endforeach; ?>
                 </div>
             </div>
         </main>
+        <!-- Footer -->
         <?php include('parts/footer.inc.php'); ?>
     </body>
 </html>
