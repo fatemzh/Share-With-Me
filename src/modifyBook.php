@@ -92,7 +92,6 @@ $bookData = array(
                 <?php include("parts/form.inc.php");?>
                 <p>
                     <input type="submit" value="Modifier">
-                    <button type="button" onclick="document.getElementById('book-form').reset();">Effacer</button>
                 </p>
             </form>
         </main>

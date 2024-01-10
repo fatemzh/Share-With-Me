@@ -874,3 +874,7 @@ td {
   border: none;
   border-radius: 4px;
 }
+
+.errorRed {
+  color: red;
+}
