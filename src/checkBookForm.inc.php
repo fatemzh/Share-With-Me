@@ -44,7 +44,7 @@ if (!isset($_POST["authorLastname"]) || empty($_POST["authorLastname"]) || !preg
 }
 
 // Vérifie que l'éditeur est bien renseigné
-if (!isset($_POST["editor"]) || empty($_POST["editor"]) || !preg_match("/^[a-zA-ZÀ-ÿ\s-]*$/", $_POST["editor"])) {
+if (!isset($_POST["editor"]) || empty($_POST["editor"])) {
     $_SESSION["incorrect"] .= "<p class='errorRed'>Vous devez renseigner un éditeur !</p>";
 }
 
