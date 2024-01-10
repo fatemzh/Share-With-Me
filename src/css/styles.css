@@ -324,9 +324,10 @@ a.grey {
 .breadcrumb a {
   font-size: 16px;
   transition: font-size 0.3s ease;
-  &:hover {
-    font-size: 20px;
-  }
+}
+
+.breadcrumb a:hover {
+  font-size: 20px;
 }
 
 .breadcrumb div {
@@ -350,9 +351,10 @@ a.grey {
 #title-detail a .material-symbols-outlined {
   font-size: 70px;
   transition: font-size 0.3s ease;
-  &:hover {
-    font-size: 80px;
-  }
+}
+
+#title-detail a .material-symbols-outlined:hover {
+  font-size: 80px;
 }
 
 /******************* BOOK DETAILS *******************/
@@ -461,13 +463,16 @@ a.grey {
   color: #ffad66;
   font-variation-settings: "FILL" 1;
 }
+
 .rating .material-symbols-outlined {
   padding-right: 8px;
   color: #ffad66;
   transition: color 0.3s ease;
-  &:hover {
-    font-variation-settings: "FILL" 1;
-  }
+}
+
+.rating .material-symbols-outlined:hover {
+  font-variation-settings: "FILL" 1;
+  cursor: pointer;
 }
 
 /******************* HOME CAROUSEL *******************/
