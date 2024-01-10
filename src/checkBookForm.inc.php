@@ -29,7 +29,7 @@ if (!isset($_POST["page-number"]) || empty($_POST["page-number"]) || !is_numeric
 }
 
 // Vérifie que le résumé est bien renseigné
-if (!isset($_POST["summary"]) || empty($_POST["summary"]) || !preg_match("/^[a-zA-ZÀ-ÿ0-9\s-]*$/", $_POST["summary"])) {
+if (!isset($_POST["summary"]) || empty($_POST["summary"])) {
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner un résumé !</p>";
 }
 

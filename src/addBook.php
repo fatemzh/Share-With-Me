@@ -70,13 +70,6 @@ $bookData = array(
                 <a href="addBook.php"> Ajouter</a>
             </nav>
             <h1>Ajouter un ouvrage</h1>
-            <form action="checkBookForm.inc.php" method="post" enctype="multipart/form-data" id="book-form">
-                <?php include("parts/form.inc.php");?>
-                <p>
-                    <input type="submit" value="Ajouter">
-                    <button type="button" onclick="document.getElementById('book-form').reset();">Effacer</button>
-                </p>
-            </form>
             <?php
             // Affiche si le formulaire a été mal rempli
             if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
@@ -84,6 +77,13 @@ $bookData = array(
                 $_SESSION["incorrect"] = "";
             }
             ?>
+            <form action="checkBookForm.inc.php" method="post" enctype="multipart/form-data" id="book-form">
+                <?php include("parts/form.inc.php");?>
+                <p>
+                    <input type="submit" value="Ajouter">
+                    <button type="button" onclick="document.getElementById('book-form').reset();">Effacer</button>
+                </p>
+            </form>
         </main>
         <?php include("parts/footer.inc.php"); ?>
     </body>
