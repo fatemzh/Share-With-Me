@@ -51,7 +51,11 @@ else {
 }
 
 /* echo "<pre>";
-var_dump($categoryBooks);
+var_dump($_SESSION["pdfExt"]);
+echo "</pre>";
+
+echo "<pre>";
+var_dump($_SESSION["imgExt"]);
 echo "</pre>"; */
 
 ?>

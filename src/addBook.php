@@ -44,8 +44,8 @@ $bookData = array(
     "authorLastname" => "",
     "editor" => "",
     "editionYear" => "",
-    "excerptLink" => "",
-    "bookCover" => ""
+    "excerptName" => "",
+    "coverName" => ""
 );
 
 /* echo "<pre>";
@@ -74,7 +74,7 @@ echo "</pre>"; */
                 <a href="addBook.php"> Ajouter</a>
             </nav>
             <h1>Ajouter un ouvrage</h1>
-            <form action="checkBookForm.inc.php" method="post" id="book-form">
+            <form action="checkBookForm.inc.php" method="post" enctype="multipart/form-data" id="book-form">
                 <?php include("parts/form.inc.php");?>
                 <p>
                     <input type="submit" value="Ajouter">
