@@ -17,7 +17,7 @@ $db = new Database();
 
 // Si aucune erreur, met à jour les données de l'ouvrage dans la BD et affiche la page de détails de l'ouvrage, sinon retourne sur la page du formulaire de modification pour afficher les erreurs
 if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
-    header("Location: modifyBook.php");
+    header("Location: modifyBook.php?idBook=" . $_SESSION["idBook"]);
 } else {
     // Récupère l'auteur
     $author = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
@@ -27,7 +27,7 @@ if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
         $idAuthor = $author["idAuthor"];
     } else {
         $db->addAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
-        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]); /* Répétitif ? Simplifier ? --------------- */
+        $newAuthor = $db->getAuthor($_SESSION["authorLastname"], $_SESSION["authorFirstname"]);
         $idAuthor = $newAuthor["idAuthor"];
     }
 

@@ -4,7 +4,9 @@
 <div id="nav-bar">
     <nav>
         <ul>
-            <li><a href="./index.php">LOGO</a></li>
+            <li><a href="./index.php">
+                <img src="./img/logo.png" alt="logo du site représentant en livre avec le nom du site internet Share with me" id="logo">
+            </a></li>
             <div id="nav-menu">
                 <li><a href="./index.php">Accueil</a></li>
                 <li><a href="./catalog.php">Catalogue</a></li>
