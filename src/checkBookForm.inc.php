@@ -53,34 +53,41 @@ if (!isset($_POST["year"]) || empty($_POST["year"]) || !is_numeric($_POST["year"
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner une année d'édition !</p>";
 }
 
-// Récupère le nom du fichier de l'extrait d'ouvrage et le sépare à chaque "." pour pouvoir vérifier l'extension après
-$fileArray = explode('.', $_POST["book-link"]);
-
 // Vérifie que l'URL est bien renseignée
-if (!isset($_POST["book-link"]) || empty($_POST["book-link"]) || strtolower(end($fileArray)) != "pdf") {
+if (!isset($_FILES["excerptPDF"]) || empty($_FILES["excerptPDF"]) || $_FILES["excerptPDF"]["type"] != "application/pdf") {
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner un extrait PDF !</p>";
 }
 
-// Récupère le nom du fichier de l'image de couverture et le sépare à chaque "." pour pouvoir vérifier l'extension après
-$coverArray = explode('.', $_POST["book-cover"]);
-
 // Vérifie que l'image de couverture est bien téléchargée
-if (!isset($_POST["book-cover"]) || empty($_POST["book-cover"]) || (strtolower(end($coverArray)) != "png" && strtolower(end($coverArray)) != "jpg" && strtolower(end($coverArray)) != "jpeg")) {
+if (!isset($_FILES["coverImg"]) || empty($_FILES["coverImg"]) || ($_FILES["coverImg"]["type"] != "image/png" && $_FILES["coverImg"]["type"] != "image/jpg" && $_FILES["coverImg"]["type"] != "image/jpeg")) {
     $_SESSION["incorrect"] .= "<p>Vous devez renseigner une image de couverture (png, jpeg ou jpg) !</p>";
 }
 
-// Récupère les données de l'ouvrage
-if (isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["page-number"]) && isset($_POST["summary"]) && isset($_POST["authorFirstname"]) && isset($_POST["authorLastname"]) && isset($_POST["editor"]) && isset($_POST["year"]) && isset($_POST["book-link"]) && isset($_POST["book-cover"])) {
+$_SESSION["pdfExt"] = $_FILES["excerptPDF"]["type"];
+$_SESSION["imgExt"] = $_FILES["coverImg"]["type"];
+
+// Récupère les données de l'ouvrage et déplace l'extrait PDF ainsi que l'image de couverture dans le bon répertoire
+if (isset($_POST["title"]) && isset($_POST["category"]) && isset($_POST["page-number"]) && isset($_POST["summary"]) && isset($_POST["authorFirstname"]) && isset($_POST["authorLastname"]) && isset($_POST["editor"]) && isset($_POST["year"]) && isset($_FILES["excerptPDF"]) && isset($_FILES["coverImg"])) {
     $_SESSION["title"] = $_POST["title"];
     $_SESSION["idCategory"] = $_POST["category"];
     $_SESSION["nbPages"] = $_POST["page-number"];
     $_SESSION["summary"] = $_POST["summary"];
     $_SESSION["authorFirstname"] = $_POST["authorFirstname"];
     $_SESSION["authorLastname"] = $_POST["authorLastname"];
-    $_SESSION["edihor"] = $_POST["editor"];
+    $_SESSION["editor"] = $_POST["editor"];
     $_SESSION["editionYear"] = $_POST["year"];
-    $_SESSION["excerptLink"] = $_POST["book-link"];
-    $_SESSION["bookCover"] = $_POST["book-cover"];
+    $_SESSION["excerptName"] = $_FILES["excerptPDF"]["name"];
+    $_SESSION["coverName"] = $_FILES["coverImg"]["name"];
+    
+    // Déplace l'extrait PDF
+    $pdfSource = $_FILES["excerptPDF"]["tmp_name"];
+    $pdfDestination = "excerptPDF/" . $_FILES["excerptPDF"]["name"];
+    move_uploaded_file($pdfSource, $pdfDestination);
+
+    // Déplace l'image de couverture
+    $coverSource = $_FILES["coverImg"]["tmp_name"];
+    $coverDestination = "img/covers/" . $_FILES["coverImg"]["name"];
+    move_uploaded_file($coverSource, $coverDestination);
 }
 
 header("Location: check" . ucfirst($_SESSION["currentPage"]));

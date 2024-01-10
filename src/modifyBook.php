@@ -54,8 +54,8 @@ $bookData = array(
     "authorLastname" => $author["autLastName"],
     "editor" => $book["booEditorName"],
     "editionYear" => $book["booEditionYear"],
-    "excerptLink" => $book["booExcerpt"],
-    "bookCover" => $book["booImageURL"]
+    "excerptName" => $book["booExcerpt"],
+    "coverName" => $book["booImageURL"]
 );
 
 ?>
@@ -80,7 +80,7 @@ $bookData = array(
                 <a href="modifyBook.php"> Modifier</a>
             </nav>
             <h1>Modifier un ouvrage</h1>
-            <form action="checkBookForms.inc.php" method="post" id="book-form">
+            <form action="checkBookForm.inc.php" method="post" enctype="multipart/form-data" id="book-form">
                 <?php include("parts/form.inc.php");?>
                 <p>
                     <input type="submit" value="Modifier">

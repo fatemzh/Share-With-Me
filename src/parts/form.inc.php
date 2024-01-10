@@ -38,15 +38,15 @@
             <input type="text" name="year" id="year" placeholder="Année d'édition" value="<?= $bookData["editionYear"]; ?>">
         </p>
         <p  class="space">
-            <label for="book-link">Lien d'extrait de l'ouvrage</label>
-            <input type="file" id="book-link" name="book-link" value="Lien URL" accept="application/pdf" value="<?= $bookData["excerptLink"]; ?>">
+            <label for="excerptPDF">Lien d'extrait de l'ouvrage</label>
+            <input type="file" id="excerptPDF" name="excerptPDF" value="Lien URL" accept="application/pdf" value="<?= $bookData["excerptName"]; ?>">
         </p>
     </div>
     <div id="form-right">
         <div id="img-cover"></div>
         <p class="space">
-            <label for="book-cover">Image de couverture</label>
-            <input type="file" id="book-cover" name="book-cover" accept="image/png, image/jpeg, img/jpg" value="<?= $bookData["bookCover"]; ?>">
+            <label for="coverImg">Image de couverture</label>
+            <input type="file" id="coverImg" name="coverImg" accept="image/png, image/jpeg, img/jpg" value="<?= $bookData["coverName"]; ?>">
         </p>
     </div>
 </div>

@@ -32,7 +32,7 @@ if (isset($_SESSION["incorrect"]) && $_SESSION["incorrect"] !== "") {
     }
 
     // Ajoute l'ouvrage dans la BD
-    $db->addBook($_SESSION["title"], $_SESSION["nbPages"], $_SESSION["excerptLink"], $_SESSION["summary"], $_SESSION["editionYear"], $_SESSION["bookCover"], $_SESSION["editor"], $_SESSION["idUser"], $idAuthor, $_SESSION["idCategory"]);
+    $db->addBook($_SESSION["title"], $_SESSION["nbPages"], $_SESSION["excerptName"], $_SESSION["summary"], $_SESSION["editionYear"], $_SESSION["coverName"], $_SESSION["editor"], $_SESSION["idUser"], $idAuthor, $_SESSION["idCategory"]);
 
     header("Location: catalog.php");
 }
