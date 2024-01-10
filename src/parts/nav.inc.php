@@ -8,6 +8,9 @@
             <div id="nav-menu">
                 <li><a href="./index.php">Accueil</a></li>
                 <li><a href="./catalog.php">Catalogue</a></li>
+                <?php if ($isUserConnected === true) :?>                     
+                    <li><a href="addBook.php">Ajouter un livre</a></li>
+                <?php endif; ?>
             </div>
         </ul>
     </nav>
@@ -16,14 +19,14 @@
             <form action="./logout.php" method="post">
                 <p><?php echo $_SESSION["user"]['useLogin']; ?> (user)</p> 
                 <a href="./profile.php">Mon profil</a> 
-                <button type="submit" name="logout">Se déconnecter</button>
+                <button type="submit" name="logout" class="btn btn-login">Se déconnecter</button>
             </form>
         <?php endif; ?>
         <?php if ($isUserConnected === true && $_SESSION["user"]["useAdmin"]===1) :?>                     
             <form action="./logout.php" method="post">
                 <p><?php echo $_SESSION["user"]['useLogin']; ?> (admin)</p>  
                 <a href="./profile.php">Mon profil</a> 
-                <button type="submit" name="logout">Se déconnecter</button>
+                <button type="submit" name="logout" class="btn btn-login">Se déconnecter</button>
             </form>
         <?php endif; ?>
         <?php if ($isUserConnected === false): ?>

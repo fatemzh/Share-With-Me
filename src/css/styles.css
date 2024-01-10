@@ -60,6 +60,7 @@ textarea::placeholder {
 
 button:hover {
   cursor: pointer;
+  background-color: #2e3669;
 }
 
 /******************* ICONES  *******************/
@@ -78,6 +79,7 @@ button:hover {
   padding: 32px 0;
   max-width: 1240px;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
@@ -85,6 +87,7 @@ button:hover {
 #nav-bar form {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 16px;
 }
 

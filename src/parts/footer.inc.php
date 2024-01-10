@@ -6,7 +6,9 @@
             <ul>
                 <li><a href="index.php">Accueil</a></li>
                 <li><a href="catalog.php">Catalogue</a></li>
-                <li><a href="addBook.php">Ajouter</a></li>
+                <?php if ($isUserConnected === true) :?>                     
+                    <li><a href="./catalog.php">Ajouter un livre</a></li>
+                <?php endif; ?>            
             </ul>
         </nav>
         <hr>

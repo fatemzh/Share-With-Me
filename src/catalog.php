@@ -156,7 +156,6 @@ echo "</pre>"; */
                 </div>
             </section>
         </main>
-
         <?php include('parts/footer.inc.php'); ?>
     </body>
 </html>

@@ -1,5 +1,9 @@
 <div class="book-card">
-    <a href="details.php?idBook=<?= $book["idBook"]; ?>"><img src="./img/covers/<?= $book["booImageURL"]; ?>" alt="image de couverture du livre"></a>
+    <?php if ($isUserConnected === true) { ?>                     
+        <a href="details.php?idBook=<?= $book["idBook"]; ?>"><img src="./img/covers/<?= $book["booImageURL"]; ?>" alt="image de couverture du livre"></a>
+    <?php } else { ?>
+        <img src="./img/covers/<?= $book["booImageURL"]; ?>" alt="image de couverture du livre">
+    <?php } ?>
     <div class="book-infos">
         <p class="author">
             <?php
@@ -8,7 +12,11 @@
             ?>    
         </p>
         <h3>
-            <a href="./details.php?idBook=<?= $book["idBook"]; ?>"><?= $book["booTitle"]; ?></a>
+            <?php if ($isUserConnected === true) { ?>                     
+                <a href="./details.php?idBook=<?= $book["idBook"]; ?>"><?= $book["booTitle"]; ?></a>
+            <?php } else { ?>
+                <?= $book["booTitle"]; ?>
+            <?php } ?>
         </h3>
         <p>Posté par : 
             <?php
