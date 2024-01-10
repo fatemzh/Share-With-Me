@@ -8,6 +8,9 @@
  * Description : Page de catalogue du site avec la liste de tous les ouvrages filtrable par catégorie
  */
 
+// Démarre la session
+session_start();
+
 include('Database.php');
 
 // Création d'une instance de la classe Database

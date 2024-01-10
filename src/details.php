@@ -47,9 +47,6 @@ $ratings = $db->getBookRating($idBook);
 if($isUserConnected === true){
     $user = $db->getOneUser($_SESSION["idUser"]);
 }
-else{
-    echo "Veuillez vous connecter.";
-}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -74,6 +71,7 @@ else{
             </div>
             <div id="title-detail">
                 <h1>Détails de l’ouvrage</h1>
+                <!-- Affiche l'icon de modification et de suppression si l'admin est connecté ou juste l'icon de modification si l'utilisateur connecté est sur la page d'un ouvrage qu'il a publié -->
                 <?php if ($user["useAdmin"] === 1): ?>
                     <a href="./modifyBook.php?idBook="<?=$book["idBook"]?>><span class="material-symbols-outlined">edit</span></a>
                     <a href="javascript:confirmDelete(<?=$book["idBook"];?>)"><span class="material-symbols-outlined">delete</span></a>
@@ -93,6 +91,7 @@ else{
                     <div id="review">
                             <p>Moyenne des avis :</p>
                             <div class="stars">
+                                <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
                                 <?php if ($ratings["average"] !== null):?>
                                     <?php for($i = 0; $i < round($ratings["average"], 0); $i++):?>
                                         <span class="material-symbols-outlined etoile">star</span>
@@ -124,6 +123,7 @@ else{
                 </div>
             </div>
             <div id="evaluation">
+                <!-- Affiche la barre de navigation du catalogue s'il s'agit d'une page de catégorie -->
             <?php if ($isUserConnected === true): ?>
                 <p>Evaluez cet ouvrage</p>
                 <div id="stars-2">
