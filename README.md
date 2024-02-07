@@ -1,6 +1,6 @@
-# P_WEB2
+# Share with Me
 
-- Projet Bibliothèque en Ligne
+- Projet de Bibliothèque en Ligne
 
 Description
 Bienvenue sur notre application de bibliothèque en ligne ! Cette plateforme permet aux utilisateurs de découvrir, évaluer, ajouter, modifier et supprimer des ouvrages. En tant que passionné-e de lecture vous pourrez ajouter les livres que vous avez lu, et leur laisser une review, ainsi que consulter la description des ouvrages partagés partagés par les autres utilisateurs du site.
