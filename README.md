@@ -1,44 +1,60 @@
-# Share with Me
+Version Française 
 
-- Projet de Bibliothèque en Ligne
+📚 Share with Me - Votre Bibliothèque en Ligne Collaborative
 
-Description
-Bienvenue sur notre application de bibliothèque en ligne ! Cette plateforme permet aux utilisateurs de découvrir, évaluer, ajouter, modifier et supprimer des ouvrages. En tant que passionné-e de lecture vous pourrez ajouter les livres que vous avez lu, et leur laisser une review, ainsi que consulter la description des ouvrages partagés partagés par les autres utilisateurs du site.
+🌟 Bienvenue sur Share with Me
 
-Pages du site:
-
-- Page d'Accueil
-La page d'accueil offre une brève explication de l'utilité du site. Vous y trouverez également les cinq derniers ouvrages ajoutés, accessible à tout public (en dehors des liens).
-
-- Page de catalogue des ouvrages 
-Cette page permet aux visiteurs de parcourir la liste des ouvrages par catégorie, avec des restrictions sur les liens pour les utilisateurs non connectés. Une fonction de recherche est également disponible pour faciliter la recherche, ainsi qu'une barre latérale de navigation reprenant les catégories de livre présente sur leur site.Le catalogue peut être filtré par catégorie.
-
-- Page d'ajout d'un ouvrage
-Les utilisateurs peuvent ajouter leurs propres ouvrages grâce à une page dédiée, accessible uniquement aux utilisateurs enregistrés. Ils peuvent y renseigner le titre, la catégorie, le nombre de pages, un extrait (lien vers un fichier pdf), un résumé, l'auteur, l'éditeur, l'année d'édition et l'image de couverture.
-
-- Page de modification d'un ouvrage
-Les utilisateurs ont la possibilité de modifier les détails des livres qu'ils ont ajoutés ou de les supprimer.
-
-- Page détail de l'ouvrage
-Les utilisateurs connectés peuvent consulter les détails de chaque ouvrage et y exprimer leur avis en ajoutant des appréciations aux ouvrages. Une échelle de notation de 0 à 5 est utilisée. Les détails d'un ouvrage comprennent le titre, l'auteur, la catégorie, le nombre d'appréciations, la moyenne obtenue, etc. 
-
-- Page profil 
-Les utilisateurs connectés peuvent accéder à leur profil, où ils peuvent y trouver leur pseudo, leur année d'inscription au site, le nombre d'ouvrages qu'ils ont ajoutés, et le nombre d'avis qu'ils ont publiés. Ils ont également un tableau affichant les titres des
-ouvrages qu'ils ont ajoutés, avec la possibilité de les modifier, supprimer ou accéder à leur page détail. 
-
-Règle d'éco-conceptions suivies:
-
-Conception > 
-12 Favoriser un design simple, épuré, adapté au web
-
-Réalisation >
-30 Fournir une alternative textuelle aux contenus multimédias
-32 Favoriser les polices standards
-35 Limiter le nombre de CSS
-40 Ecrire des sélecteurs CSS efficaces
-60 Valider les pages auprès du W3C
-
-Utilisation >
-110 Adapter les textes au web
+Share with Me est une plateforme collaborative en ligne destinée aux passionnés de lecture. Elle offre une expérience unique permettant de découvrir, évaluer, ajouter, modifier, et supprimer des ouvrages, tout en partageant votre amour pour la lecture avec une communauté active.
 
 
+📖 Fonctionnalités Clés
+
+Découverte : Explorez les derniers ouvrages ajoutés et naviguez à travers une variété de catégories.
+Évaluation : Laissez des avis et notez les livres sur une échelle de 0 à 5.
+Contribution : Ajoutez vos ouvrages préférés, complétez avec des détails et partagez vos lectures.
+Personnalisation : Modifiez ou supprimez les informations des ouvrages que vous avez ajoutés.
+Interactivité : Exprimez votre opinion et découvrez les appréciations des autres utilisateurs.
+Profil Utilisateur : Accédez à votre historique de contributions et d'avis publiés.
+
+
+🚀 Pages Principales
+Page d'Accueil : Introduction et derniers ouvrages ajoutés.
+Catalogue des Ouvrages : Parcourir par catégorie, avec fonction de recherche.
+Ajout d'un Ouvrage : Formulaire pour les contributions des utilisateurs enregistrés.
+Modification d'un Ouvrage : Gérez et updatez vos contributions.
+Détail de l'Ouvrage : Informations complètes et avis sur l'ouvrage.
+Page Profil : Votre activité et contributions sur la plateforme.
+
+
+💡 Éco-Conception
+Nous suivons les meilleures pratiques d'éco-conception, incluant un design épuré, l'utilisation de polices standards, la limitation des CSS, et des sélecteurs CSS efficaces pour une meilleure performance et accessibilité.
+
+___________________________________________________________________________________________________________________________________________
+English Version
+
+📚 Share with Me - Your Collaborative Online Library
+
+🌟 Welcome to Share with Me
+Share with Me is an online collaborative platform for book lovers. It offers a unique experience to discover, rate, add, edit, and delete works while sharing your love for reading with an active community.
+
+
+📖 Key Features
+Discovery : Explore the latest added works and browse through a variety of categories.
+Evaluation : Leave reviews and rate books on a scale of 0 to 5.
+Contribution : Add your favorite works, complete with details, and share your readings.
+Customization : Edit or delete information of the works you've added.
+Interactivity : Express your opinion and discover reviews from other users.
+User Profile : Access your history of contributions and published reviews.
+
+
+🚀 Main Pages
+Home Page : Introduction and latest added works.
+Catalog of Works : Browse by category, with search functionality.
+Add a Work : Form for user contributions.
+Edit a Work : Manage your contributions.
+Work Details : Comprehensive information and reviews.
+Profile Page : Your activity on the platform.
+
+
+💡 Eco-Design
+We follow best practices in eco-design, including a clean design, the use of standard fonts, limited CSS, and efficient CSS selectors for better performance and accessibility.
