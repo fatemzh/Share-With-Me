@@ -26,7 +26,7 @@ Les utilisateurs connectés peuvent consulter les détails de chaque ouvrage et 
 Les utilisateurs connectés peuvent accéder à leur profil, où ils peuvent y trouver leur pseudo, leur année d'inscription au site, le nombre d'ouvrages qu'ils ont ajoutés, et le nombre d'avis qu'ils ont publiés. Ils ont également un tableau affichant les titres des
 ouvrages qu'ils ont ajoutés, avec la possibilité de les modifier, supprimer ou accéder à leur page détail. 
 
-Règle éco-conception:
+Règle d'éco-conceptions suivies:
 
 Conception > 
 12 Favoriser un design simple, épuré, adapté au web
